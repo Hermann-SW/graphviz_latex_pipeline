@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-import pydot
+""" make pylint happy """
+# pylint: disable=line-too-long,too-many-locals,consider-using-with
 import os
 import sys
 import subprocess
+import pydot
 
 def unquote(s):
     """Remove surrounding quotes from Graphviz attributes."""
@@ -18,13 +20,13 @@ def write_if_changed(filepath, content):
             existing_content = f.read()
         if existing_content == content:
             return False
-            
+
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(content)
     return True
 
 def generate_latex_and_makefile(dot_file):
-    # Parse the .dot file
+    """ Parse the .dot file """
     graphs = pydot.graph_from_dot_file(dot_file)
     if not graphs:
         print(f"Error: Could not parse {dot_file}")
@@ -34,7 +36,7 @@ def generate_latex_and_makefile(dot_file):
     # Extract the LaTeX template from the graph's comment attribute
     graph_attrs = graph.get_attributes()
     template = unquote(graph_attrs.get('comment', ''))
-    
+
     if not template or r'\begin{document}' not in template:
         print("Error: No valid LaTeX template found in the graph 'comment' attribute.")
         return
@@ -46,32 +48,32 @@ def generate_latex_and_makefile(dot_file):
     for node in graph.get_nodes():
         image_attr = unquote(node.get('image'))
         comment_attr = unquote(node.get('comment'))
-        
+
         if image_attr and comment_attr:
             base_name = image_attr[:-4] if image_attr.endswith('.png') else image_attr
             tex_filename = f"{base_name}.tex"
             tex_content = template.replace(r'\end{document}', f"{comment_attr}\n\\end{{document}}")
-            
+
             if write_if_changed(tex_filename, tex_content):
                 updated_count += 1
-                
+
             extracted_items.append({'base': base_name, 'png': image_attr, 'tex': tex_filename})
 
     # Process all edges and inject the HTML label
     for edge in graph.get_edges():
         image_attr = unquote(edge.get('image'))
         comment_attr = unquote(edge.get('comment'))
-        
+
         if image_attr and comment_attr:
             base_name = image_attr[:-4] if image_attr.endswith('.png') else image_attr
             tex_filename = f"{base_name}.tex"
             tex_content = template.replace(r'\end{document}', f"{comment_attr}\n\\end{{document}}")
-            
+
             if write_if_changed(tex_filename, tex_content):
                 updated_count += 1
-                
+
             extracted_items.append({'base': base_name, 'png': image_attr, 'tex': tex_filename})
-            
+
             # Auto-generate the HTML label for Graphviz (pydot respects the < > wrappers)
             html_label = f'<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><IMG SRC="{image_attr}"/></TD></TR></TABLE>>'
             edge.set_label(html_label)
@@ -85,7 +87,7 @@ def generate_latex_and_makefile(dot_file):
     # Create the Makefile pointing to the temporary processed dot file
     target_pdf = dot_file.replace('.dot', '.pdf')
     all_pngs = " ".join([item['png'] for item in extracted_items])
-    
+
     makefile_content = f"""# Auto-generated Makefile
 
 all: {target_pdf}
@@ -114,21 +116,21 @@ clean:
     try:
         subprocess.run(["make"], check=True)
         print(f"Successfully generated {target_pdf}.")
-        
+
         print(f"Opening {target_pdf} in evince...")
-        subprocess.Popen(["evince", target_pdf], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        
+        subprocess.Popen(["evince",target_pdf], stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+
     except subprocess.CalledProcessError as e:
         print(f"Compilation failed during make execution: {e}")
     except FileNotFoundError:
         print("Error: Make or Evince is not installed or not in PATH.")
 
 if __name__ == "__main__":
-    dot_filename = "x.dot"
+    DOT_FILENAME = "x.dot"
     if len(sys.argv) > 1:
-        dot_filename = sys.argv[1]
-    
-    if not os.path.exists(dot_filename):
-        print(f"File {dot_filename} not found.")
+        DOT_FILENAME = sys.argv[1]
+
+    if not os.path.exists(DOT_FILENAME):
+        print(f"File {DOT_FILENAME} not found.")
     else:
-        generate_latex_and_makefile(dot_filename)
+        generate_latex_and_makefile(DOT_FILENAME)
