@@ -67,7 +67,7 @@ Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to
 "
 ```
 
-I use ```vi``` editor since 1990, and write+compile is just done with ```:w|T```, with:
+I use ```vi``` editor since 1990, and write+compile is just done with ```:w|!T```, with:
 ```bash
 $ cat /usr/local/bin/T
 #!/bin/bash
