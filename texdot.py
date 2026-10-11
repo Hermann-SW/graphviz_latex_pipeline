@@ -105,7 +105,7 @@ all: {target_pdf}
 \tlatexmk -pdf -lualatex $<
 
 clean:
-\tlatexmk -c
+\t-latexmk -c
 \trm -f *.tex *.pdf *.png {processed_dot_file} Makefile
 """
 
