@@ -63,6 +63,12 @@ def generate_latex_and_makefile(dot_file):
     for edge in graph.get_edges():
         image_attr = unquote(edge.get('image'))
         comment_attr = unquote(edge.get('comment'))
+        label_attr = unquote(edge.get('label'))
+
+        # Error out if both label and comment are present (ignoring empty string labels)
+        if comment_attr and label_attr:
+            print(f"Error: Edge from {edge.get_source()} to {edge.get_destination()} contains both a 'label' (\"{label_attr}\") and a 'comment'. Aborting to prevent silent overwrite.")
+            sys.exit(1)
 
         if image_attr and comment_attr:
             base_name = image_attr[:-4] if image_attr.endswith('.png') else image_attr
@@ -74,7 +80,7 @@ def generate_latex_and_makefile(dot_file):
 
             extracted_items.append({'base': base_name, 'png': image_attr, 'tex': tex_filename})
 
-            # Auto-generate the HTML label for Graphviz (pydot respects the < > wrappers)
+            # Auto-generate the HTML label for Graphviz
             html_label = f'<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><IMG SRC="{image_attr}"/></TD></TR></TABLE>>'
             edge.set_label(html_label)
 
