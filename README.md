@@ -22,6 +22,7 @@ hermann@8840hs:~/graphviz_latex_pipeline$
 To get rid of the many temporary files just execute ```make clean```, it deletes the Makefile as well.
 
 LaTeX labels are really easy:  
+(edges do not have ```image``` attribute normally, ```texdot.py``` creates HTML workaround)  
 ```
 ...
     lem_1_5 [label="" shape=box image="lem_1_5.png" comment="
