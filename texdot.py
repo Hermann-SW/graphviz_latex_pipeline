@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ make pylint happy """
-# pylint: disable=line-too-long,too-many-locals,consider-using-with
+# pylint: disable=line-too-long,too-many-locals,too-many-statements,consider-using-with
 import os
 import sys
 import subprocess
@@ -13,7 +13,7 @@ def unquote(s):
     return s
 
 def write_if_changed(filepath, content):
-    """Writes content to a file only if it differs from the existing file. 
+    """Writes content to a file only if it differs from the existing file.
     This preserves modification timestamps for 'make' incremental compilation."""
     if os.path.exists(filepath):
         with open(filepath, 'r', encoding='utf-8') as f:
@@ -48,6 +48,12 @@ def generate_latex_and_makefile(dot_file):
     for node in graph.get_nodes():
         image_attr = unquote(node.get('image'))
         comment_attr = unquote(node.get('comment'))
+        label_raw = node.get('label')
+
+        # Error out if any label attribute exists alongside a comment (even label="")
+        if comment_attr and label_raw is not None:
+            print(f"Error: Node '{node.get_name()}' contains both a 'label' attribute and a 'comment' attribute. No label is allowed if a comment attribute is present.")
+            sys.exit(1)
 
         if image_attr and comment_attr:
             base_name = image_attr[:-4] if image_attr.endswith('.png') else image_attr
@@ -59,15 +65,18 @@ def generate_latex_and_makefile(dot_file):
 
             extracted_items.append({'base': base_name, 'png': image_attr, 'tex': tex_filename})
 
+            # Inject empty label for Graphviz to prevent the node ID from rendering over the image
+            node.set_label('""')
+
     # Process all edges and inject the HTML label
     for edge in graph.get_edges():
         image_attr = unquote(edge.get('image'))
         comment_attr = unquote(edge.get('comment'))
-        label_attr = unquote(edge.get('label'))
+        label_raw = edge.get('label')
 
-        # Error out if both label and comment are present (ignoring empty string labels)
-        if comment_attr and label_attr:
-            print(f"Error: Edge from {edge.get_source()} to {edge.get_destination()} contains both a 'label' (\"{label_attr}\") and a 'comment'. Aborting to prevent silent overwrite.")
+        # Error out if any label attribute exists alongside a comment (even label="")
+        if comment_attr and label_raw is not None:
+            print(f"Error: Edge from {edge.get_source()} to {edge.get_destination()} contains both a 'label' attribute and a 'comment' attribute. No label is allowed if a comment attribute is present.")
             sys.exit(1)
 
         if image_attr and comment_attr:

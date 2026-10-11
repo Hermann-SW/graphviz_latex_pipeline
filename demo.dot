@@ -16,15 +16,15 @@ digraph G {
 
 \end{document}
 "
-    lem_1_5 [label="" shape=box image="lem_1_5.png" comment="
+    lem_1_5 [shape=box image="lem_1_5.png" comment="
 \textbf{Lem 1.5 }For distinct $a,b,c\in \mathbb{Q}$ define $B, \tilde{C}$ and C\\
 $B=\{(u,v,w)\in \mathbb{Q}\times\mathbb{Q}\times\mathbb{Q}\vert u^2+a=v^2+b=w^2+c\}$\\
 "]
-    lem_1_6 [label="" shape=box image="lem_1_6.png" comment="
+    lem_1_6 [shape=box image="lem_1_6.png" comment="
 \textbf{Lem 1.6 } ...\\
 "]
 
-    lem_1_5 -> lem_1_6 [label="" image="1_5.1_6.png" comment="
+    lem_1_5 -> lem_1_6 [image="1_5.1_6.png" comment="
 \textbf{wow } $\exists\ \dots$
 "]
 
