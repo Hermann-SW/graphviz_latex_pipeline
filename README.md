@@ -1,6 +1,6 @@
 # graphviz_latex_pipeline
 
-New ```texdot.py``` tool is result of less than 1h chat with Gemini Pro. It enables LaTeX labels for Graphviz nodes and edges. The LaTeX is stored in node or edge ```comment``` attribute. The ```image``` attribute specifies the filename the compiled LaTeX will be stored into. The adustable template is stored in graph ```comment``` attribute. Executing ```./texdot.py demo.dot``` will
+New ```texdot.py``` tool is result of less than 1h chat with Gemini Pro (for first complete functioning). It enables LaTeX labels for Graphviz nodes and edges. The adustable LaTeX template is stored in graph ```comment``` attribute. Executing ```./texdot.py demo.dot``` will
 - parse demo.dot using ```pydot``` interface
 - create temporary .tex file for each LaTeX label
 - create ```Makefile``` to orchestrate the work
@@ -9,7 +9,7 @@ New ```texdot.py``` tool is result of less than 1h chat with Gemini Pro. It enab
 - execute ```dot``` to create final .pdf
 - execute ```evince``` to display the result
 
-When run first a lot of output will appear. When run again without changes in the LaTeX labels, incremental compilation avoids regeneration of the images:  
+When run first a lot of output will appear. When run again without changes in the LaTeX labels, incremental compilation avoids regeneration of the (generated from LaTeX) images:  
 ```
 hermann@8840hs:~/graphviz_latex_pipeline$ ./texdot.py demo.dot 
 Extracted 3 LaTeX definitions (0 newly written/updated).
@@ -22,21 +22,28 @@ hermann@8840hs:~/graphviz_latex_pipeline$
 
 To get rid of the many temporary files just execute ```make clean```, it deletes the Makefile as well.
 
-LaTeX labels are really easy:  
-(edges do not have ```image``` attribute normally, ```texdot.py``` creates HTML workaround)  
-```
+## Usage: Adding LaTeX to Nodes and Edges
+
+To render LaTeX inside your Graphviz diagrams, simply add a `comment` attribute to your node or edge containing the LaTeX code. `texdot.py` will handle the rest.
+
+### ⚠️ Important Rules for LaTeX Nodes & Edges
+When using the `comment` attribute for LaTeX rendering, the following strict rules apply:
+
+* **REQUIRED:** You must provide the `comment` attribute containing your LaTeX code.
+* **FORBIDDEN:** You **must not** include a `label` or `image` attribute. If either is present alongside a `comment`, the compiler will abort to prevent silent overwrites.
+
+**Example of correct usage:**
+```dot
 ...
-    lem_1_5 [label="" shape=box image="lem_1_5.png" comment="
+    lem_1_5 [comment="
 \textbf{Lem 1.5 }For distinct $a,b,c\in \mathbb{Q}$ define $B, \tilde{C}$ and C\\
-$B=\{(u,v,w)\in \mathbb{Q}\times\mathbb{Q}\times\mathbb{Q}\vert u^2+a=v^2+b=w^2+c\}$\\
-"]
-    lem_1_6 [label="" shape=box image="lem_1_6.png" comment="
-\textbf{Lem 1.6 } ...\\
+$B=\{(u,v,w)\in \mathbb{Q}\times\mathbb{Q}\times\mathbb{Q}\vert u^2+a=v^2+b=w^2+c\}$\\"]
+    ex_1_6 [shape=plaintext style=filled color=yellow comment="
+\textbf{Ex 1.6 } ...\\
 "]
 
-    lem_1_5 -> lem_1_6 [label="" image="1_5.1_6.png" comment="
-\textbf{wow } $\exists\ \dots$
-"]
+    lem_1_5 -> ex_1_6 [comment="
+\textbf{wow } $\exists\ \dots$\\"]
 
 }
 ```
