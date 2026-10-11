@@ -47,9 +47,9 @@ And this is 50% size PDF view of created result:
 
 ## work in progress
 
-Transforming [number_theory.dot](number_theory.dot) from old system to new, 4 labels (of 26) right processed with ```texdot.py```. Since there are no ```comment``` and ```image``` attributes in the not yet transformed 22 labels, ```texdot.py``` can process the whole document, all the time.
+Transforming [number_theory.dot](number_theory.dot) from old system to new, 4 labels (of 26) on right side are processed with ```texdot.py```. Since there are no ```comment``` and ```image``` attributes in the not yet transformed 22 labels, ```texdot.py``` can process the whole document, all the time.
 
-Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to add package for ```\psi```, and shortcut for $\mathbb{Z}$ is available now:  
+Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to add package for ```\psi```, and shortcut for $\mathbb{Z}$ is available now. I commented out the math spacing removal for now:  
 ```dot
     comment="
 \documentclass[varwidth=true, border=5pt]{standalone}
