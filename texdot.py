@@ -117,10 +117,9 @@ def generate_latex_and_makefile(dot_file):
 
             extracted_items.append({'base': base_name, 'png': png_filename, 'tex': tex_filename})
 
-            # Auto-generate the HTML label for Graphviz and inject the standard image attribute
+            # Auto-generate the HTML label for Graphviz
             html_label = f'<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><IMG SRC="{png_filename}"/></TD></TR></TABLE>>'
             edge.set_label(html_label)
-            edge.set('image', f'"{png_filename}"')
 
     print(f"Extracted {len(extracted_items)} LaTeX definitions ({updated_count} newly written/updated).")
 
