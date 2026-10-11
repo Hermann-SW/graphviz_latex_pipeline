@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ make pylint happy """
-# pylint: disable=line-too-long,too-many-locals,too-many-statements,consider-using-with
+# pylint: disable=line-too-long,too-many-locals,too-many-statements,consider-using-with,too-many-branches
 import os
 import sys
 import subprocess
@@ -25,6 +25,14 @@ def write_if_changed(filepath, content):
         f.write(content)
     return True
 
+def is_valid_linux_filename(filename):
+    """Check if a string is a valid Linux filename (no slashes, no nulls, <= 255 bytes)."""
+    if not filename or '/' in filename or '\0' in filename:
+        return False
+    if len(filename.encode('utf-8')) > 255:
+        return False
+    return True
+
 def generate_latex_and_makefile(dot_file):
     """ Parse the .dot file """
     graphs = pydot.graph_from_dot_file(dot_file)
@@ -46,52 +54,73 @@ def generate_latex_and_makefile(dot_file):
 
     # Process all nodes
     for node in graph.get_nodes():
-        image_attr = unquote(node.get('image'))
         comment_attr = unquote(node.get('comment'))
+        image_attr = unquote(node.get('image'))
         label_raw = node.get('label')
 
-        # Error out if any label attribute exists alongside a comment (even label="")
-        if comment_attr and label_raw is not None:
-            print(f"Error: Node '{node.get_name()}' contains both a 'label' attribute and a 'comment' attribute. No label is allowed if a comment attribute is present.")
-            sys.exit(1)
+        if comment_attr:
+            if image_attr:
+                print(f"Error: Node '{node.get_name()}' contains both an 'image' attribute and a 'comment' attribute. The image attribute is now automatically generated.")
+                sys.exit(1)
+            if label_raw is not None:
+                print(f"Error: Node '{node.get_name()}' contains both a 'label' attribute and a 'comment' attribute. No label is allowed if a comment attribute is present.")
+                sys.exit(1)
 
-        if image_attr and comment_attr:
-            base_name = image_attr[:-4] if image_attr.endswith('.png') else image_attr
+            base_name = unquote(node.get_name())
             tex_filename = f"{base_name}.tex"
+            png_filename = f"{base_name}.png"
+
+            if not is_valid_linux_filename(tex_filename) or not is_valid_linux_filename(png_filename):
+                print(f"Error: Node ID '{base_name}' produces invalid Linux filenames. Filenames cannot contain '/' or exceed 255 bytes.")
+                sys.exit(1)
+
             tex_content = template.replace(r'\end{document}', f"{comment_attr}\n\\end{{document}}")
 
             if write_if_changed(tex_filename, tex_content):
                 updated_count += 1
 
-            extracted_items.append({'base': base_name, 'png': image_attr, 'tex': tex_filename})
+            extracted_items.append({'base': base_name, 'png': png_filename, 'tex': tex_filename})
 
-            # Inject empty label for Graphviz to prevent the node ID from rendering over the image
+            # Inject auto-generated image and empty label
+            node.set('image', f'"{png_filename}"')
             node.set_label('""')
 
     # Process all edges and inject the HTML label
     for edge in graph.get_edges():
-        image_attr = unquote(edge.get('image'))
         comment_attr = unquote(edge.get('comment'))
+        image_attr = unquote(edge.get('image'))
         label_raw = edge.get('label')
 
-        # Error out if any label attribute exists alongside a comment (even label="")
-        if comment_attr and label_raw is not None:
-            print(f"Error: Edge from {edge.get_source()} to {edge.get_destination()} contains both a 'label' attribute and a 'comment' attribute. No label is allowed if a comment attribute is present.")
-            sys.exit(1)
+        if comment_attr:
+            source = unquote(edge.get_source())
+            dest = unquote(edge.get_destination())
 
-        if image_attr and comment_attr:
-            base_name = image_attr[:-4] if image_attr.endswith('.png') else image_attr
+            if image_attr:
+                print(f"Error: Edge from {source} to {dest} contains both an 'image' attribute and a 'comment' attribute. The image attribute is now automatically generated.")
+                sys.exit(1)
+            if label_raw is not None:
+                print(f"Error: Edge from {source} to {dest} contains both a 'label' attribute and a 'comment' attribute. No label is allowed if a comment attribute is present.")
+                sys.exit(1)
+
+            base_name = f"{source}_{dest}"
             tex_filename = f"{base_name}.tex"
+            png_filename = f"{base_name}.png"
+
+            if not is_valid_linux_filename(tex_filename) or not is_valid_linux_filename(png_filename):
+                print(f"Error: Edge from {source} to {dest} produces invalid Linux filenames ('{tex_filename}'). Filenames cannot contain '/' or exceed 255 bytes.")
+                sys.exit(1)
+
             tex_content = template.replace(r'\end{document}', f"{comment_attr}\n\\end{{document}}")
 
             if write_if_changed(tex_filename, tex_content):
                 updated_count += 1
 
-            extracted_items.append({'base': base_name, 'png': image_attr, 'tex': tex_filename})
+            extracted_items.append({'base': base_name, 'png': png_filename, 'tex': tex_filename})
 
-            # Auto-generate the HTML label for Graphviz
-            html_label = f'<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><IMG SRC="{image_attr}"/></TD></TR></TABLE>>'
+            # Auto-generate the HTML label for Graphviz and inject the standard image attribute
+            html_label = f'<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><IMG SRC="{png_filename}"/></TD></TR></TABLE>>'
             edge.set_label(html_label)
+            edge.set('image', f'"{png_filename}"')
 
     print(f"Extracted {len(extracted_items)} LaTeX definitions ({updated_count} newly written/updated).")
 
