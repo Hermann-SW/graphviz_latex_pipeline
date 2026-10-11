@@ -47,7 +47,7 @@ And this is 50% size PDF view of created result:
 
 ## work in progress
 
-Transforming [number_theory.dot](number_theory.dot) from old system to new, 4 labels (of 37) on right side are processed with ```texdot.py```. Since there are no ```comment``` and ```image``` attributes in the not yet transformed 33 labels, ```texdot.py``` can process the whole document, all the time. 3 node labels using the old system can be seen on left side.
+Transforming [number_theory.dot](number_theory.dot) from old system to new, 4 node labels (of 37) on right side are processed with ```texdot.py```. Since there are no ```comment``` and ```image``` attributes in the not yet transformed 33 node labels, ```texdot.py``` can process the whole document, all the time. 3 node labels using the old system can be seen on left side. The HTML label content in number_theory.dot node and edge labels was created with the [old tool](https://gist.github.com/Hermann-SW/12c7644ac0c75b4eb019f76c3f023fe5).
 
 Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to add package for ```\psi```, and shortcut for $\mathbb{Z}$ is available now. I commented out the math spacing removal for now:  
 ```dot
