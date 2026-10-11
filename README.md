@@ -76,3 +76,10 @@ $
 ```
 
 ![work_in_progress.png](res/work_in_progress.png)
+
+
+## work in progress 2
+
+File [fermat_Neq4.dot](res/fermat_Neq4.dot) got graph ```comment``` attribute with LaTeX template and therefore can be processed with ```texdot.py```. Nothing else has been transformed yet, so the whole proof diagram currently looks like compiled with the old tool:  
+![work_in_progress_2.png](res/work_in_progress_2.png)
+
