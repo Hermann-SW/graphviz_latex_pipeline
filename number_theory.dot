@@ -1,0 +1,119 @@
+digraph G {
+    layout=neato;
+    overlap="false";
+    sep="+15";
+    node [shape=box, fontsize=12, margin="0.15,0.1"];
+
+    labelloc=t
+    label="3.3 prime residue classes and Fermat-Euler theorem (Def 3.13 — Cor 3.32)
+3.4 cyclic groups (Def 3.33 — Thm 3.49)
+
+ "
+
+    comment="
+\documentclass[varwidth=true, border=5pt]{standalone}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+
+\begin{document}
+% Remove automatic math spacing
+%\thinmuskip=0mu
+%\medmuskip=0mu
+%\thickmuskip=0mu
+
+\end{document}
+"
+
+    def_3_13 [label=<<B>Def 3.13 </B> Ring R, x∈R: if ∃y∈R∖{0}: xy=0,<BR/>    then x is called zero divisor>];
+    ex_3_14 [label=<<B>Ex 3.14 </B> zero divisors in ℤ/3ℤ: <O>0</O>, so has no zero divisors<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>zero divisors in ℤ/4ℤ: <O>0</O>,<O>2</O>, so has zero divisor<BR/>>];
+    def_3_15 [label=<<B>Def 3.15 </B> Ring R, x∈R: if ∃y∈R: xy=1,<BR/>then x is called a unit>];
+    ex_3_16 [label=<<B>Ex 3.16 </B> units in ℤ/3ℤ: <O>1</O>,<O>2</O><BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>units in ℤ/4ℤ: <O>1</O>,<O>3</O>>];
+    prop_3_17 [label=<<B>Prop 3.17 </B> R ring<BR ALIGN="LEFT"/>(a) R<SUP>×</SUP>:={x∈R: x is unit} with · is (abelian) group of units<BR ALIGN="LEFT"/>(b) x∈R<SUP>×</SUP> ⇒ x no zero divisor<BR ALIGN="LEFT"/>(c) R finite, then also: x∈R no zero divisor ⇒ x is unit<BR ALIGN="LEFT"/>>];
+    ex_3_18 [label=<<B>Ex 3.18 </B> Finite ring R=ℤ/nℤ, n∈ℕ, x∈R:<BR ALIGN="LEFT"/><FONT POINT-SIZE="5">&nbsp;</FONT><BR ALIGN="LEFT"/><O>x</O> unit ⇔ <O>x</O> no zero divisor<BR ALIGN="LEFT"/>Units in R are called coprime residue classes modulo n<BR ALIGN="LEFT"/>(ℤ/nℤ)<SUP>×</SUP> is called multiplicative group of integers modulo n>];
+    def_3_19 [label=<<B>Def 3.19 </B> (Commutative) ring R<BR/>with R<SUP>×</SUP> = R ∖{0} is called field>];
+    ex_3_20 [label=<<B>Ex 3.20 </B> ℤ/3ℤ is field, ℤ/4ℤ and zero ring are no fields.>];
+    thm_3_21 [label=<<B>Thm 3.21 </B> n∈ℕ, these are equivalent<BR ALIGN="LEFT"/>(i) n is prime<BR ALIGN="LEFT"/>(ii) ℤ/nℤ is field<BR ALIGN="LEFT"/>(iii) ℤ/nℤ has no zero divisors<BR ALIGN="LEFT"/>>];
+    prop_3_22 [label=<<B>Prop 3.22 </B> a∈ℕ, <O>a</O>∈ℤ/nℤ:<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/><O>a</O>∈(ℤ/nℤ)<SUP>×</SUP> ⇔ gcd(a,n)=1>];
+    cor_3_23 [label=<<B>Cor 3.23 </B> n∈ℕ, a∈ℤ:<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>(∃x∈ℤ: ax≡1 (mod n)) ⇔ gcd(a,n)=1>];
+    ex_3_24 [label=<<B>Ex 3.24 </B> Solutions for<BR/>3x≡1 (mod 37): L=25+37ℤ>];
+    prop_3_25 [label=<<B>Prop 3.25 </B> a,b∈ℤ, n∈ℕ<BR/>(∃x∈ℤ: ax≡b (mod n)) ⇔ gcd(a,n)|b>];
+    ex_3_26 [label=<<B>Ex 3.26 </B> (a) ∄x∈ℤ: 15x≡7 (mod 21)<BR ALIGN="LEFT"/>(b) ∃x∈ℤ: 15x≡6 (mod 21)<BR ALIGN="LEFT"/>>];
+    def_3_27 [label=<<B>Def 3.27 </B> Order |G| of group<BR/>is number of its elements>];
+    ex_3_28 [label=<<B>Ex 3.28 </B>|(ℤ/nℤ)<SUP>×</SUP>|=ϕ(n)>];
+    prop_3_29 [label=<<B>Prop 3.29 </B> G finite abelian group.<BR ALIGN="LEFT"/>∀g∈G: g<SUP>|G|</SUP> =1 >];
+    thm_3_30 [label=<<B>Thm 3.30 </B> (Fermat-Euler theorem) <BR ALIGN="LEFT"/><FONT POINT-SIZE="5">&nbsp;</FONT><BR ALIGN="LEFT"/>n∈ℕ. ∀<O>a</O>∈(ℤ/nℤ)<SUP>×</SUP>: <O>a</O><SUP>ϕ(n)</SUP> =<O>1</O> >];
+    ex_3_31 [label=<<B>Ex 3.31 </B> 3<SUP>19</SUP>≡10 (mod 17)>];
+    cor_3_32 [label=<<B>Cor 3.32 </B> (Fermat&#x27;s little theorem) p prime:<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>(a) ∀<O>a</O>∈F<SUB>p</SUB><SUP>×</SUP>: <O>a</O><SUP>p-1</SUP>=<O>1</O><BR ALIGN="LEFT"/><FONT POINT-SIZE="5">&nbsp;</FONT><BR ALIGN="LEFT"/>(b) ∀<O>a</O>∈F<SUB>p</SUB>: <O>a</O><SUP>p</SUP>=<O>a</O><BR ALIGN="LEFT"/>>];
+    def_3_33 [label="" image="def_3_33.png" comment="
+\textbf{Def 3.33 } Group G is cyclic:\\
+$\exists g\in G$ generator with\\
+$G = \{g^n: n\in \Z\}=:<g>$
+"];
+    rem_3_34 [label="" image="rem_3_34.png" comment="
+\textbf{Rem 3.34 } Every cyclic group is abelian.
+"];
+    ex_3_35 [label="" image="ex_3_35.png" comment="
+\textbf{Ex 3.35 }(a) group $(\Z/5\Z)^{\times} = \{\overline{1},\overline{2},\overline{3},\overline{4}\}$ is cyclic\\
+(b) group $(\Z/8\Z)^{\times} = \{\overline{1},\overline{3},\overline{5},\overline{7}\}$ is not cyclic\\
+(c) additive group $\Z$\ is cyclic\\
+(d) additive group $\Z/m\Z =\{\overline{0},\overline{1},\dots,\overline{m-1}\}$\ is cyclic
+"];
+    def_3_36 [label=<<B>Def 3.36 </B> G finite abelian group.<BR ALIGN="LEFT"/>Order ord(G):=min{n∈ℕ: g<SUP>n</SUP>=1}<BR ALIGN="LEFT"/>>];
+    ex_3_37 [label=<<B>Ex 3.37 </B>For G=(ℤ/5ℤ)<SUP>×</SUP>:<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>(a) ord(<O>2</O>)=4<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>(b) ord(<O>4</O>)=2<BR ALIGN="LEFT"/>>];
+    prop_3_38 [label=<<B>Prop 3.38 </B>G finite abelian group:<BR/>        G is cyclic ⇔ ∃g∈G with ord(g)=|G|>];
+    prop_3_39 [label=<<B>Prop 3.39 </B>G finite abelian group,<BR/>g∈G, m∈ℤ: ord(g)|m ⇔ g<SUP>m</SUP>=1>];
+    cor_3_40 [label=<<B>Cor 3.40 </B> G finite abelian group.<BR ALIGN="LEFT"/>∀g∈G: ord(g) | |G|>];
+    def_3_41 [label=<<B>Def 3.41 </B> G finite abelian group.<BR ALIGN="LEFT"/>Exponent exp(G):=min{n∈ℕ: g<SUP>n</SUP>=1 ∀g∈G}<BR ALIGN="LEFT"/>>];
+    ex_3_42 [label=<<B>Ex 3.42 </B>(a) exp((ℤ/5ℤ)<SUP>×</SUP>)=4<BR ALIGN="LEFT"/>(b) exp((ℤ/8ℤ)<SUP>×</SUP>)=2<BR ALIGN="LEFT"/>>];
+    prop_3_43 [label=<<B>Prop 3.43 </B>G finite abelian group G:<BR ALIGN="LEFT"/>(a) exp(G) | |G| <BR ALIGN="LEFT"/>(b) exp(G)= lcm({ord(g): g∈G})<BR ALIGN="LEFT"/>>];
+    def_3_44 [label=<<B>Def 3.44 </B> homomorphism<BR/> isomorphism,  ≅ >];
+    ex_3_45 [label=<<B>Ex 3.45 </B>K field implies<BR ALIGN="LEFT"/>det:GL<SUB>n</SUB>(K)→K<SUP>×</SUP> homomorphism>];
+    prop_3_46 [label=<<B>Prop 3.46 </B>G, H groups, ψ: G→ H homomorphism:<BR ALIGN="LEFT"/>(a) ψ injective ⇔ ker(ψ):={g∈G: ψ(g)=1}={1}<BR ALIGN="LEFT"/>(b) ψ isomorphism implies ψ<SUP>-1</SUP>: H→G isomorphism<BR ALIGN="LEFT"/>>];
+    thm_3_47 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD BORDER="0" ALIGN="LEFT" COLSPAN="2"><B>Thm 3.47 </B>For cyclic group G:</TD></TR><TR><TD BORDER="0" VALIGN="MIDDLE" ALIGN="LEFT"> G  ≅ </TD><TD BORDER="0" VALIGN="MIDDLE" ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ROWSPAN="2" VALIGN="MIDDLE" ALIGN="RIGHT" BORDER="0"><FONT POINT-SIZE="22">&#123;</FONT></TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">ℤ</TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">&nbsp;&nbsp;&nbsp;&nbsp;for G infinite,</TD></TR><TR><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">ℤ/|G|ℤ</TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">&nbsp;&nbsp;&nbsp;&nbsp;for G finite.</TD></TR></TABLE></TD><TD BORDER="0" VALIGN="MIDDLE" ALIGN="LEFT"></TD></TR></TABLE>>];
+    ex_3_48 [label="" image="ex_3_48.png" comment="
+\textbf{Ex 3.48 } $(\Z/5\Z)^{\times} \cong \Z/4\Z$\\
+$\psi: \begin{cases} \Z/4\Z &\to\ (\Z/5\Z)^{\times}\\
+a & \mapsto\ \overline{2}^a \end{cases}$
+"];
+    thm_3_49 [label=<<B>Thm 3.49 </B>G finite abelian group:<BR/>G is cyclic ⇔ exp(G) = |G|>];
+
+    def_3_13 -> ex_3_14 [style=dotted];
+    def_3_15 -> ex_3_16 [style=dotted];
+    { def_3_13 def_3_15 } -> prop_3_17 [style=dotted];
+    ex_3_14 -> ex_3_16 [style=invis,arrowhead=none];
+    prop_3_17 -> ex_3_18 [style=dotted];
+    prop_3_17 -> thm_3_21;
+    { ex_3_16 def_3_19 } -> ex_3_20 [style=dotted];
+    ex_3_20 -> thm_3_21;
+    prop_3_29 -> def_3_36;
+    thm_3_21 -> prop_3_22 [style=dotted];
+    prop_3_22 -> cor_3_23 [style=dotted];
+    def_3_19 -> thm_3_21;
+    cor_3_23 -> ex_3_24 [style=dotted];
+    cor_3_23 -> prop_3_25 [style=dotted];
+    prop_3_25 -> ex_3_26 [style=dotted];
+    ex_3_24 -> def_3_27 [style=invis,arrowhead=none];
+    prop_3_22 -> ex_3_28;
+    def_3_27 -> ex_3_28 [style=dotted];
+    def_3_33 -> ex_3_35 [style=dotted];
+    def_3_36 -> ex_3_37 [style=dotted];
+    thm_3_30 -> { ex_3_31 cor_3_32 };
+    { ex_3_28 prop_3_29 } -> thm_3_30;
+    ex_3_31 -> cor_3_32 [style=invis,arrowhead=none];
+    def_3_33 -> rem_3_34 [style=dotted label="https://github.com/Hermann-SW/graphviz_latex_pipeline  "
+    URL="https://github.com/Hermann-SW/graphviz_latex_pipeline"]
+    def_3_41 -> prop_3_43 [style=dotted];
+    prop_3_39 -> cor_3_40;
+    prop_3_39 -> prop_3_43;
+    def_3_44 -> { ex_3_45 prop_3_46 } [style=dotted];
+    prop_3_38 -> thm_3_47;
+    prop_3_39 -> thm_3_47;
+    def_3_36 -> prop_3_38 [style=dotted];
+    prop_3_46 -> thm_3_47 [style=dotted];
+    prop_3_29 -> cor_3_40;
+    def_3_41 -> ex_3_42 [style=dotted];
+    { ex_3_35 thm_3_47 } -> ex_3_48;
+    { prop_3_39 prop_3_43 } -> thm_3_49;
+    prop_3_38 -> thm_3_49;
+}

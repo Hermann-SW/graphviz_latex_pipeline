@@ -43,3 +43,17 @@ $B=\{(u,v,w)\in \mathbb{Q}\times\mathbb{Q}\times\mathbb{Q}\vert u^2+a=v^2+b=w^2+
 And this is 50% size PDF view of created result:  
 ![demo.pdf.png](res/demo.pdf.png)
 
+
+## work in progress
+
+Transforming [number_theory.dot](number_theory.dot) from old system to new, 4 labels (of 26) right processed with ```textdot.py```. Since there are no ```comment``` and ```image``` attributes in the not yet transformed 22 labels, ```textdot.py``` can process the whole document, all the time.
+
+I use ```vi``` editor since 1990, and write+compile is just done with ```:w|T```, with:
+```bash
+$ cat /usr/local/bin/T
+#!/bin/bash
+./texdot.py number_theory.dot
+$
+```
+
+![work_in_progress.png](res/work_in_progress.png)
