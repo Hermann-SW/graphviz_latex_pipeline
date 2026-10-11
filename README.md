@@ -1,6 +1,7 @@
 # graphviz_latex_pipeline
 
 New ```texdot.py``` tool is result of less than 1h chat with Gemini Pro. It enables LaTeX labels for Graphviz nodes and edges. The LaTeX is stored in node or edge ```comment``` attribute. The ```image``` attribute specifies the filename the compiled LaTeX will be stored into. The adustable template is stored in graph ```comment``` attribute. Executing ```./texdot.py demo.dot``` will
+- parse demo.dot using ```pydot``` interface
 - create temporary .tex file for each LaTeX label
 - create ```Makefile``` to orchestrate the work
 - use ```latexmk``` to compile into .pdf file
@@ -46,7 +47,25 @@ And this is 50% size PDF view of created result:
 
 ## work in progress
 
-Transforming [number_theory.dot](number_theory.dot) from old system to new, 4 labels (of 26) right processed with ```textdot.py```. Since there are no ```comment``` and ```image``` attributes in the not yet transformed 22 labels, ```textdot.py``` can process the whole document, all the time.
+Transforming [number_theory.dot](number_theory.dot) from old system to new, 4 labels (of 26) right processed with ```texdot.py```. Since there are no ```comment``` and ```image``` attributes in the not yet transformed 22 labels, ```texdot.py``` can process the whole document, all the time.
+
+Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to add package for ```\psi```, and shortcut for $\mathbb{Z}$ is available now:  
+```dot
+    comment="
+\documentclass[varwidth=true, border=5pt]{standalone}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+
+\begin{document}
+% Remove automatic math spacing
+%\thinmuskip=0mu
+%\medmuskip=0mu
+%\thickmuskip=0mu
+
+\end{document}
+"
+```
 
 I use ```vi``` editor since 1990, and write+compile is just done with ```:w|T```, with:
 ```bash
