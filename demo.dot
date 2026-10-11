@@ -1,7 +1,7 @@
 digraph G {
     layout=dot;
     labelloc=t
-    label="LateX labels for Graphviz\n demo with incremental compilation\n "
+    label="LaTeX labels for Graphviz\n demo with incremental compilation\n "
     node [shape=box, fontsize=12, margin="0.15,0.1"];
 
     comment="
