@@ -81,6 +81,6 @@ $
 ## work in progress 2
 
 File [fermat_Neq4.dot](fermat_Neq4.dot) got graph ```comment``` attribute with LaTeX template and therefore can be processed with ```./texdot.py fermat_Neq4.dot```. Nothing else has been transformed yet, so the whole proof diagram currently looks like compiled with the old tool:  
-![work_in_progress.2.png](res/work_in_progress.2.png)  
+<a href="res/fermat_Neq4.pdf"><img src="res/work_in_progress.2.png"/></a>  
 I really like the proof by contradiction in single edge label middle bottom.
 
