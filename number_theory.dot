@@ -45,15 +45,15 @@ digraph G {
     thm_3_30 [label=<<B>Thm 3.30 </B> (Fermat-Euler theorem) <BR ALIGN="LEFT"/><FONT POINT-SIZE="5">&nbsp;</FONT><BR ALIGN="LEFT"/>n∈ℕ. ∀<O>a</O>∈(ℤ/nℤ)<SUP>×</SUP>: <O>a</O><SUP>ϕ(n)</SUP> =<O>1</O> >];
     ex_3_31 [label=<<B>Ex 3.31 </B> 3<SUP>19</SUP>≡10 (mod 17)>];
     cor_3_32 [label=<<B>Cor 3.32 </B> (Fermat&#x27;s little theorem) p prime:<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>(a) ∀<O>a</O>∈F<SUB>p</SUB><SUP>×</SUP>: <O>a</O><SUP>p-1</SUP>=<O>1</O><BR ALIGN="LEFT"/><FONT POINT-SIZE="5">&nbsp;</FONT><BR ALIGN="LEFT"/>(b) ∀<O>a</O>∈F<SUB>p</SUB>: <O>a</O><SUP>p</SUP>=<O>a</O><BR ALIGN="LEFT"/>>];
-    def_3_33 [label="" image="def_3_33.png" comment="
+    def_3_33 [comment="
 \textbf{Def 3.33 } Group G is cyclic:\\
 $\exists g\in G$ generator with\\
 $G = \{g^n: n\in \Z\}=:<g>$
 "];
-    rem_3_34 [label="" image="rem_3_34.png" comment="
+    rem_3_34 [comment="
 \textbf{Rem 3.34 } Every cyclic group is abelian.
 "];
-    ex_3_35 [label="" image="ex_3_35.png" comment="
+    ex_3_35 [comment="
 \textbf{Ex 3.35 }(a) group $(\Z/5\Z)^{\times} = \{\overline{1},\overline{2},\overline{3},\overline{4}\}$ is cyclic\\
 (b) group $(\Z/8\Z)^{\times} = \{\overline{1},\overline{3},\overline{5},\overline{7}\}$ is not cyclic\\
 (c) additive group $\Z$\ is cyclic\\
@@ -71,7 +71,7 @@ $G = \{g^n: n\in \Z\}=:<g>$
     ex_3_45 [label=<<B>Ex 3.45 </B>K field implies<BR ALIGN="LEFT"/>det:GL<SUB>n</SUB>(K)→K<SUP>×</SUP> homomorphism>];
     prop_3_46 [label=<<B>Prop 3.46 </B>G, H groups, ψ: G→ H homomorphism:<BR ALIGN="LEFT"/>(a) ψ injective ⇔ ker(ψ):={g∈G: ψ(g)=1}={1}<BR ALIGN="LEFT"/>(b) ψ isomorphism implies ψ<SUP>-1</SUP>: H→G isomorphism<BR ALIGN="LEFT"/>>];
     thm_3_47 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD BORDER="0" ALIGN="LEFT" COLSPAN="2"><B>Thm 3.47 </B>For cyclic group G:</TD></TR><TR><TD BORDER="0" VALIGN="MIDDLE" ALIGN="LEFT"> G  ≅ </TD><TD BORDER="0" VALIGN="MIDDLE" ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ROWSPAN="2" VALIGN="MIDDLE" ALIGN="RIGHT" BORDER="0"><FONT POINT-SIZE="22">&#123;</FONT></TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">ℤ</TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">&nbsp;&nbsp;&nbsp;&nbsp;for G infinite,</TD></TR><TR><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">ℤ/|G|ℤ</TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">&nbsp;&nbsp;&nbsp;&nbsp;for G finite.</TD></TR></TABLE></TD><TD BORDER="0" VALIGN="MIDDLE" ALIGN="LEFT"></TD></TR></TABLE>>];
-    ex_3_48 [label="" image="ex_3_48.png" comment="
+    ex_3_48 [comment="
 \textbf{Ex 3.48 } $(\Z/5\Z)^{\times} \cong \Z/4\Z$\\
 $\psi: \begin{cases} \Z/4\Z &\to\ (\Z/5\Z)^{\times}\\
 a & \mapsto\ \overline{2}^a \end{cases}$
