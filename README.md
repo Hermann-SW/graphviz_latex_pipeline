@@ -1,6 +1,6 @@
 # graphviz_latex_pipeline
 
-Enables LaTeX labels for Graphviz nodes and edges. The LaTeX is stored in node or edge ```comment``` attribute. The ```image``` attribute specifies that filename the compiled LaTeX will be stored into. The adustable template is stored in graph ```comment``` attribute. Executing ```./texdot.py demo.dot``` will
+New ```texdot.py``` tool is result of less than 1h chat with Gemini Pro. It enables LaTeX labels for Graphviz nodes and edges. The LaTeX is stored in node or edge ```comment``` attribute. The ```image``` attribute specifies the filename the compiled LaTeX will be stored into. The adustable template is stored in graph ```comment``` attribute. Executing ```./texdot.py demo.dot``` will
 - create temporary .tex file for each LaTeX label
 - create ```Makefile``` to orchestrate the work
 - use ```latexmk``` to compile into .pdf file
