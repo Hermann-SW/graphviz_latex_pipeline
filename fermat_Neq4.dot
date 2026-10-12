@@ -2,18 +2,22 @@ digraph G {
     layout=dot;
     overlap="false";
     sep="+15";
-    node [shape=box, fontsize=12, margin="0.15,0.1"];
+    node [shape=box, fontsize=12, margin="0.15,0.1", height=0];
 
     labelloc=t
     label="Fermat's last theorem for n=4
 (any field K has been replaced with ℚ)
+from: Kato, Kazuya, Nobushige Kurokawa, and Takeshi Saitō.
+Number Theory: Fermat’s dream. AMS Bookstore, 2000.
 
 "
     comment="
 \documentclass[varwidth=true, border=5pt]{standalone}
-\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{amsmath, amsfonts, amsthm, amssymb, wasysym}
 
 \newcommand\Z{\ensuremath{\mathbb{Z}}}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
 
 \begin{document}
 % Remove automatic math spacing
@@ -24,20 +28,79 @@ digraph G {
 \end{document}
 "
 
-    prop_0_13 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"><B>Prop 0.13 </B> The area of a right △</TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT">whose sides are integers is not a □</TD></TR></TABLE></TD></TR></TABLE>>];
+    prop_0_13 [comment="
+\textbf{Prop 0.13 } The area of a right $\triangle$\\
+whose sides are integers is not a $\square$
+"];
 
-    prop_1_1 [label=<<B>Prop 1.1 </B> ∄ solution (x,y,z) to<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>x<SUP>4</SUP>+y<SUP>4</SUP>=z<SUP>4</SUP> satisfying xyz≠0>];
-    prop_1_2 [label=<<B>Prop 1.2 </B> The only rational solutions<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>to y<SUP>2</SUP>=x<SUP>3</SUP>-x are (x,y)=(0,0) and (±1,0)>];
-    def_mul [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"><B>Def *</B> Elliptic curve over ℚ is equation of form:<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>y<SUP>2</SUP>=ax<SUP>3</SUP>+bx<SUP>2</SUP>+cx+d (a,b,c,d∈Q, a≠0)</TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT">where RHS polynomial has no multiple root</TD></TR></TABLE></TD></TR></TABLE>>];
-    lem_1_3 [label=<<B>Lem 1.3 </B> d∈ℚ, these are equivalent:<BR ALIGN="LEFT"/>(i) ∃ rational number sides <B>right </B>△ of area d<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>(ii) ∃ 3 □s of rational numbers that form<BR ALIGN="LEFT"/>arithmetic progression of difference d<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>(iii) ∃ rational solution to y<SUP>2</SUP>=x<SUP>3</SUP>-d<SUP>2</SUP>x<BR ALIGN="LEFT"/>other than (x,y)=(0,0) and (±d,0)>];
-    lem_1_4 [label=<<B>Lem 1.4</B> For d∈ℚ define:<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/> A<SUB>d</SUB>={(x,y,z)∈ℚ×ℚ×ℚ|x<SUP>2</SUP>+y<SUP>2</SUP>=z<SUP>2</SUP>,½xy=d}<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/> B<SUB>d</SUB>={(u,v,w)∈ℚ×ℚ×ℚ|u<SUP>2</SUP>+d=v<SUP>2</SUP>, v<SUP>2</SUP>+d=w<SUP>2</SUP>}<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/> C<SUB>d</SUB>={(x,y)∈ℚ×ℚ|y<SUP>2</SUP>=x<SUP>3</SUP>-d<SUP>2</SUP>x, y≠0}.<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>∃ bijections between any 2 of A<SUB>d</SUB>, B<SUB>d</SUB>, C<SUB>d</SUB>>];
-    _lem_1_4 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT">i:(x,y,z)↦<FONT POINT-SIZE="18">(</FONT></TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">y-x</TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">2</TD></TR></TABLE></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">,</TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">z</TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">2</TD></TR></TABLE></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">,</TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">x+y</TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">2</TD></TR></TABLE></TD><TD VALIGN="MIDDLE" ALIGN="LEFT"><FONT POINT-SIZE="18">)</FONT></TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT">j:(u,v,w)↦(w-u,w+u,2v)<BR ALIGN="LEFT"/></TD></TR></TABLE></TD></TR></TABLE>>];
-    lem_1_5 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"><B>Lem 1.5</B> For distinct a,b,c∈ℚ define B, C̃ and C<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/> B={(u,v,w)∈ℚ×ℚ×ℚ|u<SUP>2</SUP>+a=v<SUP>2</SUP>+b=w<SUP>2</SUP>+c}<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/> C̃={(x,y)∈ℚ×ℚ|y<SUP>2</SUP>=(x-a)(x-b)(x-c)}.<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/> C={(x,y)∈ℚ×ℚ|y<SUP>2</SUP>=(x-a)(x-b)(x-c), y≠0}.<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>(1) ∃ mutually inverse maps f:B→C, g:C→B<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/> f(u,v,w)=(u<SUP>2</SUP>+a+uv+vw+wu, (u+v)(v+w)(w+u),</TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"> g(x,y)=<FONT POINT-SIZE="18">(</FONT></TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">1</TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">2y</TD></TR></TABLE></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">((x-a</TD><TD VALIGN="MIDDLE" ALIGN="CENTER">)</TD><TD VALIGN="TOP" ALIGN="LEFT"><FONT POINT-SIZE="10">2</FONT></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">-(b-a)(c-a)),                          </TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"> </TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">1</TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">2y</TD></TR></TABLE></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">((x-b</TD><TD VALIGN="MIDDLE" ALIGN="CENTER">)</TD><TD VALIGN="TOP" ALIGN="LEFT"><FONT POINT-SIZE="10">2</FONT></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">-(a-b)(c-b)), </TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">1</TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">2y</TD></TR></TABLE></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">((x-c</TD><TD VALIGN="MIDDLE" ALIGN="CENTER">)</TD><TD VALIGN="TOP" ALIGN="LEFT"><FONT POINT-SIZE="10">2</FONT></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">-(a-c)(b-c))<FONT POINT-SIZE="18">)</FONT></TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"> (2) ∃ map h:B→C̃, h(u,v,w)=(u<SUP>2</SUP>+a,uvw)</TD></TR></TABLE></TD></TR></TABLE>>];
-    rem_1_6 [label=<<B>Rem 1.6 </B> h∘g:C→C̃ is called multiplication-by-2 map<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/> for elliptic curve y<SUP>2</SUP>=(x-a)(x-b)(x-c); image of h∘g is<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/> {(x,y)∈ℚ×ℚ|y<SUP>2</SUP>=(x-a)(x-b)(x-c), x-a, x-b, x-c are □s in ℚ}<BR ALIGN="LEFT"/><FONT POINT-SIZE="10">&nbsp;</FONT><BR ALIGN="LEFT"/>because:<BR ALIGN="LEFT"/>(x&#x27;,y&#x27;)=h(u,v,w) ⇒ x&#x27;=u<SUP>2</SUP>+a ⇒ x&#x27;-a is □ in ℚ<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/>from definition of B (image of g): u<SUP>2</SUP>+a=v<SUP>2</SUP>+b=w<SUP>2</SUP>+c<BR ALIGN="LEFT"/>x&#x27;-b =(v<SUP>2</SUP>+b)-b=v<SUP>2</SUP> is □ in ℚ<BR ALIGN="LEFT"/>x&#x27;-c =(w<SUP>2</SUP>+c)-c=w<SUP>2</SUP> is □ in ℚ<BR ALIGN="LEFT"/>>];
-    def_height [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"><B>Def </B> For a=</TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">m</TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">n</TD></TR></TABLE></TD><TD VALIGN="MIDDLE" ALIGN="LEFT"> with m,n∈ℕ, (m,n)=1</TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"> define height H(a):=max(|m|, |n|)</TD></TR></TABLE></TD></TR></TABLE>>];
-    i [label=<<B>(i) </B> Let (x<SUB>0</SUB>,y<SUB>0</SUB>) on y<SUP>2</SUP>=x<SUP>3</SUP>-x with y<SUB>0</SUB>≠0<BR ALIGN="LEFT"/><FONT POINT-SIZE="3">&nbsp;</FONT><BR ALIGN="LEFT"/> and minimal H(x<SUB>0</SUB>); assume 1&lt;x<SUB>0</SUB>>];
-    ii [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"><B>(ii) </B> x<SUB>0</SUB>-1, x<SUB>0</SUB> and x<SUB>0</SUB>+1 are all squares</TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"> ⇒ ∃(x<SUB>1</SUB>,y<SUB>1</SUB>)∈C: h∘g(x<SUB>1</SUB>,y<SUB>1</SUB>)=(x<SUB>0</SUB>,y<SUB>0</SUB>)</TD></TR></TABLE></TD></TR></TABLE>>];
-    iii [label=<<B>(iii) </B> H(x<SUB>1</SUB>)&lt;H(x<SUB>0</SUB>), ↯>];
+    prop_1_1 [comment="
+\textbf{Prop 1.1 } $\nexists$\ solution $(x,y,z)$ to\\
+$x^4+y^4=z^4$ satisfying $xyz\neq 0$
+"];
+    prop_1_2 [comment="
+\textbf{Prop 1.2 } The only rational solutions to\\
+$y^2=x^3-x$ are $(x,y)=(0,0)$ and $(\pm 1,0)$
+"];
+    def_mul [comment="
+\textbf{Def *} Elliptic curve over $\Q$ is equation of form:\\
+$y^2=ax^3+bx^2+cx+d\ (a,b,c,d\in Q, a\neq 0)$\\
+where RHS polynomial has no multiple root
+"];
+    lem_1_3 [comment="
+\textbf{Lem 1.3 } $d\in\mathbb{Q}$, these are equivalent:\\
+(i) $\exists$\ rational number sides \textbf{right }\triangle\ of area d\\
+(ii) $\exists$\ 3 \square{{}}s of rational numbers that form\\
+ arithmetic progression of difference $d$\\
+(iii) $\exists$\ rational solution to $y^2=x^3-d^2x$\\
+ other than $(x,y)=(0,0)\textrm{ and }(\pm d,0)$
+"];
+    lem_1_4 [comment="
+\textbf{Lem 1.4} For $d\in \Q$ define:\\
+$A_d=\{(x,y,z)\in \Q\times\Q\times\Q\ \vert\ x^2+y^2=z^2,½xy=d\}$\\
+$B_d=\{(u,v,w)\in \Q\times\Q\times\Q\ \vert\ u^2+d=v^2,\ v^2+d=w^2\}$\\
+$C_d=\{(x,y)\in \Q\times\Q\ \vert\ y^2=x^3-d^2x,\ y\neq 0\}$.\\
+$\exists\textrm{ bijections between any 2 of }A_d, B_d, C_d$
+"];
+    _lem_1_4 [comment="
+$i:(x,y,z)\mapsto \left(\frac{y-x}{2},\frac{z}{2},\frac{x+y}{2}\right)$\\
+$j:(u,v,w)\mapsto (w-u,w+u,2v)$
+"];
+    lem_1_5 [comment="
+\textbf{Lem 1.5} For distinct $a,b,c\in \mathbb{Q}$ define $B, \tilde{C}\textrm{ and }C$\\
+$B=\{(u,v,w)\in \mathbb{Q}\times\mathbb{Q}\times\mathbb{Q}\ \vert\ u^2+a=v^2+b=w^2+c\}$\\
+$\tilde{C}=\{(x,y)\in \mathbb{Q}\times\mathbb{Q}\ \vert\ y^2=(x-a)(x-b)(x-c)\}$.\\
+$C=\{(x,y)\in \mathbb{Q}\times\mathbb{Q}\ \vert\ y^2=(x-a)(x-b)(x-c),\ y\neq 0\}$.\\
+(1) $\exists$\ mutually inverse maps $f:B\to C,\ g:C\to B$\\
+$f(u,v,w)=(u^2+a+uv+vw+wu,\ (u+v)(v+w)(w+u))$,\\
+$g(x,y)=\left(\frac{1}{2y}((x-a)^2-(b-a)(c-a)),\right.$\\
+$\left.\frac{1}{2y}((x-b)^2-(a-b)(c-b)),\ \frac{1}{2y}((x-c)^2-(a-c)(b-c))\right)$\\ 
+(2) $\exists$\ map $h:B\to \tilde{C},\ h(u,v,w)=(u^2+a,uvw)$
+"];
+    rem_1_6 [comment="
+\textbf{Rem 1.6 } $h\circ g:C\to \tilde{C}$ is called multiplication-by-2 map\\
+ for elliptic curve $y^2=(x-a)(x-b)(x-c)$; image of $h\circ g$ is\\
+ $\{(x,y)\in \mathbb{Q}\times\mathbb{Q}\ \vert\ y^2=(x-a)(x-b)(x-c),\ x-a,\ x-b,\ x-c\textrm{ are {\square}s in }\mathbb{Q}\}$\\
+because:\\
+$(x',y')=h(u,v,w) \implies\ x'=u^2+a \implies\ x'-a\textrm{ is \square\ in }\mathbb{Q}$\\
+from definition of $B$ (image of $g$): $u^2+a=v^2+b=w^2+c$\\
+ $x'-b =(v^2+b)-b=v^2\textrm{ is {\square}\ in }\mathbb{Q}$\\
+ $x'-c =(w^2+c)-c=w^2\textrm{ is {\square}\ in }\mathbb{Q}$
+"];
+    def_height [comment="
+\textbf{Def } For $a=\frac{m}{n}$ with $m,n\in \N,\ (m,n)=1$\\
+define height $H(a):=max(\vert m\vert, \vert n\vert)$
+"];
+    i [comment="
+\textbf{(i) } Let $(x_0,y_0)$ on $y^2=x^3-x$ with $y_0\neq 0$\\
+and minimal $H(x_0)$; by above we can assume $1<x_0$
+"];
+    ii [comment="
+\textbf{(ii) } $x_0-1$, $x_0$ and $x_0+1$ are all {\square}s\\
+$\implies\ \exists (x_1,y_1)\in C: h\circ g(x_1,y_1)=(x_0,y_0)$
+"];
+    iii [comment="
+\textbf{(iii) } $H(x_1)<H(x_0)$, \lightning 
+"];
     join1 [shape=point]
     img [label="" shape=plaintext image="res/ec.png"]
 
@@ -46,21 +109,42 @@ digraph G {
     { rank=same rem_1_6 join1 }
     { rank=same i img }
 
-    lem_1_3 -> prop_0_13 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT">¬(i)</TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT">d=1</TD></TR></TABLE></TD></TR></TABLE>>]
+    lem_1_3 -> prop_0_13 [comment="
+$\neg(i)\\d=1$
+"]
     prop_0_13 -> lem_1_3 
     def_mul -> lem_1_5 [style=dotted]
-    lem_1_3 -> prop_1_2 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT">¬(iii)</TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT">d=1</TD></TR></TABLE></TD></TR></TABLE>>]
+    lem_1_3 -> prop_1_2 [comment="
+$\neg(iii)\\d=1$
+"]
     prop_1_2 -> lem_1_3 
-    lem_1_5 -> lem_1_4 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD BORDER="0" VALIGN="MIDDLE"> a=d, b=0, c=-d, </TD><TD BORDER="0" VALIGN="MIDDLE"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ROWSPAN="2" VALIGN="MIDDLE" ALIGN="RIGHT" BORDER="0"><FONT POINT-SIZE="22">&#123;</FONT></TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">f:B<SUB>d</SUB>→C<SUB>d</SUB></TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR><TR><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">g:C<SUB>d</SUB>→B<SUB>d</SUB></TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR></TABLE></TD><TD BORDER="0" VALIGN="MIDDLE"></TD></TR></TABLE>>]
-    lem_1_4 -> lem_1_3 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD BORDER="0" VALIGN="MIDDLE"> </TD><TD BORDER="0" VALIGN="MIDDLE"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ROWSPAN="3" VALIGN="MIDDLE" ALIGN="RIGHT" BORDER="0"><FONT POINT-SIZE="22">&#123;</FONT></TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">(i)</TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">&nbsp;&nbsp;&nbsp;&nbsp;⇒A<SUB>d</SUB> ≠∅</TD></TR><TR><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">(ii)</TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">&nbsp;&nbsp;&nbsp;&nbsp;⇒B<SUB>d</SUB> ≠∅</TD></TR><TR><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">(iii)</TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">&nbsp;&nbsp;&nbsp;&nbsp;⇒C<SUB>d</SUB> ≠∅</TD></TR></TABLE></TD><TD BORDER="0" VALIGN="MIDDLE"></TD></TR></TABLE>>]
+    lem_1_5 -> lem_1_4 [comment="
+ $a=d,\ b=0,\ c=-d,\ \begin{cases}
+ f:B_d\to C_d\\g:C_d\to B_d\end{cases}$
+"]
+    lem_1_4 -> lem_1_3 [comment="
+$ \begin{cases}(i)&\implies A_d \neq \emptyset\\
+ (ii)&\implies B_d \neq \emptyset\\
+ (iii)&\implies C_d \neq \emptyset\end{cases}$
+"]
     lem_1_5 -> rem_1_6 
 
-    _lem_1_4 -> lem_1_4 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD BORDER="0" VALIGN="MIDDLE"> </TD><TD BORDER="0" VALIGN="MIDDLE"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ROWSPAN="2" VALIGN="MIDDLE" ALIGN="RIGHT" BORDER="0"><FONT POINT-SIZE="22">&#123;</FONT></TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">i:A<SUB>d</SUB>→B<SUB>d</SUB></TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR><TR><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">j:B<SUB>d</SUB>→A<SUB>d</SUB></TD><TD ALIGN="LEFT" VALIGN="MIDDLE" BORDER="0">&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR></TABLE></TD><TD BORDER="0" VALIGN="MIDDLE"></TD></TR></TABLE>>];
+    _lem_1_4 -> lem_1_4 [comment="
+$\begin{cases}i:A_d\to B_d\\j:B_d\to A_d\end{cases}$
+"];
     _lem_1_4 -> lem_1_5 [style=invis];
-    prop_1_2 -> prop_1_1 [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"> 1.1 sol · z<SUP>2</SUP>/y<SUP>6</SUP>, ↯:</TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"> 0≠<FONT POINT-SIZE="18">(</FONT></TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">x<SUP>2</SUP>z</TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">y<SUP>3</SUP></TD></TR></TABLE></TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><FONT POINT-SIZE="18">)</FONT></TD><TD VALIGN="TOP" ALIGN="LEFT"><FONT POINT-SIZE="10">2</FONT></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">=<FONT POINT-SIZE="18">(</FONT></TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">z<SUP>2</SUP></TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">y<SUP>2</SUP></TD></TR></TABLE></TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><FONT POINT-SIZE="18">)</FONT></TD><TD VALIGN="TOP" ALIGN="LEFT"><FONT POINT-SIZE="10">3</FONT></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">- </TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">z<SUP>2</SUP></TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">y<SUP>2</SUP></TD></TR></TABLE></TD></TR></TABLE></TD></TR></TABLE>>]
+    prop_1_2 -> prop_1_1 [comment="
+ multiply a 1.1 solution by $\dfrac{z^2}{y^6}$, \lightning:\\
+$0\neq\left(\dfrac{x^2z}{y^3}\right)^2$
+$=\left(\dfrac{z^2}{y^2}\right)^3-\dfrac{z^2}{y^2}$
+"]
 
-    def_height -> i [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"> (x,y) on elliptic curve</TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"> ⇒ (</TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">-1</TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">x</TD></TR></TABLE></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">,</TD><TD VALIGN="MIDDLE" ALIGN="CENTER"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="1"><TR><TD ALIGN="CENTER" CELLPADDING="1">y</TD></TR><TR><TD BGCOLOR="black" HEIGHT="1"></TD></TR><TR><TD ALIGN="CENTER" CELLPADDING="4">x<SUP>2</SUP></TD></TR></TABLE></TD><TD VALIGN="MIDDLE" ALIGN="LEFT">) on as well,</TD></TR></TABLE></TD></TR><TR><TD ALIGN="LEFT"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="LEFT"><TR><TD VALIGN="MIDDLE" ALIGN="LEFT"> H(x)=H(-1/x)</TD></TR></TABLE></TD></TR></TABLE>> style=dotted]
-    rem_1_6 -> join1 [label=< a=1, b=0, c=-1>]
+    def_height -> i [comment="
+$(x,y)$ on elliptic curve\\
+$\implies\ (\frac{-1}{x},\frac{y}{x^2})$ on curve as well,\\
+$H(x)=H(-1/x)$
+" style=dotted]
+    rem_1_6 -> join1 [comment="a=1,\ b=0,\ c=-1"]
     i -> join1 -> ii -> iii
     img -> i [style=invis]
 }

@@ -60,6 +60,25 @@ $ cat /usr/local/bin/T
 $
 ```
 
+## proof tree for Fermat's last theorem n=4 case
+
+This is first non-toy project with new tool, 21 LaTeX definitions as shown in my ```vi``` output:  
+```
+...
+Press ENTER or type command to continue
+Extracted 21 LaTeX definitions (0 newly written/updated).
+Running make...
+dot -Tpdf fermat_Neq4_processed.dot -o fermat_Neq4.pdf
+Successfully generated fermat_Neq4.pdf.
+Opening fermat_Neq4.pdf in evince...
+
+Press ENTER or type command to continue
+```
+
+File [fermat_Neq4.dot](fermat_Neq4.dot) was completely transformed use ```comment``` attributes for the LaTeX node and edge labels.  ```./texdot.py fermat_Neq4.dot``` created nice [fermat_Neq4.pdf}(res/fermat_Neq4.pdf). Even scaled to 20% size evince looks nice:  
+<a href="res/fermat_Neq4.pdf"><img src="res/fermat_Neq4.pdf.20pc.png"/></a>  
+I really like the proof by contradiction in single edge label middle bottom.
+
 
 ## work in progress
 
@@ -85,10 +104,4 @@ Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to
 
 ![work_in_progress.png](res/work_in_progress.png)
 
-
-## work in progress 2
-
-File [fermat_Neq4.dot](fermat_Neq4.dot) got graph ```comment``` attribute with LaTeX template and therefore can be processed with ```./texdot.py fermat_Neq4.dot```. Nothing else has been transformed yet, so the whole proof diagram currently looks like compiled with the old tool:  
-<a href="res/fermat_Neq4.pdf"><img src="res/work_in_progress.2.png"/></a>  
-I really like the proof by contradiction in single edge label middle bottom.
 
