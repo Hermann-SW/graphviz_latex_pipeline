@@ -61,6 +61,14 @@ $ cat /usr/local/bin/T
 $
 ```
 
+Gemini provided a pro tip what to do if doing those commands often:  
+```
+$ tail -1 ~/.vimrc
+nnoremap <F5> :w <bar> !T<CR>
+$
+```
+
+
 ## proof tree for Fermat's last theorem n=4 case
 
 This is first non-toy project with new tool, 21 LaTeX definitions as shown in my ```vi``` output:  
