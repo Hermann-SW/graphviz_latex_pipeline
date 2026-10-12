@@ -76,7 +76,7 @@ Opening fermat_Neq4.pdf in evince...
 Press ENTER or type command to continue
 ```
 
-File [fermat_Neq4.dot](fermat_Neq4.dot) was completely transformed to use ```comment``` attributes for the 13⁠$\times$ node and 8⁠$\times$ edge labels.  ```./texdot.py fermat_Neq4.dot``` created nice [fermat_Neq4.pdf](res/fermat_Neq4.pdf). Even scaled to 20% size evince looks nice:  
+File [fermat_Neq4.dot](fermat_Neq4.dot) was completely transformed to use ```comment``` attributes for the $13\times$ node and $8\times$ edge labels.  ```./texdot.py fermat_Neq4.dot``` created nice [fermat_Neq4.pdf](res/fermat_Neq4.pdf). Even scaled to 20% size evince looks nice:  
 <a href="res/fermat_Neq4.pdf"><img src="res/fermat_Neq4.pdf.20pc.png"/></a>  
 I really like the proof by contradiction in single edge label middle bottom.
 
