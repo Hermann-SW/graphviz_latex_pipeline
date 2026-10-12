@@ -2,7 +2,7 @@ digraph G {
     layout=dot;
     labelloc=t
     label="LaTeX labels for Graphviz\n demo with incremental compilation\n "
-    node [shape=box, fontsize=12, margin="0.15,0.1"];
+    node [shape=box, fontsize=12, margin="0.15,0.1", height=0];
 
     comment="
 \documentclass[varwidth=true, border=5pt]{standalone}
@@ -19,13 +19,14 @@ digraph G {
 "
     lem_1_5 [comment="
 \textbf{Lem 1.5 }For distinct $a,b,c\in \Q$ define $B, \tilde{C}$ and C\\
-$B=\{(u,v,w)\in \Q\times\Q\times\Q\vert u^2+a=v^2+b=w^2+c\}$\\"]
+$B=\{(u,v,w)\in \Q\times\Q\times\Q\vert u^2+a=v^2+b=w^2+c\}$
+"]
     ex_1_6 [shape=plaintext style=filled color=yellow comment="
-\textbf{Ex 1.6 } ...\\
+\textbf{Ex 1.6 } ...
 "]
 
     lem_1_5 -> ex_1_6 [comment="
-\textbf{wow } $\exists\ \dots$\\
+\textbf{wow } $\exists\ \dots$
 "]
 
 }

@@ -37,13 +37,14 @@ When using the `comment` attribute for LaTeX rendering, the following strict rul
 ...
     lem_1_5 [comment="
 \textbf{Lem 1.5 }For distinct $a,b,c\in \Q$ define $B, \tilde{C}$ and C\\
-$B=\{(u,v,w)\in \Q\times\Q\times\Q\vert u^2+a=v^2+b=w^2+c\}$\\"]
+$B=\{(u,v,w)\in \Q\times\Q\times\Q\vert u^2+a=v^2+b=w^2+c\}$
+"]
     ex_1_6 [shape=plaintext style=filled color=yellow comment="
-\textbf{Ex 1.6 } ...\\
+\textbf{Ex 1.6 } ...
 "]
 
     lem_1_5 -> ex_1_6 [comment="
-\textbf{wow } $\exists\ \dots$\\
+\textbf{wow } $\exists\ \dots$
 "]
 
 }
