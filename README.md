@@ -52,6 +52,14 @@ $B=\{(u,v,w)\in \Q\times\Q\times\Q\vert u^2+a=v^2+b=w^2+c\}$\\"]
 And this is 50% size PDF view of created result:  
 ![demo.pdf.png](res/demo.pdf.png)
 
+I use ```vi``` editor since 1990, and write+compile is just done with ```:w|!T```, with:
+```bash
+$ cat /usr/local/bin/T
+#!/bin/bash
+./texdot.py number_theory.dot
+$
+```
+
 
 ## work in progress
 
@@ -73,14 +81,6 @@ Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to
 
 \end{document}
 "
-```
-
-I use ```vi``` editor since 1990, and write+compile is just done with ```:w|!T```, with:
-```bash
-$ cat /usr/local/bin/T
-#!/bin/bash
-./texdot.py number_theory.dot
-$
 ```
 
 ![work_in_progress.png](res/work_in_progress.png)
