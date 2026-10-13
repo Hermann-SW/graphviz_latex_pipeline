@@ -11,9 +11,9 @@ digraph G {
 
 \begin{document}
 % Remove automatic math spacing
-\thinmuskip=0mu
-\medmuskip=0mu
-\thickmuskip=0mu
+%\thinmuskip=0mu
+%\medmuskip=0mu
+%\thickmuskip=0mu
 
 \end{document}
 "
