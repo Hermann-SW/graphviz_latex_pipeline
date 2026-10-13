@@ -47,7 +47,7 @@ $y^2=ax^3+bx^2+cx+d\ (a,b,c,d\in Q, a\neq 0)$\\
 where RHS polynomial has no multiple root
 "];
     lem_1_3 [comment="
-\textbf{Lem 1.3 } $d\in\mathbb{Q}$, these are equivalent:\\
+\textbf{Lem 1.3 } $d\in\Q$, these are equivalent:\\
 (i) $\exists$\ rational number sides \textbf{right }\triangle\ of area d\\
 (ii) $\exists$\ 3 \square{{}}s of rational numbers that form\\
  arithmetic progression of difference $d$\\
@@ -62,14 +62,14 @@ $C_d=\{(x,y)\in \Q\times\Q\ \vert\ y^2=x^3-d^2x,\ y\neq 0\}$.\\
 $\exists\textrm{ bijections between any 2 of }A_d, B_d, C_d$
 "];
     _lem_1_4 [comment="
-$i:(x,y,z)\mapsto \left(\frac{y-x}{2},\frac{z}{2},\frac{x+y}{2}\right)$\\
+$i:(x,y,z)\mapsto \left(\dfrac{y-x}{2},\dfrac{z}{2},\dfrac{x+y}{2}\right)$\\
 $j:(u,v,w)\mapsto (w-u,w+u,2v)$
 "];
     lem_1_5 [comment="
-\textbf{Lem 1.5} For distinct $a,b,c\in \mathbb{Q}$ define $B, \tilde{C}\textrm{ and }C$\\
-$B=\{(u,v,w)\in \mathbb{Q}\times\mathbb{Q}\times\mathbb{Q}\ \vert\ u^2+a=v^2+b=w^2+c\}$\\
-$\tilde{C}=\{(x,y)\in \mathbb{Q}\times\mathbb{Q}\ \vert\ y^2=(x-a)(x-b)(x-c)\}$.\\
-$C=\{(x,y)\in \mathbb{Q}\times\mathbb{Q}\ \vert\ y^2=(x-a)(x-b)(x-c),\ y\neq 0\}$.\\
+\textbf{Lem 1.5} For distinct $a,b,c\in \Q$ define $B, \tilde{C}\textrm{ and }C$\\
+$B=\{(u,v,w)\in \Q\times\Q\times\Q\ \vert\ u^2+a=v^2+b=w^2+c\}$\\
+$\tilde{C}=\{(x,y)\in \Q\times\Q\ \vert\ y^2=(x-a)(x-b)(x-c)\}$.\\
+$C=\{(x,y)\in \Q\times\Q\ \vert\ y^2=(x-a)(x-b)(x-c),\ y\neq 0\}$.\\
 (1) $\exists$\ mutually inverse maps $f:B\to C,\ g:C\to B$\\
 $f(u,v,w)=(u^2+a+uv+vw+wu,\ (u+v)(v+w)(w+u))$,\\
 $g(x,y)=\left(\frac{1}{2y}((x-a)^2-(b-a)(c-a)),\right.$\\
@@ -79,12 +79,12 @@ $\left.\frac{1}{2y}((x-b)^2-(a-b)(c-b)),\ \frac{1}{2y}((x-c)^2-(a-c)(b-c))\right
     rem_1_6 [comment="
 \textbf{Rem 1.6 } $h\circ g:C\to \tilde{C}$ is called multiplication-by-2 map\\
  for elliptic curve $y^2=(x-a)(x-b)(x-c)$; image of $h\circ g$ is\\
- $\{(x,y)\in \mathbb{Q}\times\mathbb{Q}\ \vert\ y^2=(x-a)(x-b)(x-c),\ x-a,\ x-b,\ x-c\textrm{ are {\square}s in }\mathbb{Q}\}$\\
+ $\{(x,y)\in \Q\times\Q\ \vert\ y^2=(x-a)(x-b)(x-c),\ x-a,\ x-b,\ x-c\textrm{ are {\square}s in }\Q\}$\\
 because:\\
-$(x',y')=h(u,v,w) \implies\ x'=u^2+a \implies\ x'-a\textrm{ is \square\ in }\mathbb{Q}$\\
+$(x',y')=h(u,v,w) \implies\ x'=u^2+a \implies\ x'-a\textrm{ is \square\ in }\Q$\\
 from definition of $B$ (image of $g$): $u^2+a=v^2+b=w^2+c$\\
- $x'-b =(v^2+b)-b=v^2\textrm{ is {\square}\ in }\mathbb{Q}$\\
- $x'-c =(w^2+c)-c=w^2\textrm{ is {\square}\ in }\mathbb{Q}$
+ $x'-b =(v^2+b)-b=v^2\textrm{ is {\square}\ in }\Q$\\
+ $x'-c =(w^2+c)-c=w^2\textrm{ is {\square}\ in }\Q$
 "];
     def_height [comment="
 \textbf{Def } For $a=\frac{m}{n}$ with $m,n\in \N,\ (m,n)=1$\\
@@ -141,7 +141,7 @@ $=\left(\dfrac{z^2}{y^2}\right)^3-\dfrac{z^2}{y^2}$
 
     def_height -> i [comment="
 $(x,y)$ on elliptic curve\\
-$\implies\ (\frac{-1}{x},\frac{y}{x^2})$ on curve as well,\\
+$\implies\ (\dfrac{-1}{x},\dfrac{y}{x^2})$ on curve as well,\\
 $H(x)=H(-1/x)$
 " style=dotted]
     rem_1_6 -> join1 [comment="a=1,\ b=0,\ c=-1"]
