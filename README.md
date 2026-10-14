@@ -89,7 +89,7 @@ File [fermat_Neq4.dot](fermat_Neq4.dot) was completely transformed to use ```com
 I really like the proof by contradiction in single edge label middle bottom.
 
 
-## chapters 3.3 and 3.4 from fall 2024 elementary number theory lecture script
+## chapters from fall 2024 elementary number theory lecture script
 
 [number_theory.dot](number_theory.dot) has 37 node LaTeX labels.
 
@@ -116,7 +116,7 @@ Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to
 \end{document}
 "
 ```
-
+Complete generated [number_theory.pdf](res/number_theory.pdf), and partial view:  
 ![res/number_theory.20pc.png](res/number_theory.20pc.png)
 
 
