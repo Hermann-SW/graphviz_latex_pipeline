@@ -111,6 +111,6 @@ Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to
 "
 ```
 
-![work_in_progress.png](res/work_in_progress.png)
+![res/number_theory.20pc.png](res/number_theory.20pc.png)
 
 
