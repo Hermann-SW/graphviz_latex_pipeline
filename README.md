@@ -89,23 +89,29 @@ File [fermat_Neq4.dot](fermat_Neq4.dot) was completely transformed to use ```com
 I really like the proof by contradiction in single edge label middle bottom.
 
 
-## work in progress
+## chapters 3.3 and 3.4 from fall 2024 elementary number theory lecture script
 
-Transforming [number_theory.dot](number_theory.dot) from old system to new, 4 node labels (of 37) on right side of screenshot below are processed with ```texdot.py```. Since there are no ```comment``` attributes in the not yet transformed 33 node labels, ```texdot.py``` can process the whole document, all the time. 3 node labels using the old system can be seen on left side. The HTML label content in number_theory.dot node and edge labels was created with the [old tool](https://gist.github.com/Hermann-SW/12c7644ac0c75b4eb019f76c3f023fe5).
+[number_theory.dot](number_theory.dot) has 37 node LaTeX labels.
 
-Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to add package for ```\psi```, and added shortcut for $\mathbb{Z}$ as well. I commented out the math spacing removal for now:  
+Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to add package for ```\psi```, and added shortcut for $\mathbb{Z}$ as well. I commented out the math spacing removal for now. Bigger fontsizes work as well:  
 ```dot
     comment="
-\documentclass[varwidth=true, border=5pt]{standalone}
-\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\documentclass[varwidth=30cm, fontsize=12, border=5pt]{standalone}
+\usepackage{amsmath, amsfonts, amsthm, amssymb, lmodern}
 
 \newcommand\Z{\ensuremath{\mathbb{Z}}}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+
+% Define a custom overline with extra vertical clearance
+\newcommand{\rclass}[1]{\overline{\rule{0pt}{1.7ex}#1}}
 
 \begin{document}
+\raggedright
 % Remove automatic math spacing
 %\thinmuskip=0mu
 %\medmuskip=0mu
 %\thickmuskip=0mu
+\fontsize{24}{28}\selectfont
 
 \end{document}
 "
