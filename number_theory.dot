@@ -42,7 +42,7 @@ from: script of Heidelberg University fall 2024 \"Elementary Number Theory\" lec
 zero divisors in $\Z/4\Z: \bar{0},\bar{2}$, so has zero divisor
 "];
     def_3_15 [comment="
-\textbf{Def 3.15 } Ring $R, x\in R: if \exists y\in R: xy=1$,\\
+\textbf{Def 3.15 } Ring $R, x\in R:\textrm{ if }\exists y\in R: xy=1$,\\
 then $x$ is called a unit
 "];
     ex_3_16 [comment="
@@ -56,7 +56,7 @@ units in $\Z/4\Z: \bar{1},\bar{3}$
 (c) $R$ finite, then also: $x\in R$ no zero divisor $\implies\ x$ is unit
 "];
     ex_3_18 [comment="
-\textbf{Ex 3.18 } Finite ring $R=\Z/n\Z, n\in \N, x\in R$:\\
+\textbf{Ex 3.18 } Finite ring $R=\Z/n\Z,\ n\in \N,\ x\in R$:\\
 $\bar{x}\textrm{ unit }\iff \bar{x}$ no zero divisor\\
 Units in $R$ are called coprime residue classes modulo $n$\\
 $(\Z/n\Z)^{\times}$ is called multiplicative group of integers modulo n
@@ -75,11 +75,11 @@ with $R^{\times} = R \setminus \{0\}$ is called field
 (iii) $\Z/n\Z$\ has no zero divisors
 "];
     prop_3_22 [comment="
-\textbf{Prop 3.22 } $a\in \mathbb{N}, \bar{a}\in \Z/n\Z:$\\
+\textbf{Prop 3.22 } $a\in \mathbb{N},\ \bar{a}\in \Z/n\Z:$\\
 $\bar{a}\in (\Z/n\Z)^{\times} \iff \gcd(a,n)=1$
 "];
     cor_3_23 [comment="
-\textbf{Cor 3.23 } $n\in \mathbb{N}, a\in \Z$:\\
+\textbf{Cor 3.23 } $n\in \mathbb{N},\ a\in \Z$:\\
 $(\exists x\in \Z: ax\equiv 1 (\mod\ n)) \iff \gcd(a,n)=1$
 "];
     ex_3_24 [comment="
@@ -107,7 +107,7 @@ $\forall g\in G: g^{\vert G\vert} =1$
 "];
     thm_3_30 [comment="
 \textbf{Thm 3.30 } (Fermat-Euler theorem)\\
-$n\in \mathbb{N}. \forall \bar{a}\in (\Z/n\Z)^{\times}:\ \bar{a}^{\phi(n)} =\bar{1}$
+$n\in \mathbb{N}.\ \forall \bar{a}\in (\Z/n\Z)^{\times}:\ \bar{a}^{\phi(n)} =\bar{1}$
 "];
     ex_3_31 [comment="
 \textbf{Ex 3.31 } $3^{19}\equiv 10\ (mod\ 17)$
@@ -154,7 +154,7 @@ $\forall g\in G: ord(g) \mid\ \vert G\vert$
 "];
     def_3_41 [comment="
 \textbf{Def 3.41 } $G$ finite abelian group.\\
-Exponent $\exp(G):=\min\{n\in \mathbb{N}: g^n=1 \forall g\in G\}$
+Exponent $\exp(G):=\min\{n\in \mathbb{N}: g^n=1\ \forall g\in G\}$
 "];
     ex_3_42 [comment="
 \textbf{Ex 3.42 }(a) $exp((\Z/5\Z)^{\times})=4$\\
