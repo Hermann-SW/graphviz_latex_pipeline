@@ -180,13 +180,13 @@ $det:GL_n(K)\to  K^{\times}$ homomorphism
     thm_3_47 [comment="
 \textbf{Thm 3.47 }For cyclic group $G$:\\
 $G \cong \begin{cases}
-\mathbb{Z} & \text{for }G\text{ infinite,}\\
-\Z /|G|\mathbb{Z} & \text{for }G\text{ finite.} \end{cases}$
+\ \mathbb{Z} & \text{for }G\text{ infinite,}\\
+\ \Z /|G|\mathbb{Z} & \text{for }G\text{ finite.} \end{cases}$
 "];
     ex_3_48 [comment="
 \textbf{Ex 3.48 } $(\Z/5\Z)^{\times} \cong \Z/4\Z$\\
-$\psi: \begin{cases} \Z/4\Z &\to\ (\Z/5\Z)^{\times}\\
-a & \mapsto\ \rclass{2}^a \end{cases}$
+$\psi: \begin{cases}\ \Z/4\Z &\to\ (\Z/5\Z)^{\times}\\
+\ a & \mapsto\ \rclass{2}^a \end{cases}$
 "];
     thm_3_49 [comment="
 \textbf{Thm 3.49 }$G$ finite abelian group:\\
