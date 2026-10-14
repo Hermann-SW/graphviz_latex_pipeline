@@ -153,8 +153,8 @@ $g\in G, m\in \Z: ord(g)\mid m \iff g^m=1$
 $\forall g\in G: ord(g) \mid\ \vert G\vert$
 "];
     def_3_41 [comment="
-\textbf{Def 3.41 } $G$ finite abelian group.\\
-Exponent $\exp(G):=\min\{n\in \mathbb{N}: g^n=1\ \forall g\in G\}$
+\textbf{Def 3.41 } $G$ finite abelian group. Exponent\\
+$\exp(G):=\min\{n\in \mathbb{N}: g^n=1\ \forall g\in G\}$
 "];
     ex_3_42 [comment="
 \textbf{Ex 3.42 }(a) $exp((\Z/5\Z)^{\times})=4$\\
