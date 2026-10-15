@@ -12,7 +12,8 @@ from: script of Heidelberg University fall 2024 \"Elementary Number Theory\" lec
 [https://github.com/Hermann-SW/graphviz\_latex\_pipeline]
 
 "
-    URL="https://github.com/Hermann-SW/graphviz_latex_pipeline"
+//   URL="https://github.com/Hermann-SW/graphviz_latex_pipeline"
+
     comment="
 \documentclass[varwidth=30cm, fontsize=12, border=5pt]{standalone}
 \usepackage{amsmath, amsfonts, amsthm, amssymb, lmodern}
