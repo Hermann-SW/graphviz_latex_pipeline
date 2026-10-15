@@ -116,7 +116,7 @@ Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to
 \end{document}
 "
 ```
-Complete generated [number_theory.pdf](res/number_theory.pdf), and partial view:  
+Complete generated [number_theory.pdf](https://raw.githubusercontent.com/Hermann-SW/graphviz_latex_pipeline/main/res/number_theory.pdf), and partial view:  
 ![res/number_theory.20pc.png](res/number_theory.20pc.png)
 
 
