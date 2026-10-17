@@ -28,23 +28,28 @@ Amer.  Math. Monthly 86 (1979), 151–161
 "
 
     prop [comment="\textbf{Prop } Let $\rho$ be a rotation. Then we have the following.\\
-(i) The image $\rho$ of any line is a line: $\rho(b + tc) = \rho(b) + t\rho(c)$ for all $b, c \in R^3$ and $t\in R$.\\
-(ii) Inner products are preserved by $\rho$; if $x, x' \in R^3, \rho(x) =y\textrm{ and }\rho(x') =y'$, then
+(i) The image $\rho$ of any line is a line:\\
+ \ \ \ $\rho(b + tc) = \rho(b) + t\rho(c)$ for all $b, c \in \R^3$ and $t\in \R$.\\
+(ii) Inner products are preserved by $\rho$;\\
+ \ \ \ \ if $x, x' \in \R^3, \rho(x) =y\textrm{ and }\rho(x') =y'$, then
 $$\sum_{i=1}^3 y_iy_i' = \sum_{j=1}^3 x_j x_j'.$$
-(iii) Distances are preserved by $\rho$: if $x¸\in R^3$, then $\vert \rho(x)\vert = \vert x\vert$.\\
-(iv) If $\rho \neq \iota$, then the set\\ $A = \{x\in R^3: \rho(x)= x\}$ is a line through the origin: there is a $p$ in $R^3$
-such that\\ $A = \{tp: t\in R\}$ and $\vert p\vert=1$. We call $A$ the axis of $\rho$.\\
-(v) If $q$ is any point of $R^3$ having the two properties of $p$ in (iv),\\ then $q=p$ or $q = -p$. We call $p$ and $-p$ the poles of $\rho$.
+(iii) Distances are preserved by $\rho$: if $x¸\in \R^3$, then $\vert \rho(x)\vert = \vert x\vert$.\\
+(iv) If $\rho \neq \iota$, then the set $A = \{x\in \R^3: \rho(x)= x\}$ is a line\\
+ \ \ \ \ through the origin: there is a $p$ in $\R^3$ such that\\
+ \ \ \ \ $A = \{tp: t\in \R\}$ and $\vert p\vert=1$. We call $A$ the axis of $\rho$.\\
+(v) If $q$ is any point of $\R^3$ having the two properties of $p$ in (iv),\\
+ \ \ \ then $q=p$ or $q = -p$. We call $p$ and $-p$ the poles of $\rho$.
 "];
-    def_0 [comment="\textbf{Def } If an element $\rho \in G$ is expressed in its\\ unique
- way as a reduced word as in (2), we\\ call $n$ the
-length of $\rho$ and we say that $\rho_1$ is\\ the first letter of $\rho$ or that $\rho$ begins with $\rho_1$.\\ We write $l(\rho) = n$ and $l(\iota) = 0$."];
-    def_1 [comment="\textbf{Def } $\psi$ rotates $R^3$ by $120^\circ$ about the z-axis. 
+    def_0 [comment="\textbf{Def } If an element $\rho \in G$ is expressed in its unique way\\
+as a reduced word as in (2), we call $n$ the length of $\rho$\\
+and we say that $\rho_1$ is the first letter of $\rho$ or that $\rho$ begins\\
+with $\rho_1$. We write $l(\rho) = n$ and $l(\iota) = 0$."];
+    def_1 [comment="\textbf{Def } $\psi$ rotates $\R^3$ by $120^\circ$ about the z-axis. 
 $$\psi=\begin{pmatrix}-1/2&-\sqrt{3}/2&0\\
 \sqrt{3}/2&-1/2&0\\
 0&0&1\end{pmatrix}$$
 "];
-    def_2 [comment="\textbf{Def } $\Phi$ rotates $R^3$ by $180^\circ$ about the line in\\ xz-plane whose equation is $x\cos \frac{1}{2}\theta=z\sin \frac{1}{2}\theta$. 
+    def_2 [comment="\textbf{Def } $\Phi$ rotates $\R^3$ by $180^\circ$ about the line in\\ xz-plane whose equation is $x\cos \frac{1}{2}\theta=z\sin \frac{1}{2}\theta$. 
 $$\Phi=\begin{pmatrix}-\cos\theta&0&\sin\theta\\
 0&-1&0\\
 \sin\theta&0&\cos\theta\end{pmatrix}$$
@@ -66,8 +71,8 @@ each $\rho$ in $G$ we have\\
     thm_C [comment="\textbf{Thm C (AoC) }There exists a partition $\{P, S_1, S_2, S_3\}$\\ of the
 unit sphere $S= \{x \in \R^3: \vert x\vert^2 = x_1^2 + x_2^2 + x_3^2 = 1\}$\\
 into four subsets such that \\
- (i) $P$ is countable,\ (ii) $\theta(S_1) = S_2 \cup  S_3$,\\
- (iii) $\psi(S_1)= S_2$,\ (iv) $\psi^2(S_1)= S_3$.
+ (i) $P$ is countable,\ \ \ (ii) $\theta(S_1) = S_2 \cup  S_3$,\\
+ (iii) $\psi(S_1)= S_2$,\ \ \ \ \ \ (iv) $\psi^2(S_1)= S_3$.
 "];
     rem_2 [comment="\textbf{Rem 2 } None of the three sets\\
 $S_{k'} = \{ tx : x\in S_k,\ 0<t\leq 1\}, 1 \leq k \leq 3$,\\
@@ -77,8 +82,12 @@ can be Lebesgue measurable.
 exists a countable set $Q$ and a rotation $\omega$ such that\\
 $P \subset Q \subset S$ and $\omega(Q)= Q\setminus P$.
 "];
-    thm_D [comment="\textbf{Thm D } There exists a partition $\{ T_j: 1 \leq j \leq  10\}$ of the unit sphere $S$ into ten (disjoint) subsets\\ and a corresponding set $\{\rho_j: 1 \leq j\leq 10\}$ of rotations such that $\{\rho_j(T_j): 1 \leq j\leq 6\}$ is a partition\\ of $S$ into six subsets and $\{\rho_j(T_j): 7 \leq j\leq 10\}$ is a partition of $S$ into four subsets. Moreover,\\
-we can take $T_7$, $T_8$, and $T_9$ to all be rotates of $S_1$ and take $T_1$, $T_2$, $T_3$, and $T_{10}$ to all be countable.
+    thm_D [comment="\textbf{Thm D } There exists a partition $\{ T_j: 1 \leq j \leq  10\}$ of the unit sphere\\
+$S$ into ten (disjoint) subsets and a corresponding set $\{\rho_j: 1 \leq j\leq 10\}$\\
+ of rotations such that $\{\rho_j(T_j): 1 \leq j\leq 6\}$ is a partition of $S$ into six\\
+subsets and $\{\rho_j(T_j): 7 \leq j\leq 10\}$ is a partition of $S$ into four subsets.\\
+Moreover, we can take $T_7$, $T_8$, and $T_9$ to all be rotates of $S_1$ and take\\
+ $T_1$, $T_2$, $T_3$, and $T_{10}$ to all be countable.
 "];
     thm_E [comment="\textbf{Thm E } There exists a partition $\{B_k: 1 \leq k \leq 40\}$ of the
 closed unit ball
@@ -90,9 +99,12 @@ subsets and $\{ r_k(B_k): 25 \leq  k \leq 40\}$ partitions $B$ into sixteen subs
 
     rem_1 [comment="\textbf{Rem 1 } The number $40$ is\\ not the smallest possible $\dots$
 "];
-    def [comment="\textbf{Def } We shall say that two subsets $X$ and $Y$ of $\R^3$ are piecewise congruent and we
-write $X\sim Y$\\ if, for some natural number $n$, there exist a partition $\{X_j: 1 \leq j\leq n\}$ of $X$ into $n$ subsets and a\\ corresponding set $\{f_j: 1\leq  j \leq n\}$ of rigid motions such that $\{f_j(X_j): 1 \leq j\leq n\}$ is a
-partition\\ of $Y$. In case $X$ is piecewise congruent to a subset of $Y$, we shall write $X\lesssim Y$.
+    def [comment="\textbf{Def } We shall say that two subsets $X$ and $Y$ of $\R^3$ are\\
+piecewise congruent and we write $X\sim Y$ if, for some natural\\
+number $n$, there exist a partition $\{X_j: 1 \leq j\leq n\}$ of $X$ into $n$\\
+subsets and a corresponding set $\{f_j: 1\leq  j \leq n\}$ of rigid motions\\
+such that $\{f_j(X_j): 1 \leq j\leq n\}$ is a partition of $Y$. In case $X$\\
+is piecewise congruent to a subset of $Y$, we shall write $X\lesssim Y$.
 "];
     thm_F [comment="\textbf{Thm F } For subsets $X$, $Y$, and $Z$ of $R^3$ we have\\
 (i) $X\sim X$,\\
@@ -101,7 +113,7 @@ partition\\ of $Y$. In case $X$ is piecewise congruent to a subset of $Y$, we sh
 (iv) $X\sim X\implies X\lesssim Y$,\\
 (v) $X\lesssim Y\textrm{ and }Y\lesssim Z\implies X\lesssim Z$,\\
 (vi) $X\subset Y\implies X\lesssim Y$,\\
-(vii) $X\lesssim Y\textrm{ and }Y\lesssim X\implies X\sim Y$.\\
+(vii) $X\lesssim Y\textrm{ and }Y\lesssim X\implies X\sim Y$.
 "];
     thm_G [comment="\textbf{Thm G } If $A \subset R^3$ is a closed ball and if $A_1,A_2,\dots,A_n$\\ are a finite number of translates of $A$, then
 $$A\sim \bigcup_{j=1}^n A_j.$$
