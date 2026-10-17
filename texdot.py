@@ -121,6 +121,12 @@ def generate_latex_and_makefile(dot_file):
             html_label = f'<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><IMG SRC="{png_filename}"/></TD></TR></TABLE>>'
             edge.set_label(html_label)
 
+    # --- NEW CLEANUP BLOCK TO FIX PYDOT BUG ---
+    spurious_nodes = [node.get_name() for node in graph.get_nodes() if node.get_name() in ('"\\n"', '"\n"', '\\n', '\n')]
+    for name in set(spurious_nodes):
+        graph.del_node(name)
+    # ------------------------------------------
+
     print(f"Extracted {len(extracted_items)} LaTeX definitions ({updated_count} newly written/updated).")
 
     # Save the processed Graphviz model to a temporary file
