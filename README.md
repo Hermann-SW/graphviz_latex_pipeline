@@ -119,8 +119,8 @@ Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to
 Complete generated [number_theory.pdf](https://raw.githubusercontent.com/Hermann-SW/graphviz_latex_pipeline/main/res/number_theory.pdf), and partial view:  
 ![res/number_theory.20pc.png](res/number_theory.20pc.png)
 
-## work in progress
+## Banach-Tarski Paradox
 
-[Banach-Tarski_Paradox.dot](Banach-Tarski_Paradox.dot)
+[Banach-Tarski_Paradox.dot](Banach-Tarski_Paradox.dot)\ \ 
 [res/Banach-Tarski_Paradox.pdf](res/Banach-Tarski_Paradox.pdf)  
 ![res/Banach-Tarski_Paradox.pdf.20pc.png](res/Banach-Tarski_Paradox.pdf.20pc.png)

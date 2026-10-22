@@ -89,12 +89,12 @@ subsets and $\{\rho_j(T_j): 7 \leq j\leq 10\}$ is a partition of $S$ into four s
 Moreover, we can take $T_7$, $T_8$, and $T_9$ to all be rotates of $S_1$ and take\\
  $T_1$, $T_2$, $T_3$, and $T_{10}$ to all be countable.
 "];
-    thm_E [comment="\textbf{Thm E } There exists a partition $\{B_k: 1 \leq k \leq 40\}$ of the
-closed unit ball
- $B$ into forty subsets and\\ a corresponding set $\{rk: 1 < k \leq 40\}$
- of rigid
-motions such that $\{r_k(B_k): 1\leq k\leq 24\}$ partitions\\ $B$ into twenty-four
-subsets and $\{ r_k(B_k): 25 \leq  k \leq 40\}$ partitions $B$ into sixteen subsets.
+    thm_E [comment="\textbf{Thm E } There exists a partition $\{B_k: 1 \leq k \leq 40\}$\\
+of the closed unit ball $B$ into forty subsets and a\\
+corresponding set $\{rk: 1 < k \leq 40\}$ of rigid motions\\
+such that $\{r_k(B_k): 1\leq k\leq 24\}$ partitions $B$ into\\
+twenty-four subsets and $\{ r_k(B_k): 25 \leq  k \leq 40\}$\\
+ partitions $B$ into sixteen subsets.
 "];
 
     rem_1 [comment="\textbf{Rem 1 } The number $40$ is\\ not the smallest possible $\dots$
@@ -123,23 +123,28 @@ subsets of $R^3$ having nonvoid interiors, then $X\sim Y$.
 "];
     rem_3 [comment="\textbf{Rem 3 } A poor analogue can be explicitly constructed\\ (no Axiom of Choice) in the plane as follows. $\dots$\\ The reason that this analogue is \"poor\" is twofold:\\ $X$ is both countable and unbounded.
 "];
+    point1 [shape=point];
+    point2 [shape=point];
 
 { rank=same prop thm_A def_2 }
 { rank=same def_1 def_0 thm_B }
+{ rank=same thm_C lem}
+{ rank=same thm_H rem_3 }
 
-    prop -> def_1 -> lem [style=dotted]
-    rem_2 -> rem_3 [style=dotted]
+    prop -> def_1 -> lem [style=invis]
     def_1-> thm_A
-    thm_A -> def_2 [style=dotted]
+    thm_A -> def_2 [style=invis]
     def_2-> thm_A
     def_2-> thm_B
     prop -> thm_A
     thm_A -> def_0 [comment="choose and fix $\theta$ such that $\cos\theta$\\is transcendental; e.g., $\theta=1$.
 "];
     def_0 -> thm_B
-    thm_C -> rem_3
+    rem_3 -> thm_H [arrowhead=none]
     { lem thm_C } -> thm_D
-    thm_B -> thm_C -> rem_2 
+    thm_B -> thm_C
+    thm_C -> point1 -> point2 [arrowhead=none]
+    point2 -> rem_2
     { lem thm_D } -> thm_E -> rem_1
     def -> thm_F
     { thm_E thm_F } -> thm_G -> thm_H
