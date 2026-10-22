@@ -121,6 +121,5 @@ Complete generated [number_theory.pdf](https://raw.githubusercontent.com/Hermann
 
 ## Banach-Tarski Paradox
 
-[Banach-Tarski_Paradox.dot](Banach-Tarski_Paradox.dot)\ \ 
-[res/Banach-Tarski_Paradox.pdf](res/Banach-Tarski_Paradox.pdf)  
+[Banach-Tarski_Paradox.dot](Banach-Tarski_Paradox.dot) [res/Banach-Tarski_Paradox.pdf](res/Banach-Tarski_Paradox.pdf)  
 ![res/Banach-Tarski_Paradox.pdf.20pc.png](res/Banach-Tarski_Paradox.pdf.20pc.png)
