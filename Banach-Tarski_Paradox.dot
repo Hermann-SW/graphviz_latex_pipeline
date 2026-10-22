@@ -124,15 +124,15 @@ subsets of $R^3$ having nonvoid interiors, then $X\sim Y$.
     rem_3 [comment="\textbf{Rem 3 } A poor analogue can be explicitly constructed\\ (no Axiom of Choice) in the plane as follows. $\dots$\\ The reason that this analogue is \"poor\" is twofold:\\ $X$ is both countable and unbounded.
 "];
 
-{ rank=same thm_B thm_C }
 { rank=same prop thm_A def_2 }
-{ rank=same def_1 def_0 }
+{ rank=same def_1 def_0 thm_B }
 
     prop -> def_1 -> lem [style=dotted]
     rem_2 -> rem_3 [style=dotted]
     def_1-> thm_A
     thm_A -> def_2 [style=dotted]
     def_2-> thm_A
+    def_2-> thm_B
     prop -> thm_A
     thm_A -> def_0 [comment="choose and fix $\theta$ such that $\cos\theta$\\is transcendental; e.g., $\theta=1$.
 "];
@@ -143,6 +143,4 @@ subsets of $R^3$ having nonvoid interiors, then $X\sim Y$.
     { lem thm_D } -> thm_E -> rem_1
     def -> thm_F
     { thm_E thm_F } -> thm_G -> thm_H
-
-    def_2 -> thm_C [style=dotted]
 }
