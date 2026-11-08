@@ -6,6 +6,27 @@ import sys
 import subprocess
 import pydot
 
+import textwrap
+
+def make_searchable_dot_label(latex_src: str, width: int = 55) -> str:
+    """
+    Extracts only the body inside \\begin{document}...\\end{document},
+    wraps it, and escapes it for Graphviz.
+    """
+    if "\\begin{document}" in latex_src:
+        latex_src = latex_src.split("\\begin{document}", 1)[1]
+    if "\\end{document}" in latex_src:
+        latex_src = latex_src.split("\\end{document}", 1)[0]
+
+    compact = " ".join(latex_src.strip().split())
+    wrapped_lines = textwrap.wrap(compact, width=width) or [""]
+
+    escaped_lines = [
+        line.replace("\\", "\\\\").replace('"', '\\"')
+        for line in wrapped_lines
+    ]
+    return '"' + "\\n".join(escaped_lines) + '"'
+
 def unquote(s):
     """Remove surrounding quotes from Graphviz attributes."""
     if s and s.startswith('"') and s.endswith('"'):
@@ -83,7 +104,10 @@ def generate_latex_and_makefile(dot_file):
 
             # Inject auto-generated image and empty label
             node.set('image', f'"{png_filename}"')
-            node.set_label('""')
+            node.set_label(make_searchable_dot_label(tex_content))
+            node.set('fontname', '"Courier"')
+            node.set('fontsize', '"5"')
+            node.set('fontcolor', '"#00000001"')
 
     # Process all edges and inject the HTML label
     for edge in graph.get_edges():
@@ -118,7 +142,33 @@ def generate_latex_and_makefile(dot_file):
             extracted_items.append({'base': base_name, 'png': png_filename, 'tex': tex_filename})
 
             # Auto-generate the HTML label for Graphviz
-            html_label = f'<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD><IMG SRC="{png_filename}"/></TD></TR></TABLE>>'
+            body_tex = tex_content
+            if "\\begin{document}" in body_tex:
+                body_tex = body_tex.split("\\begin{document}", 1)[1]
+            if "\\end{document}" in body_tex:
+                body_tex = body_tex.split("\\end{document}", 1)[0]
+
+            compact_edge = " ".join(body_tex.strip().split())
+            wrapped_edge = "<BR/>".join(
+                html.escape(line)
+                for line in (textwrap.wrap(compact_edge, width=25) or [""])
+            )
+
+            html_label = (
+                f'<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0">'
+                f'<TR><TD><IMG SRC="{png_filename}"/></TD></TR>'
+                f'<TR><TD><FONT FACE="Courier" POINT-SIZE="5" COLOR="#00000001">{wrapped_edge}</FONT></TD></TR>'
+                f'</TABLE>>'
+            )
+            edge.set_label(html_label)
+
+            escaped_edge_tex = html.escape(" ".join(tex_content.strip().split()))
+            html_label = (
+                f'<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">'
+                f'<TR><TD><IMG SRC="{png_filename}"/></TD></TR>'
+                f'<TR><TD><FONT POINT-SIZE="1" COLOR="#00000001">{escaped_edge_tex}</FONT></TD></TR>'
+                f'</TABLE>>'
+            )
             edge.set_label(html_label)
 
     # --- NEW CLEANUP BLOCK TO FIX PYDOT BUG ---
