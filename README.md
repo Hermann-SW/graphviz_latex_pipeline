@@ -141,5 +141,5 @@ New version of ```texdot.py``` does place (LaTeX) content into PDF, in addition 
 ```N``` previous matched node/edge  
 
 
-Searching for "primitiv" (with ```/primitiv```) gives matches in English (```primitive```) and German (```primitiv```) language PDFs:  
+Searching for "primitiv" (with ```/primitiv```) gives matches in English (```primitive```) and German (```primitiv```) language PDFs. Match will be displayed somewhere in a Graphviz node, because the displayed node content is an image:  
 ![zathura_zoom.png](res/zathura_zoom.png)  
