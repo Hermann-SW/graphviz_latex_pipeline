@@ -4,9 +4,19 @@
 import os
 import sys
 import subprocess
+import re
+import html
+import textwrap
 import pydot
 
-import textwrap
+def sanitize_for_lualatex(tex_code: str) -> str:
+    """
+    Removes legacy 8-bit pdflatex encoding packages (inputenc / T1 fontenc)
+    that corrupt characters like 'ß' -> 'SS' under LuaLaTeX.
+    """
+    tex_code = re.sub(r'\\usepackage\[[^\]]*\]\{inputenc\}\s*', '', tex_code)
+    tex_code = re.sub(r'\\usepackage\[T1\]\{fontenc\}\s*', '', tex_code)
+    return tex_code
 
 def make_searchable_dot_label(latex_src: str, width: int = 55) -> str:
     """
@@ -70,6 +80,9 @@ def generate_latex_and_makefile(dot_file):
         print("Error: No valid LaTeX template found in the graph 'comment' attribute.")
         return
 
+    # Sanitize template for LuaLaTeX compatibility (strips T1/inputenc conflicts)
+    template = sanitize_for_lualatex(template)
+
     extracted_items = []
     updated_count = 0
 
@@ -102,7 +115,7 @@ def generate_latex_and_makefile(dot_file):
 
             extracted_items.append({'base': base_name, 'png': png_filename, 'tex': tex_filename})
 
-            # Inject auto-generated image and empty label
+            # Inject auto-generated image and searchable label attributes
             node.set('image', f'"{png_filename}"')
             node.set_label(make_searchable_dot_label(tex_content))
             node.set('fontname', '"Courier"')
@@ -141,7 +154,7 @@ def generate_latex_and_makefile(dot_file):
 
             extracted_items.append({'base': base_name, 'png': png_filename, 'tex': tex_filename})
 
-            # Auto-generate the HTML label for Graphviz
+            # Auto-generate the HTML label for Graphviz edges
             body_tex = tex_content
             if "\\begin{document}" in body_tex:
                 body_tex = body_tex.split("\\begin{document}", 1)[1]
@@ -158,15 +171,6 @@ def generate_latex_and_makefile(dot_file):
                 f'<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0">'
                 f'<TR><TD><IMG SRC="{png_filename}"/></TD></TR>'
                 f'<TR><TD><FONT FACE="Courier" POINT-SIZE="5" COLOR="#00000001">{wrapped_edge}</FONT></TD></TR>'
-                f'</TABLE>>'
-            )
-            edge.set_label(html_label)
-
-            escaped_edge_tex = html.escape(" ".join(tex_content.strip().split()))
-            html_label = (
-                f'<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">'
-                f'<TR><TD><IMG SRC="{png_filename}"/></TD></TR>'
-                f'<TR><TD><FONT POINT-SIZE="1" COLOR="#00000001">{escaped_edge_tex}</FONT></TD></TR>'
                 f'</TABLE>>'
             )
             edge.set_label(html_label)
@@ -217,7 +221,7 @@ clean:
         print(f"Successfully generated {target_pdf}.")
 
         print(f"Opening {target_pdf} in evince...")
-        subprocess.Popen(["evince",target_pdf], stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+        subprocess.Popen(["evince", target_pdf], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     except subprocess.CalledProcessError as e:
         print(f"Compilation failed during make execution: {e}")
