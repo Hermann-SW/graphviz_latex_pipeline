@@ -129,7 +129,7 @@ Complete generated [number_theory.pdf](https://raw.githubusercontent.com/Hermann
 [Algebra_1_weeks_1_to_4.pdf](https://raw.githubusercontent.com/Hermann-SW/graphviz_latex_pipeline/main/res/Algebra_1_weeks_1_to_4.pdf) (English)  
 [Algebra_1_wochen_1_bis_4.pdf](https://raw.githubusercontent.com/Hermann-SW/graphviz_latex_pipeline/main/res/Algebra_1_wochen_1_bis_4.pdf) (German)  
 
-
+145 searchable LaTeX nodes (definitions, theorems, … / Definitionen, Theoreme, … ):
 ![zathura.png](res/zathura.png)  
 
 New version of ```texdot.py``` does place (LaTeX) content into PDF, in addition to the image that is displayed. Those texts allow for string search wherever the generated PDF is viewed. Bowsers could display and search fast, and ```evince``` could display fast; but not search fast or consistently indicate which Grahviz node was found. ```evince``` was replaced by ```zathura``` in latest ```texdot.py``` commit.  
