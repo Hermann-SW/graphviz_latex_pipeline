@@ -1,0 +1,931 @@
+digraph G {
+    layout=dot;
+    labelloc=t;
+    label="Algebra 1\nWochen 1-4\n ";
+    node [shape=box, fontsize=12, margin="0.15,0.1", height=0];
+
+    comment="
+\documentclass[varwidth=8cm, border=5pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amsfonts, amsthm, amssymb, wasysym, enumitem}
+
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+\newcommand\F{\ensuremath{\mathbb{F}}}
+
+\begin{document}
+
+\end{document}
+";
+
+    // Woche 1: 1.1 Definitionen
+    def_1_1 [comment="
+\textbf{Def 1.1 }Eine Menge $M$ zusammen mit einer Verknüpfung $M \times M \rightarrow M$, $(a,b) \mapsto ab$ heißt Monoid, wenn die folgenden Eigenschaften erfüllt sind:
+\begin{enumerate}[label=(\roman*), nosep]
+\item Assoziativität: $(ab)c = a(bc)$, $\forall a,b,c \in M$
+\item neutrales Element: es existiert ein $e \in M$ mit $em = m = me$ für alle $m \in M$
+\end{enumerate}
+"]
+
+    rem_1_2 [comment="
+\textbf{Bem 1.2 }\\
+1) $e$ ist eindeutig bestimmt. Ist $e'$ ein weiteres neutrales Element, so gilt $e = e \cdot e' = e'$.\\
+2) Wegen (i) kann man Klammerung weglassen und für $m_1,\dots,m_n \in M$ vom Produkt $m_1 \cdots m_n \in M$ sprechen. Für $a \in M$ und $n \in \N$ setzt man $a^n = a \cdots a$ ($n$-mal). Per Konvention ist $a^0 = e$.
+"]
+
+    def_1_3 [comment="
+\textbf{Def 1.3 }Sei $(M,\cdot)$ ein Monoid und $a \in M$. Ein $b \in M$ heißt invers zu $a$, wenn $ab = e = ba$ gilt.
+"]
+
+    rem_1_4 [comment="
+\textbf{Bem 1.4 }$b$ ist, wenn es existiert, eindeutig durch $a$ bestimmt: Ist $b'$ auch Inverses, so gilt $b = eb = b'ab = b'e = b'$.
+"]
+
+    def_1_5 [comment="
+\textbf{Def 1.5 }Ein Monoid $(G,\cdot)$ heißt Gruppe, wenn jedes Element ein Inverses hat.
+"]
+
+    rem_1_6 [comment="
+\textbf{Bem 1.6 }Man kann dies abschwächen zu: Assoziativität, Existenz eines linksneutralen Elements, Existenz von Linksinversen, und dann zeigen, dass das linksneutrale Element auch rechtsneutral und ein Linksinverses auch rechtsinvers ist.
+"]
+
+    def_1_7 [comment="
+\textbf{Def 1.7 }Ein Monoid (eine Gruppe) heißt kommutativ, wenn $ab = ba$ für beliebige $a,b$ gilt.
+"]
+
+    ex_1_7a [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 1.7a }$\Z, \Q, \R, \C$ mit $+$ sind kommutative Gruppen. $(\Z,\cdot)$ und $(\N_0,+)$ sind kommutative Monoide. $\mathfrak{S}_n = \text{Aut}(\{1,\dots,n\})$ ist eine Gruppe, nicht kommutativ für $n \ge 3$. Ist $k$ ein Körper, so sind die Matrixgruppen $\text{Gl}_n(k)$ und $\text{Sl}_n(k)$ Gruppen, für $n > 1$ nicht-kommutativ.
+"]
+
+    def_1_8 [comment="
+\textbf{Def 1.8 }Sei $G$ ein Monoid. Eine Teilmenge $H \subset G$ heißt Untermonoid, falls
+\begin{enumerate}[label=(\roman*), nosep]
+\item $e \in H$,
+\item $a,b \in H \Rightarrow ab \in H$.
+\end{enumerate}
+Ist $G$ eine Gruppe, so heißt $H$ Untergruppe, wenn zusätzlich gilt
+\begin{enumerate}[label=(\roman*), start=3, nosep]
+\item $a \in H \Rightarrow a^{-1} \in H$.
+\end{enumerate}
+"]
+
+    def_1_9 [comment="
+\textbf{Def 1.9 }Seien $G, G'$ Monoide mit neutralen Elementen $e, e'$. Eine Abbildung $\varphi: G \rightarrow G'$ heißt Monoidhomomorphismus, wenn
+\begin{enumerate}[label=(\roman*), nosep]
+\item $\varphi(e) = e'$.
+\item $\varphi(ab) = \varphi(a)\varphi(b) \quad \forall a,b \in G$.
+\end{enumerate}
+"]
+
+    rem_1_10 [comment="
+\textbf{Bem 1.10 }Sind $G$ und $G'$ Gruppen, so folgt (i) schon aus (ii). Überdies ist $\varphi$ dann genau dann injektiv, wenn sein Kern $\ker(\varphi) = \varphi^{-1}(e')$ trivial, also gleich $\{e\}$ ist (wegen $\varphi(g) = \varphi(h) \Leftrightarrow gh^{-1} \in \ker(\varphi)$).
+"]
+
+    rem_1_11 [comment="
+\textbf{Bem 1.11 }Ist $M$ ein Monoid und $x \in M$, so definiert $\varphi: \N_0 \rightarrow M, n \mapsto x^n$ einen Monoidhomomorphismus. Ist $G$ eine Gruppe und $x \in G$, so erhält man einen Gruppenhomomorphismus $\varphi: \Z \rightarrow G, n \mapsto x^n$, wobei man für $n < 0$ setzt: $x^n = (x^{-n})^{-1}$.
+"]
+
+    thm_1_12 [comment="
+\textbf{Satz 1.12 }(Satz von Cayley). Sei $G$ eine endliche Gruppe mit $n$ Elementen. Dann gibt es einen injektiven Gruppenhomomorphismus $\varphi: G \hookrightarrow \mathfrak{S}_n$.
+"]
+
+    rem_1_13 [comment="
+\textbf{Bem 1.13 }Sei $G$ eine kommutative Gruppe und $n \in \N$. Dann ist $G \rightarrow G, g \mapsto g^n$ ein Gruppenhomomorphismus.
+"]
+
+    rem_1_14 [comment="
+\textbf{Bem 1.14 }Sei $G$ eine Gruppe und $a \in G$. Dann ist $\varphi_a: G \rightarrow G, g \mapsto aga^{-1}$, ein Gruppenhomomorphismus (innerer Automorphismus). Die Abbildung $G \rightarrow \text{Aut}(G), a \mapsto \varphi_a$ ist ein Gruppenhomomorphismus. Dieser ist genau dann trivial, wenn $G$ kommutativ ist.
+"]
+
+    // Woche 1: 1.2 Nebenklassen, Normalteiler, Faktorgruppen
+    def_1_15 [comment="
+\textbf{Def 1.15 }Sei $G$ eine Gruppe und $H \subset G$ eine Untergruppe. Eine Linksnebenklasse von $H$ in $G$ ist eine Teilmenge der Gestalt $aH := \{ah \mid h \in H\}$.
+"]
+
+    thm_1_16 [comment="
+\textbf{Satz 1.16 }Je zwei Linksnebenklassen von $H$ in $G$ sind gleichmächtig, verschiedene Linksnebenklassen von $H$ in $G$ sind disjunkt. Insbesondere ist $G$ disjunkte Vereinigung der Linksnebenklassen von $H$.
+"]
+
+    lem_1_17 [comment="
+\textbf{Lem 1.17 }Seien $aH, bH$ zwei Linksnebenklassen in $G$. Dann sind äquivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $aH = bH$.
+\item $aH \cap bH \neq \emptyset$.
+\item $a \in bH$.
+\item $b^{-1}a \in H$.
+\end{enumerate}
+"]
+
+    rem_1_18 [comment="
+\textbf{Bem 1.18 }Die Linksnebenklassen von $H$ in $G$ sind die Äquivalenzklassen bzgl. der Relation $a \sim_H b \Leftrightarrow b^{-1}a \in H$. Die Elemente von $aH$ heißen ihre Repräsentanten. Die Menge der Linksnebenklassen wird mit $G/H$ bezeichnet. Analog definiert man die Menge $H \backslash G$ der Rechtsnebenklassen $Ha := \{ha \mid h \in H\}$.
+"]
+
+    lem_1_19 [comment="
+\textbf{Lem 1.19 }Die bijektive Abbildung $G \rightarrow G, a \mapsto a^{-1}$ definiert eine Bijektion $G/H \xrightarrow{\sim} H \backslash G$.
+"]
+
+    def_1_20 [comment="
+\textbf{Def 1.20 }Der Index von $H$ in $G$ ist die Anzahl der Links- (Rechts-)nebenklassen von $H$ in $G$, Bezeichnung: $(G:H)$. Die Ordnung von $G$ ist die Anzahl der Elemente von $G$, Bezeichnung: $\text{ord}(G)$.
+"]
+
+    thm_1_21 [comment="
+\textbf{Satz 1.21 }(Satz von Lagrange). Ist $H \subset G$ eine Untergruppe, so gilt $\text{ord}(G) = \text{ord}(H)(G:H)$.
+"]
+
+    def_1_22 [comment="
+\textbf{Def 1.22 }Eine Untergruppe $H \subset G$ heißt Normalteiler, wenn $aH = Ha$ für alle $a \in G$ gilt ($H \triangleleft G$). In diesem Fall bezeichnet man $aH = Ha$ als die Restklasse von $a$ modulo $H$.
+"]
+
+    lem_1_23 [comment="
+\textbf{Lem 1.23 }Die folgenden Aussagen sind äquivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $H \subset G$ Normalteiler.
+\item $aHa^{-1} = H \quad \forall a \in G$.
+\item $aHa^{-1} \subset H \quad \forall a \in G$.
+\end{enumerate}
+"]
+
+    rem_1_24 [comment="
+\textbf{Bem 1.24 }Die Untergruppen $\{1\}$ und $G$ sind aus trivialen Gründen stets Normalteiler in $G$.
+"]
+
+    lem_1_25 [comment="
+\textbf{Lem 1.25 }Jede Untergruppe $H \subset G$ vom Index $2$ ist Normalteiler.
+"]
+
+    lem_1_26 [comment="
+\textbf{Lem 1.26 }Ist $f: G \rightarrow G'$ ein Gruppenhomomorphismus, so ist $\text{Kern}(f) \subset G$ ein Normalteiler.
+"]
+
+    rem_1_27 [comment="
+\textbf{Bem 1.27 }$\text{Bild}(f) \subset G'$ ist eine Untergruppe, aber i.A. kein Normalteiler.
+"]
+
+    def_1_28 [comment="
+\textbf{Def 1.28 }Sei $H \triangleleft G$. Dann heißt $G/H$ mit der Verknüpfung $(aH)(a'H) = aa'H$ die Faktorgruppe von $G$ nach $H$.
+"]
+
+    rem_1_29 [comment="
+\textbf{Bem 1.29 }Die kanonische Projektion $G \rightarrow G/H, g \mapsto gH$ ist ein Gruppenhomomorphismus mit Kern $H$. Daher sind die Normalteiler genau die Untergruppen, die als Kerne von Gruppenhomomorphismen auftreten.
+"]
+
+    thm_1_30 [comment="
+\textbf{Satz 1.30 }Sei $H \triangleleft G$ und $\phi: G \rightarrow G/H$ die kanonische Projektion. Dann induziert $U \mapsto \phi^{-1}(U)$ eine inklusionserhaltende Bijektion zwischen Untergruppen in $G/H$ und Untergruppen in $G$, die $H$ enthalten. $U$ ist genau dann Normalteiler in $G/H$, wenn $\phi^{-1}(U)$ Normalteiler in $G$ ist.
+"]
+
+    thm_1_31 [comment="
+\textbf{Satz 1.31 }(Homomorphiesatz). Sei $f: G \rightarrow G'$ ein Gruppenhomomorphismus. Dann faktorisiert $f$ in eindeutiger Weise in der Form $G \xrightarrow{p} G/\text{Kern}(f) \xrightarrow{\sim} \text{Bild}(f) \hookrightarrow G'$.
+"]
+
+    def_1_32 [comment="
+\textbf{Def 1.32 }Sind $H_1, H_2 \subset G$ Untergruppen, so bezeichnet $H_1 H_2$ die Menge $H_1 H_2 = \{h_1 h_2 \mid h_1 \in H_1, h_2 \in H_2\}$.
+"]
+
+    lem_1_33 [comment="
+\textbf{Lem 1.33 }Ist eine der Untergruppen $H_1, H_2$ Normalteiler, so ist $H_1 H_2$ eine Untergruppe. Sind beide Normalteiler, so auch $H_1 H_2$.
+"]
+
+    lem_1_34 [comment="
+\textbf{Lem 1.34 }Ist $N \triangleleft G$ Normalteiler und $H \subset G$ eine Untergruppe, so ist $N$ Normalteiler in $HN$ und $H \cap N$ Normalteiler in $H$.
+"]
+
+    thm_1_35 [comment="
+\textbf{Satz 1.35 }(1. Isomorphiesatz). Sei $G$ eine Gruppe, $H \subset G$ eine Untergruppe und $N \triangleleft G$ ein Normalteiler. Dann induziert die natürliche Inklusion $H \hookrightarrow HN$ einen Isomorphismus $H / (H \cap N) \simeq HN / N$.
+"]
+
+    thm_1_36 [comment="
+\textbf{Satz 1.36 }(2. Isomorphiesatz). Sei $G$ eine Gruppe und $N, H \triangleleft G$ mit $N \subset H$. Dann gibt es einen natürlichen Isomorphismus $(G/N)/(H/N) \simeq G/H$.
+"]
+
+    // Woche 1 & 2: 1.3 Zyklische Gruppen
+    thm_1_37 [comment="
+\textbf{Satz 1.37 }Die Untergruppen von $\Z$ sind genau $\{0\}$ und $n\Z$ ($n \in \N$). Für $n \in \N$ ist $n\Z$ isomorph zu $\Z$.
+"]
+
+    def_1_38 [comment="
+\textbf{Def 1.38 }Der Durchschnitt aller Untergruppen $H \subset G$ mit $X \subset H$ heißt die von $X$ erzeugte Untergruppe $\langle X \rangle$. Man sagt, $G$ werde von $X$ erzeugt, wenn $\langle X \rangle = G$ gilt.
+"]
+
+    lem_1_39 [comment="
+\textbf{Lem 1.39 }$\langle X \rangle$ ist die Teilmenge aller Elemente von $G$ der Form $x_1^{\epsilon_1} \cdots x_n^{\epsilon_n}$ mit $n \in \N_0, \epsilon_i \in \{\pm 1\}$ und $x_1,\dots,x_n \in X$.
+"]
+
+    rem_1_40 [comment="
+\textbf{Bem 1.40 }Ist $X = \{x_1,\dots,x_r\}$ endlich, so schreibt man auch $\langle x_1,\dots,x_r \rangle$ anstelle von $\langle \{x_1,\dots,x_r\} \rangle$.
+"]
+
+    lem_1_41 [comment="
+\textbf{Lem 1.41 }Sei $x \in G$. Dann ist $\langle x \rangle$ das Bild des Gruppenhomomorphismus $\Z \rightarrow G, n \mapsto x^n$.
+"]
+
+    def_1_42 [comment="
+\textbf{Def 1.42 }Eine Gruppe $G$ heißt zyklisch, wenn sie von einem Element erzeugt wird. Äquivalent: Es gibt einen surjektiven Gruppenhomomorphismus $\Z \rightarrow G$.
+"]
+
+    cor_1_43 [comment="
+\textbf{Kor 1.43 }Sei $G$ eine zyklische Gruppe. Dann gilt $G \cong \Z$ falls $\text{ord}(G) = \infty$, und $G \cong \Z/n\Z$ falls $\text{ord}(G) = n \in \N$.
+"]
+
+    thm_1_44 [comment="
+\textbf{Satz 1.44 }Ist $G$ eine zyklische Gruppe, so ist jede Untergruppe und jede Faktorgruppe von $G$ wieder zyklisch.
+"]
+
+    def_1_45 [comment="
+\textbf{Def 1.45 }Die Ordnung $\text{ord}(a)$ von $a \in G$ ist die kleinste natürliche Zahl, so dass $a^{\text{ord}(a)} = e$ gilt. Existiert eine solche Zahl nicht, so setzt man $\text{ord}(a) = \infty$.
+"]
+
+    lem_1_46 [comment="
+\textbf{Lem 1.46 }$\text{ord}(a) = \text{ord}(\langle a \rangle)$.
+"]
+
+    cor_1_47 [comment="
+\textbf{Kor 1.47 }Für $a \in G$ gilt $\text{ord}(a) \mid \text{ord}(G)$.
+"]
+
+    thm_1_48 [comment="
+\textbf{Satz 1.48 }(Kleiner Fermatscher Satz). Ist $G$ eine endliche Gruppe, so gilt für alle $a \in G$: $a^{\text{ord}(G)} = e$.
+"]
+
+    thm_1_49 [comment="
+\textbf{Satz 1.49 }Sei $G$ eine endliche Gruppe von Primzahlordnung, d.h. $\text{ord}(G) = p$, $p$ Primzahl. Dann ist $G$ zyklisch und $G \cong \Z/p\Z$.
+"]
+
+    // Woche 2: 2.1 Ringe, Polynomringe in einer Variablen
+    def_2_1 [comment="
+\textbf{Def 2.1 }Ein Ring (mit $1$) ist eine Menge $R$ mit zwei binären Operatoren $+$ und $\cdot$ und Elementen $0, 1 \in R$, so dass
+\begin{enumerate}[label=(\roman*), nosep]
+\item $(R,+,0)$ ist eine kommutative Gruppe,
+\item $(R,\cdot,1)$ ist ein Monoid,
+\item $(a+b)c = ac+bc$ und $c(a+b) = ca+cb$ für alle $a,b,c \in R$.
+\end{enumerate}
+$R$ heißt kommutativ, wenn die Multiplikation kommutativ ist. $S \subset R$ heißt Unterring, wenn $(S,+)$ Untergruppe und $(S,\cdot)$ Untermonoid ist. $f: R \rightarrow R'$ heißt Ringhomomorphismus, wenn $f(a+b)=f(a)+f(b), f(ab)=f(a)f(b)$ und $f(1)=1$ gilt. (Im Folgenden sind alle Ringe kommutativ.)
+"]
+
+    ex_2_2 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.2 }$R=K$ ein Körper; $R=\Z$; Polynomring $R[T]$; der Nullring $0$ (einziger Ring bis auf Isomorphie mit $0=1$).
+"]
+
+    def_2_3 [comment="
+\textbf{Def 2.3 }Ein Ideal $\mathfrak{a}$ in einem Ring $R$ ist eine Teilmenge $\mathfrak{a} \subset R$, so dass
+\begin{enumerate}[label=(\roman*), nosep]
+\item $(\mathfrak{a},+) \subset (R,+)$ ist Untergruppe,
+\item $r \in R, a \in \mathfrak{a} \Rightarrow ra \in \mathfrak{a}$.
+\end{enumerate}
+Die Faktorgruppe $R/\mathfrak{a}$ wird mit $(a+\mathfrak{a})(b+\mathfrak{a}) = ab+\mathfrak{a}$ wieder ein Ring.
+"]
+
+    ex_2_4 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.4 }$\mathfrak{a}=R$ und $\mathfrak{a}=\{0\}$ sind Ideale. Sind $\mathfrak{a}, \mathfrak{b}$ Ideale, so auch $\mathfrak{a} \cap \mathfrak{b}$ und $\mathfrak{a}+\mathfrak{b}$. Die Untergruppen von $\Z$ ($0$ und $n\Z$) sind sämtlich Ideale.
+"]
+
+    thm_2_5 [comment="
+\textbf{Satz 2.5 }Die Zuordnung $\mathfrak{b} \mapsto \phi^{-1}(\mathfrak{b})$ unter $\phi: R \rightarrow R/\mathfrak{a}$ definiert eine inklusionserhaltende Bijektion zwischen Idealen in $R/\mathfrak{a}$ und Idealen in $R$, die $\mathfrak{a}$ enthalten.
+"]
+
+    def_2_6 [comment="
+\textbf{Def 2.6 }$x \in R$ heißt Nullteiler, wenn ein $y \in R, y \neq 0$ mit $xy=0$ existiert. $R$ heißt nullteilerfrei, wenn $R \neq 0$ und $0$ der einzige Nullteiler ist. $x \in R$ heißt Einheit, wenn ein $y \in R$ mit $xy=1$ existiert (Einheitengruppe $R^\times$). $\mathfrak{a} = (x) = Rx$ heißt Hauptideal. $R$ heißt Hauptidealring, wenn $R$ nullteilerfrei ist und jedes Ideal in $R$ Hauptideal ist.
+"]
+
+    ex_2_7 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.7 }$\Z$ ist ein Hauptidealring.
+"]
+
+    def_2_8 [comment="
+\textbf{Def 2.8 }$R$ heißt Körper, wenn $R^\times = R \setminus \{0\}$ (insbesondere ist $R=0$ kein Körper).
+"]
+
+    thm_2_9 [comment="
+\textbf{Satz 2.9 }Sei $R$ ein Ring $\neq 0$. Dann sind äquivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $R$ ist Körper.
+\item $(0)$ und $(1)$ sind die einzigen Ideale in $R$.
+\item Jeder Homomorphismus $f: R \rightarrow S$ in einen Ring $S \neq 0$ ist injektiv.
+\end{enumerate}
+"]
+
+    def_2_10 [comment="
+\textbf{Def 2.10 }Ein Ideal $\mathfrak{p} \subset R$ heißt Primideal, wenn $\mathfrak{p} \neq R$ und $xy \in \mathfrak{p} \Rightarrow x \in \mathfrak{p}$ oder $y \in \mathfrak{p}$. Ein Ideal $\mathfrak{m}$ heißt Maximalideal, wenn $\mathfrak{m} \neq R$ und es kein Ideal $\mathfrak{a}$ gibt mit $\mathfrak{m} \subsetneq \mathfrak{a} \subsetneq R$.
+"]
+
+    thm_2_11 [comment="
+\textbf{Satz 2.11 }\\
+(i) $\mathfrak{p}$ ist Primideal $\Leftrightarrow R/\mathfrak{p}$ ist nullteilerfrei.\\
+(ii) $\mathfrak{m}$ ist Maximalideal $\Leftrightarrow R/\mathfrak{m}$ ist Körper.\\
+Insbesondere sind Maximalideale prim.
+"]
+
+    ex_2_12 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.12 }Für $f: \Z \rightarrow \Q$ ist $(0) \subset \Q$ Maximalideal. $f^{-1}((0)) = (0)$ ist Primideal in $\Z$, aber nicht maximal.
+"]
+
+    lem_zorn [comment="
+\textbf{Lem Zorn }(Zornsches Lemma). Sei $(M,\le)$ eine halbgeordnete nichtleere Menge. Besitzt jede Kette in $M$ eine obere Schranke, so enthält $M$ mindestens ein maximales Element.
+"]
+
+    rem_2_13 [comment="
+\textbf{Bem 2.13 }Das Auswahlaxiom sagt: Jede Surjektion von Mengen $f: M \rightarrow N$ spaltet, d.h. es gibt $s: N \rightarrow M$ mit $f \circ s = \text{id}_N$.
+"]
+
+    thm_2_14 [comment="
+\textbf{Satz 2.14 }Jeder Ring $R \neq 0$ besitzt ein Maximalideal.
+"]
+
+    cor_2_15 [comment="
+\textbf{Kor 2.15 }\\
+(i) Jedes Ideal $\mathfrak{a} \subsetneq R$ ist in einem Maximalideal enthalten.\\
+(ii) Jede Nichteinheit ist in einem Maximalideal enthalten.
+"]
+
+    // Woche 2 & 3: 2.2 Faktorielle Ringe
+    def_2_16 [comment="
+\textbf{Def 2.16 }Sei $R$ nullteilerfrei. Ein Element $0 \neq \pi \in R \setminus R^\times$ heißt Primelement, falls $(\pi)$ Primideal ist ($\pi \mid ab \Rightarrow \pi \mid a$ oder $\pi \mid b$); irreduzibel, falls aus $ab = \pi$ folgt $a \in R^\times$ oder $b \in R^\times$. Elemente $a,b \in R$ heißen assoziiert ($a \mathrel{\hat{=}} b$), wenn $a \mid b$ und $b \mid a$.
+"]
+
+    lem_2_17 [comment="
+\textbf{Lem 2.17 }Für $a,b \in R$ sind äquivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $a \mathrel{\hat{=}} b$.
+\item $a = be$ mit $e \in R^\times$.
+\item $(a) = (b)$.
+\end{enumerate}
+"]
+
+    lem_2_18 [comment="
+\textbf{Lem 2.18 }Primelemente sind irreduzibel. In einem Hauptidealring ist jedes irreduzible Element prim.
+"]
+
+    lem_2_19 [comment="
+\textbf{Lem 2.19 }Ein Element $a \in R$ habe Zerlegungen $a = p_1 \cdots p_r = q_1 \cdots q_s$ in Primelemente $p_i$ und irreduzible Elemente $q_j$. Dann gilt $r=s$ und nach Umnummerierung ist $p_i \mathrel{\hat{=}} q_i$ ($i=1,\dots,r$).
+"]
+
+    thm_2_20 [comment="
+\textbf{Satz 2.20 }Sei $R$ ein nullteilerfreier Ring. Dann sind äquivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item Jedes $a \in R \setminus R^\times, a \neq 0$, lässt sich eindeutig (bis auf Reihenfolge und Assoziiertheit) als Produkt irreduzibler Elemente schreiben.
+\item Jedes $a \in R \setminus R^\times, a \neq 0$, lässt sich als Produkt von Primelementen schreiben.
+\end{enumerate}
+"]
+
+    def_2_21 [comment="
+\textbf{Def 2.21 }Ein nullteilerfreier Ring, der die äquivalenten Bedingungen von Satz 2.20 erfüllt, heißt faktoriell. In einem faktoriellen Ring existieren $\text{ggT}$ und $\text{kgV}$ bis auf Assoziiertheit.
+"]
+
+    cor_2_22 [comment="
+\textbf{Kor 2.22 }In einem faktoriellen Ring ist jedes irreduzible Element Primelement.
+"]
+
+    def_2_23 [comment="
+\textbf{Def 2.23 }Ein nullteilerfreier Ring $R$ heißt euklidischer Ring, wenn es eine Abbildung $v: R \setminus \{0\} \rightarrow \N_0$ gibt, so dass zu $f, g \in R, g \neq 0$ stets Elemente $q, r \in R$ existieren mit $f = qg + r$ und ($v(r) < v(g)$ oder $r=0$).
+"]
+
+    ex_2_24 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.24 }$R = k[T]$ ($k$ Körper) mit $v(f) = \deg(f)$; $R = \Z$ mit $v(a) = |a|$.
+"]
+
+    thm_2_25 [comment="
+\textbf{Satz 2.25 }Jeder euklidische Ring ist Hauptidealring.
+"]
+
+    thm_2_26 [comment="
+\textbf{Satz 2.26 }Jeder Hauptidealring ist faktoriell.
+"]
+
+    lem_2_27 [comment="
+\textbf{Lem 2.27 }Sei $R$ ein Hauptidealring. Dann wird jede aufsteigende Folge $\mathfrak{a}_1 \subseteq \mathfrak{a}_2 \subseteq \mathfrak{a}_3 \subseteq \dots$ von Idealen stationär.
+"]
+
+    rem_2_28 [comment="
+\textbf{Bem 2.28 }Ein Ring, in dem jede aufsteigende Folge von Idealen stationär wird, heißt noethersch.
+"]
+
+    lem_2_29 [comment="
+\textbf{Lem 2.29 }Ist $R$ ein Hauptidealring, so gelten die Identitäten von Idealen $(a) + (b) = (\text{ggT}(a,b))$ und $(a) \cap (b) = (\text{kgV}(a,b))$.
+"]
+
+    thm_2_30 [comment="
+\textbf{Satz 2.30 }Ist $R$ ein Hauptidealring, so ist jedes Primideal $\neq (0)$ maximal.
+"]
+
+    // Woche 3: 2.3 Der Satz von Gauß
+    lem_2_31 [comment="
+\textbf{Lem 2.31 }Ist $R$ nullteilerfrei, so gilt für $f, g \in R[T]$: $\deg(f \cdot g) = \deg(f) + \deg(g)$.
+"]
+
+    cor_2_32 [comment="
+\textbf{Kor 2.32 }Ist $R$ nullteilerfrei, so auch $R[T]$.
+"]
+
+    def_2_33 [comment="
+\textbf{Def 2.33 }Sei $R$ ein nullteilerfreier Ring und $M = \{(a,b) \mid a,b \in R, b \neq 0\}$ mit $(a_1,b_1) \sim (a_2,b_2) \Leftrightarrow a_1 b_2 = a_2 b_1$. Die Menge der Äquivalenzklassen $Q(R)$ mit $\frac{a_1}{b_1} + \frac{a_2}{b_2} = \frac{a_1 b_2 + a_2 b_1}{b_1 b_2}$ und $\frac{a_1}{b_1} \cdot \frac{a_2}{b_2} = \frac{a_1 a_2}{b_1 b_2}$ ist ein Körper und heißt Quotientenkörper von $R$.
+"]
+
+    rem_2_34 [comment="
+\textbf{Bem 2.34 }Die natürliche Abbildung $R \rightarrow Q(R), x \mapsto \frac{x}{1}$ ist ein injektiver Ringhomomorphismus.
+"]
+
+    cor_2_35 [comment="
+\textbf{Kor 2.35 }Sei $R$ ein nullteilerfreier Ring und $f \in R[T], f \neq 0$. Dann hat $f$ höchstens $\deg(f)$ viele Nullstellen in $R$.
+"]
+
+    ex_2_36 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.36 }Im (nicht nullteilerfreien) Ring $R = \Z/8\Z$ hat $T^2 - 1$ vier Nullstellen: $1, 3, 5, 7$.
+"]
+
+    thm_2_37 [comment="
+\textbf{Satz 2.37 }(Universaleigenschaft von $Q(R)$). Sei $R$ nullteilerfrei und $f: R \hookrightarrow K$ ein injektiver Ringhomomorphismus in einen Körper $K$. Dann gibt es einen eindeutig bestimmten Körperhomomorphismus $\phi: Q(R) \hookrightarrow K$, der $f$ fortsetzt.
+"]
+
+    rem_2_38 [comment="
+\textbf{Bem 2.38 }Ist $R$ faktoriell und $(p_i)_{i \in I}$ ein Repräsentantensystem der Primelemente, so hat $\frac{a}{b} \in Q(R)^\times$ eine eindeutige Darstellung $\frac{a}{b} = \epsilon \prod_{i \in I} p_i^{v_i(a/b)}$ mit $v_i(\frac{a}{b}) \in \Z$. Für $f = \sum a_i T^i \in Q(R)[T]$ und prim $p \in R$ setzt man $v_p(f) = \min_i v_p(a_i)$. Es gilt $f \in R[T] \Leftrightarrow v_p(f) \ge 0 \ \forall p$.
+"]
+
+    ex_2_39 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.39 }In $\Z$ gilt: $v_3(\frac{2}{9}) = -2, v_2(\frac{2}{9}) = 1$ und $v_p(\frac{2}{9}) = 0$ für jede Primzahl $p \neq 2,3$.
+"]
+
+    thm_2_40 [comment="
+\textbf{Satz 2.40 }(Lemma von Gauß). Sei $R$ ein faktorieller Ring und $p \in R$ ein Primelement. Dann gilt für $f, g \in Q(R)[T]$: $v_p(fg) = v_p(f) + v_p(g)$.
+"]
+
+    cor_2_41 [comment="
+\textbf{Kor 2.41 }Sei $R$ faktoriell und $h \in R[T]$ normiert. Gilt $h = fg$ mit normierten Polynomen $f, g \in Q(R)[T]$, so gilt $f, g \in R[T]$.
+"]
+
+    def_2_42 [comment="
+\textbf{Def 2.42 }Sei $R$ faktoriell. Ein Polynom $f \in R[T]$ heißt primitiv, wenn der $\text{ggT}$ seiner Koeffizienten $= 1$ ist, d.h. $v_p(f) = 0$ für alle Primelemente $p \in R$.
+"]
+
+    ex_2_43 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.43 }Jedes normierte Polynom ist primitiv.
+"]
+
+    lem_2_44 [comment="
+\textbf{Lem 2.44 }Sei $0 \neq f \in Q(R)[T]$. Dann existiert ein $0 \neq a \in Q(R)$ und ein primitives $\tilde{f} \in R[T]$, so dass $f = a\tilde{f}$.
+"]
+
+    thm_2_45 [comment="
+\textbf{Satz 2.45 }(Satz von Gauß). Sei $R$ ein faktorieller Ring. Dann ist auch $R[T]$ faktoriell. Ein Polynom $q \in R[T]$ ist genau dann Primelement in $R[T]$, wenn gilt:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $q \in R$ und $q$ ist Primelement in $R$, oder
+\item $q$ ist primitiv in $R[T]$ und Primelement in $Q(R)[T]$.
+\end{enumerate}
+"]
+
+    cor_2_46 [comment="
+\textbf{Kor 2.46 }Sei $R$ ein faktorieller Ring. Dann ist der Polynomring in $n$ Variablen $R[T_1,\dots,T_n]$ faktoriell (insb. $k[T_1,\dots,T_n]$ für Körper $k$ und $\Z[T_1,\dots,T_n]$).
+"]
+
+    // Woche 3: 2.4 Irreduzibilitätskriterien
+    thm_2_47 [comment="
+\textbf{Satz 2.47 }(Eisensteinsches Irreduzibilitätskriterium). Sei $R$ faktoriell und $f = a_n T^n + \dots + a_0 \in R[T]$ primitiv vom Grad $>0$. Sei $p \in R$ ein Primelement mit $p \nmid a_n$, $p \mid a_i$ für $i < n$, und $p^2 \nmid a_0$. Dann ist $f$ irreduzibel in $R[T]$ und in $Q(R)[T]$.
+"]
+
+    ex_2_47a [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.47a }$T^n - t \in k(t)[T]$ ist irreduzibel ($p=t$). $T^3 + 5T^2 + 5 \in \Q[T]$ ist irreduzibel ($p=5$). Für $p$ prim ist das Kreisteilungspolynom $f(T) = T^{p-1} + \dots + 1 = \frac{T^p-1}{T-1}$ irreduzibel in $\Q[T]$ (via Eisenstein auf $f(T+1)$).
+"]
+
+    thm_2_48 [comment="
+\textbf{Satz 2.48 }(Reduktionskriterium). Sei $R$ faktoriell, $p \in R$ prim und $f \in R[T]$, dessen Leitkoeffizient nicht durch $p$ teilbar ist. Ist $\phi(f)$ unter $\phi: R[T] \rightarrow (R/(p))[T]$ irreduzibel, so ist $f$ irreduzibel in $Q(R)[T]$ (und in $R[T]$, falls $f$ primitiv ist).
+"]
+
+    rem_2_49 [comment="
+\textbf{Bem 2.49 }Satz 2.48 wendet man vor allem an, wenn $R$ ein Hauptidealring ist ($R/(p)$ Körper nach Satz 2.30) oder für $R = k[T_1,\dots,T_n]$ mit $p = T_n$.
+"]
+
+    ex_2_49a [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.49a }1) $X^3 + 3X^2 - 4X - 1 \in \Q[X]$ ist irreduzibel ($p=3$).\\
+2) $X^4 + 3X^3 + 5XY^2 + Y + 3 \in \Q[X,Y]$ ist irreduzibel ($R=\Q[Y], p=Y$ und Eisenstein mit $p=3$).
+"]
+
+    // Woche 3 & 4: 2.5 Verallgemeinerte Polynomringe
+    def_2_50 [comment="
+\textbf{Def 2.50 }Sei $R$ ein Ring und $(M,+)$ ein kommutatives Monoid. Dann heißt $R[M] = R^{(M)} = \{(r_m)_{m \in M} \mid r_m = 0 \text{ f.f.a. } m \in M\}$ mit komponentenweiser Addition und Faltungsmultiplikation $t_m = \sum_{m_1+m_2=m} r_{m_1} s_{m_2}$ der Polynomring über $M$ mit Koeffizienten in $R$ (mit Basis $X^m$ und $X^{m_1} X^{m_2} = X^{m_1+m_2}$).
+"]
+
+    ex_2_51 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.51 }$R[\N_0] \cong R[T]$; $R[(\N_0)^n] \cong R[X_1,\dots,X_n]$; $R[(\N_0)^{(I)}] \cong R[(X_i)_{i \in I}]$; für eine abelsche Gruppe $G$ heißt $R[G]$ der Gruppenring.
+"]
+
+    thm_2_52 [comment="
+\textbf{Satz 2.52 }(Universaleigenschaft des Polynomrings). Sei $\phi: R \rightarrow R'$ ein Ringhomomorphismus und $\sigma: M \rightarrow (R',\cdot)$ ein Monoidhomomorphismus. Dann gibt es genau einen Ringhomomorphismus $\Phi: R[M] \rightarrow R'$ mit $\Phi|_R = \phi$ und $\Phi(X^m) = \sigma(m)$ für alle $m \in M$.
+"]
+
+    cor_2_53 [comment="
+\textbf{Kor 2.53 }Zu einem Ringhomomorphismus $\phi: R \rightarrow R'$ und $x_1,\dots,x_n \in R'$ gibt es genau einen Ringhomomorphismus $\Phi: R[X_1,\dots,X_n] \rightarrow R'$ mit $\Phi|_R = \phi$ und $\Phi(X_i) = x_i$ ($i=1,\dots,n$).
+"]
+
+    def_2_54 [comment="
+\textbf{Def 2.54 }Sei $R \subset R'$ eine Ringerweiterung. Ein System $(x_1,\dots,x_n)$ aus $R'$ heißt algebraisch unabhängig (oder transzendent) über $R$, wenn der Einsetzungshomomorphismus $R[X_1,\dots,X_n] \rightarrow R', X_i \mapsto x_i$ injektiv ist; ansonsten algebraisch abhängig.
+"]
+
+    ex_2_55 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 2.55 }Über $\Q$ in $\C$: $(\sqrt{2})$ ist algebraisch abhängig ($X^2-2=0$); $e$ ist transzendent (Hermite); $(e, e^2)$ ist algebraisch abhängig ($X^2-Y=0$); $\pi$ ist transzendent (Lindemann); ob $(e,\pi)$ transzendent ist, ist ungelöst.
+"]
+
+    // Woche 4: 3.1 Charakteristik
+    def_3_1 [comment="
+\textbf{Def 3.1 }Sei $R$ ein nullteilerfreier Ring und $\varphi: \Z \rightarrow R, n \mapsto n \cdot 1_R$. Das eindeutig bestimmte $n \in \N_0$ mit $(n) = \text{Kern}(\varphi)$ heißt die Charakteristik $\text{char}(R)$ von $R$ ($\text{char}(R) = 0$ oder $p$ prim).
+"]
+
+    ex_3_2 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 3.2 }$\Z, \Q, \R, \C$ haben Charakteristik $0$; $\F_p = \Z/p\Z$ und $\F_p[T]$ haben Charakteristik $p$; $\text{char}(R) = \text{char}(Q(R))$; für Teilringe $R \subset S$ gilt $\text{char}(R) = \text{char}(S)$.
+"]
+
+    lem_3_3 [comment="
+\textbf{Lem 3.3 }Sind $K, L$ Körper und $\text{char}(K) \neq \text{char}(L)$, so gibt es keinen Körperhomomorphismus von $K$ nach $L$.
+"]
+
+    def_3_4 [comment="
+\textbf{Def 3.4 }Sei $K$ ein Körper. Der Durchschnitt aller Teilkörper von $K$ heißt der Primkörper von $K$.
+"]
+
+    rem_3_5 [comment="
+\textbf{Bem 3.5 }Der Primkörper ist der kleinste Teilkörper von $K$.
+"]
+
+    lem_3_6 [comment="
+\textbf{Lem 3.6 }Sei $K$ ein Körper und $P \subset K$ sein Primkörper. Dann gilt $\text{char}(K) = 0 \Leftrightarrow P \cong \Q$ und $\text{char}(K) = p > 0 \Leftrightarrow P \cong \F_p$.
+"]
+
+    def_3_7 [comment="
+\textbf{Def 3.7 }Sei $K$ ein Körper mit $\text{char}(K) = p > 0$. Dann heißt der Körperhomomorphismus $\sigma: K \rightarrow K, a \mapsto a^p$, der Frobeniushomomorphismus von $K$.
+"]
+
+    rem_3_8 [comment="
+\textbf{Bem 3.8 }$\sigma$ ist ein injektiver Körperhomomorphismus wegen $(a+b)^p = a^p + b^p$ in Charakteristik $p$.
+"]
+
+    lem_3_9 [comment="
+\textbf{Lem 3.9 }Ist $K$ ein endlicher Körper, so ist der Frobeniushomomorphismus ein Automorphismus.
+"]
+
+    lem_3_10 [comment="
+\textbf{Lem 3.10 }Sei $\text{char}(K) = p > 0$ und $P \subset K$ der Primkörper. Dann gilt $P = \{a \in K \mid \sigma(a) = a\}$.
+"]
+
+    // Woche 4: 3.2 Endliche und algebraische Körpererweiterungen
+    def_3_11 [comment="
+\textbf{Def 3.11 }Seien $K \subset L$ Körper ($L$ Erweiterungskörper von $K$). $\dim_K L$ heißt der Grad der Körpererweiterung $L$ über $K$, Notation: $[L:K] \in \N \cup \{\infty\}$.
+"]
+
+    rem_3_12 [comment="
+\textbf{Bem 3.12 }$[L:K] = 1 \Leftrightarrow L = K$.
+"]
+
+    thm_3_13 [comment="
+\textbf{Satz 3.13 }(Gradsatz). Es seien $K \subset L \subset M$ Körpererweiterungen. Dann gilt $[M:K] = [M:L] \cdot [L:K]$.
+"]
+
+    cor_3_14 [comment="
+\textbf{Kor 3.14 }Sind $K \subset L \subset M$ Körpererweiterungen und $[M:K]$ eine Primzahl, so gilt $L = K$ oder $L = M$.
+"]
+
+    ex_3_14a [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 3.14a }$[\C:\R] = 2$; $[\Q(\sqrt{2}):\Q] = 2$; $[\R:\Q] = \infty$; $[k(t):k] = \infty$.
+"]
+
+    def_3_15 [comment="
+\textbf{Def 3.15 }$\alpha \in L$ heißt algebraisch über $K$, wenn $\alpha^n + c_{n-1}\alpha^{n-1} + \dots + c_0 = 0$ mit $c_i \in K$ gilt. $L$ heißt algebraisch über $K$, wenn jedes Element von $L$ algebraisch über $K$ ist.
+"]
+
+    ex_3_15a [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 3.15a }$\C/\R$ ist algebraisch; $k(t)/k$ ist nicht algebraisch.
+"]
+
+    def_lem_3_16 [comment="
+\textbf{Def/Lem 3.16 }Sei $K \subset L$ eine Körpererweiterung und $\alpha \in L$ algebraisch über $K$. Dann existiert ein eindeutig bestimmtes normiertes Polynom kleinsten Grades $f \in K[X]$ mit $f(\alpha) = 0$. Es gilt $\text{Kern}(\varphi) = (f)$ für $\varphi: K[X] \rightarrow L, g \mapsto g(\alpha)$, und $f$ ist irreduzibel. Man nennt $f$ das Minimalpolynom von $\alpha$.
+"]
+
+    def_3_17 [comment="
+\textbf{Def 3.17 }Sei $K \subset L$ eine Körpererweiterung und $\alpha \in L$. $K[\alpha] = \{\sum_{i=0}^n c_i \alpha^i \mid c_i \in K\}$ ist der kleinste Teilring von $L$, der $K$ und $\alpha$ umfasst. $K(\alpha) = Q(K[\alpha]) \subset L$ ist der kleinste Teilkörper von $L$, der $K$ und $\alpha$ umfasst ($K$ adjungiert $\alpha$). Allgemeiner sind $K[S]$ und $K(S)$ für $S \subset L$ definiert.
+"]
+
+    thm_3_18 [comment="
+\textbf{Satz 3.18 }Sei $K \subset L$ eine Körpererweiterung und $\alpha \in L$ algebraisch mit Minimalpolynom $f$ über $K$. Dann ist $K[\alpha] = K(\alpha)$ ein Körper, $\varphi$ induziert $K[X]/(f) \xrightarrow{\sim} K(\alpha)$, und es gilt $[K(\alpha):K] = \deg(f) < \infty$.
+"]
+
+    thm_3_19 [comment="
+\textbf{Satz 3.19 }Jede endliche Körpererweiterung ist algebraisch.
+"]
+
+    rem_3_20 [comment="
+\textbf{Bem 3.20 }Es gibt unendliche algebraische Erweiterungen.
+"]
+
+    cor_3_21 [comment="
+\textbf{Kor 3.21 }Sei $K \subset L$ und $\alpha \in L$ algebraisch über $K$. Dann ist die Körpererweiterung $K(\alpha)/K$ algebraisch.
+"]
+
+    def_3_22 [comment="
+\textbf{Def 3.22 }Sei $K \subset L$ und $\alpha \in L$. $[K(\alpha):K]$ heißt der Grad von $\alpha$ über $K$. $L/K$ heißt einfach, wenn $L = K(\alpha)$ für ein $\alpha \in L$ gilt. $L/K$ heißt endlich erzeugt, wenn $L = K(\alpha_1,\dots,\alpha_n)$ für endlich viele $\alpha_i \in L$ gilt.
+"]
+
+    ex_3_22a [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 3.22a }$\C/\R = \R(i)/\R$ und $k(t)/k$ sind einfach. $k(X,Y)/k$ ist endlich erzeugt, aber nicht einfach.
+"]
+
+    thm_3_23 [comment="
+\textbf{Satz 3.23 }Sei $L = K(\alpha_1,\dots,\alpha_n)$ endlich erzeugt. Sind $\alpha_1,\dots,\alpha_n$ algebraisch über $K$, so gilt:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $L = K(\alpha_1,\dots,\alpha_n) = K[\alpha_1,\dots,\alpha_n]$.
+\item $L/K$ ist endlich, insbesondere algebraisch.
+\end{enumerate}
+"]
+
+    cor_3_24 [comment="
+\textbf{Kor 3.24 }Sei $K \subset L$ eine Körpererweiterung. Dann sind äquivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $L/K$ ist endlich.
+\item $L$ wird über $K$ von endlich vielen algebraischen Elementen erzeugt.
+\item $L$ ist endlich erzeugte algebraische Körpererweiterung von $K$.
+\end{enumerate}
+"]
+
+    cor_3_25 [comment="
+\textbf{Kor 3.25 }Sei $K \subset L$ eine Körpererweiterung. Dann sind äquivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $L/K$ ist algebraisch.
+\item $L/K$ wird von algebraischen Elementen erzeugt.
+\end{enumerate}
+"]
+
+    cor_3_26 [comment="
+\textbf{Kor 3.26 }Sei $K \subset L$ eine Körpererweiterung. Dann ist die Menge $\{\alpha \in L \mid \alpha \text{ algebraisch über } K\}$ ein Unterkörper von $L$.
+"]
+
+    def_3_27 [comment="
+\textbf{Def 3.27 }Man nennt $\{\alpha \in L \mid \alpha \text{ algebraisch über } K\}$ den (relativen) algebraischen Abschluss von $K$ in $L$.
+"]
+
+    thm_3_28 [comment="
+\textbf{Satz 3.28 }Seien $K \subset L \subset M$ Körpererweiterungen. Ist $\alpha \in M$ algebraisch über $L$ und $L/K$ algebraisch, so ist $\alpha$ algebraisch über $K$. Insbesondere ist $M/K$ genau dann algebraisch, wenn $L/K$ und $M/L$ algebraisch sind.
+"]
+
+    ex_3_29 [shape=plaintext style=filled color=cyan comment="
+\textbf{Bsp 3.29 }Für $\Q^{\text{alg}} \subset \C$ ist $\Q^{\text{alg}}/\Q$ algebraisch mit $[\Q^{\text{alg}}:\Q] = \infty$ (wegen Eisenstein). Da $\Q^{\text{alg}}$ abzählbar und $\C$ überabzählbar ist, gibt es überabzählbar viele transzendente Elemente in $\C$.
+"]
+
+    // Woche 4: 3.3 Algebraischer Abschluss
+    thm_3_30 [comment="
+\textbf{Satz 3.30 }Sei $K$ ein Körper und $f \in K[X]$ mit $\deg(f) \ge 1$. Dann existiert eine endliche (algebraische) Körpererweiterung $L/K$, so dass $f$ eine Nullstelle in $L$ besitzt.
+"]
+
+    def_3_31 [comment="
+\textbf{Def 3.31 }Ein Körper $K$ heißt algebraisch abgeschlossen, wenn jedes $f \in K[X]$ mit $\deg(f) \ge 1$ eine Nullstelle in $K$ besitzt.
+"]
+
+    rem_3_32 [comment="
+\textbf{Bem 3.32 }Über einem algebraisch abgeschlossenen Körper $K$ zerfällt jedes $0 \neq f \in K[X]$ in Linearfaktoren $f = c(X-\alpha_1)\cdots(X-\alpha_n)$, und jedes irreduzible Polynom hat Grad $1$.
+"]
+
+    lem_3_33 [comment="
+\textbf{Lem 3.33 }$K$ ist genau dann algebraisch abgeschlossen, wenn es keine echte ($L \neq K$) endliche Erweiterung $L/K$ gibt.
+"]
+
+    thm_3_34 [comment="
+\textbf{Thm 3.34 }Zu jedem Körper $K$ gibt es einen algebraisch abgeschlossenen Erweiterungskörper $L$.
+"]
+
+    // ==========================================
+    // Explizite Referenzen (durchgezogene Kanten)
+    // ==========================================
+    def_1_1 -> rem_1_2 [comment=""]
+    def_1_1 -> def_1_3 [comment=""]
+    def_1_3 -> def_1_5 [comment=""]
+    def_1_9 -> rem_1_10 [comment=""]
+    lem_1_17 -> thm_1_16 [comment=""]
+    lem_1_17 -> rem_1_18 [comment=""]
+    thm_1_16 -> thm_1_21 [comment=""]
+    thm_1_31 -> thm_1_35 [comment=""]
+    thm_1_31 -> thm_1_36 [comment=""]
+    thm_1_31 -> thm_1_37 [comment=""]
+    lem_1_39 -> lem_1_41 [comment=""]
+    thm_1_37 -> cor_1_43 [comment=""]
+    thm_1_31 -> cor_1_43 [comment=""]
+    thm_1_37 -> thm_1_44 [comment=""]
+    thm_1_21 -> cor_1_47 [comment=""]
+    thm_1_30 -> thm_2_5 [comment=""]
+    thm_1_37 -> ex_2_7 [comment=""]
+    thm_2_5 -> thm_2_11 [comment=""]
+    thm_2_9 -> thm_2_11 [comment=""]
+    lem_zorn -> thm_2_14 [comment=""]
+    thm_2_14 -> cor_2_15 [comment=""]
+    thm_2_5 -> cor_2_15 [comment=""]
+    lem_2_19 -> thm_2_20 [comment=""]
+    thm_2_20 -> def_2_21 [comment=""]
+    thm_2_20 -> cor_2_22 [comment=""]
+    thm_2_20 -> thm_2_26 [comment=""]
+    lem_2_18 -> thm_2_26 [comment=""]
+    lem_2_27 -> thm_2_26 [comment=""]
+    lem_2_31 -> cor_2_32 [comment=""]
+    cor_2_32 -> thm_2_40 [comment=""]
+    thm_2_40 -> thm_2_45 [comment=""]
+    thm_2_20 -> thm_2_45 [comment=""]
+    thm_2_45 -> cor_2_46 [comment=""]
+    lem_2_44 -> thm_2_47 [comment=""]
+    thm_2_45 -> thm_2_47 [comment=""]
+    thm_2_47 -> ex_2_47a [comment=""]
+    thm_2_48 -> rem_2_49 [comment=""]
+    thm_2_30 -> rem_2_49 [comment=""]
+    thm_2_48 -> ex_2_49a [comment=""]
+    thm_2_47 -> ex_2_49a [comment=""]
+    thm_2_52 -> cor_2_53 [comment=""]
+    cor_2_53 -> def_2_54 [comment=""]
+    thm_1_37 -> def_3_1 [comment=""]
+    thm_3_13 -> cor_3_14 [comment=""]
+    thm_2_30 -> thm_3_18 [comment=""]
+    thm_3_18 -> cor_3_21 [comment=""]
+    thm_3_19 -> cor_3_21 [comment=""]
+    thm_3_18 -> thm_3_23 [comment=""]
+    cor_3_21 -> thm_3_23 [comment=""]
+    thm_3_13 -> thm_3_23 [comment=""]
+    thm_3_18 -> thm_3_28 [comment=""]
+    thm_2_47 -> ex_3_29 [comment=""]
+    thm_3_30 -> thm_3_34 [comment=""]
+    thm_2_52 -> thm_3_34 [comment=""]
+
+    // ==========================================
+    // Implizite Beweis- & Konzeptkanten (gestrichelt)
+    // ==========================================
+    def_1_3 -> rem_1_4 [style=dashed, comment=""]
+    def_1_5 -> rem_1_6 [style=dashed, comment=""]
+    def_1_5 -> def_1_7 [style=dashed, comment=""]
+    def_1_7 -> ex_1_7a [style=dashed, comment=""]
+    def_1_5 -> def_1_8 [style=dashed, comment=""]
+    def_1_1 -> def_1_9 [style=dashed, comment=""]
+    def_1_5 -> rem_1_10 [style=dashed, comment=""]
+    def_1_9 -> rem_1_11 [style=dashed, comment=""]
+    rem_1_10 -> thm_1_12 [style=dashed, comment=""]
+    def_1_7 -> rem_1_13 [style=dashed, comment=""]
+    def_1_9 -> rem_1_13 [style=dashed, comment=""]
+    def_1_9 -> rem_1_14 [style=dashed, comment=""]
+    def_1_7 -> rem_1_14 [style=dashed, comment=""]
+    def_1_8 -> def_1_15 [style=dashed, comment=""]
+    def_1_15 -> thm_1_16 [style=dashed, comment=""]
+    def_1_15 -> lem_1_17 [style=dashed, comment=""]
+    rem_1_18 -> lem_1_19 [style=dashed, comment=""]
+    def_1_15 -> def_1_20 [style=dashed, comment=""]
+    def_1_20 -> thm_1_21 [style=dashed, comment=""]
+    def_1_15 -> def_1_22 [style=dashed, comment=""]
+    def_1_22 -> lem_1_23 [style=dashed, comment=""]
+    def_1_22 -> rem_1_24 [style=dashed, comment=""]
+    def_1_20 -> lem_1_25 [style=dashed, comment=""]
+    def_1_22 -> lem_1_25 [style=dashed, comment=""]
+    rem_1_10 -> lem_1_26 [style=dashed, comment=""]
+    lem_1_23 -> lem_1_26 [style=dashed, comment=""]
+    def_1_9 -> rem_1_27 [style=dashed, comment=""]
+    def_1_22 -> def_1_28 [style=dashed, comment=""]
+    def_1_28 -> rem_1_29 [style=dashed, comment=""]
+    lem_1_26 -> rem_1_29 [style=dashed, comment=""]
+    def_1_28 -> thm_1_30 [style=dashed, comment=""]
+    def_1_28 -> thm_1_31 [style=dashed, comment=""]
+    rem_1_10 -> thm_1_31 [style=dashed, comment=""]
+    def_1_8 -> def_1_32 [style=dashed, comment=""]
+    def_1_32 -> lem_1_33 [style=dashed, comment=""]
+    def_1_22 -> lem_1_33 [style=dashed, comment=""]
+    lem_1_33 -> lem_1_34 [style=dashed, comment=""]
+    lem_1_34 -> thm_1_35 [style=dashed, comment=""]
+    thm_1_30 -> thm_1_36 [style=dashed, comment=""]
+    def_1_8 -> thm_1_37 [style=dashed, comment=""]
+    def_1_8 -> def_1_38 [style=dashed, comment=""]
+    def_1_38 -> lem_1_39 [style=dashed, comment=""]
+    def_1_38 -> rem_1_40 [style=dashed, comment=""]
+    rem_1_11 -> lem_1_41 [style=dashed, comment=""]
+    def_1_38 -> def_1_42 [style=dashed, comment=""]
+    lem_1_41 -> def_1_42 [style=dashed, comment=""]
+    def_1_42 -> cor_1_43 [style=dashed, comment=""]
+    def_1_42 -> thm_1_44 [style=dashed, comment=""]
+    def_1_20 -> def_1_45 [style=dashed, comment=""]
+    def_1_45 -> lem_1_46 [style=dashed, comment=""]
+    lem_1_41 -> lem_1_46 [style=dashed, comment=""]
+    lem_1_46 -> cor_1_47 [style=dashed, comment=""]
+    cor_1_47 -> thm_1_48 [style=dashed, comment=""]
+    cor_1_47 -> thm_1_49 [style=dashed, comment=""]
+    cor_1_43 -> thm_1_49 [style=dashed, comment=""]
+    def_1_7 -> def_2_1 [style=dashed, comment=""]
+    def_2_1 -> ex_2_2 [style=dashed, comment=""]
+    def_2_1 -> def_2_3 [style=dashed, comment=""]
+    def_2_3 -> ex_2_4 [style=dashed, comment=""]
+    def_2_3 -> thm_2_5 [style=dashed, comment=""]
+    def_2_3 -> def_2_6 [style=dashed, comment=""]
+    def_2_6 -> ex_2_7 [style=dashed, comment=""]
+    def_2_6 -> def_2_8 [style=dashed, comment=""]
+    def_2_8 -> thm_2_9 [style=dashed, comment=""]
+    def_2_3 -> def_2_10 [style=dashed, comment=""]
+    def_2_10 -> thm_2_11 [style=dashed, comment=""]
+    def_2_6 -> thm_2_11 [style=dashed, comment=""]
+    thm_2_11 -> ex_2_12 [style=dashed, comment=""]
+    rem_2_13 -> lem_zorn [style=dashed, comment=""]
+    def_2_10 -> thm_2_14 [style=dashed, comment=""]
+    def_2_6 -> def_2_16 [style=dashed, comment=""]
+    def_2_10 -> def_2_16 [style=dashed, comment=""]
+    def_2_16 -> lem_2_17 [style=dashed, comment=""]
+    def_2_16 -> lem_2_18 [style=dashed, comment=""]
+    thm_2_11 -> lem_2_18 [style=dashed, comment=""]
+    def_2_6 -> lem_2_18 [style=dashed, comment=""]
+    def_2_16 -> lem_2_19 [style=dashed, comment=""]
+    lem_2_17 -> lem_2_19 [style=dashed, comment=""]
+    def_2_21 -> cor_2_22 [style=dashed, comment=""]
+    def_2_6 -> def_2_23 [style=dashed, comment=""]
+    def_2_23 -> ex_2_24 [style=dashed, comment=""]
+    def_2_23 -> thm_2_25 [style=dashed, comment=""]
+    def_2_6 -> thm_2_25 [style=dashed, comment=""]
+    def_2_6 -> lem_2_27 [style=dashed, comment=""]
+    lem_2_27 -> rem_2_28 [style=dashed, comment=""]
+    def_2_21 -> lem_2_29 [style=dashed, comment=""]
+    def_2_6 -> lem_2_29 [style=dashed, comment=""]
+    lem_2_29 -> thm_2_30 [style=dashed, comment=""]
+    thm_2_11 -> thm_2_30 [style=dashed, comment=""]
+    def_2_6 -> lem_2_31 [style=dashed, comment=""]
+    def_2_6 -> def_2_33 [style=dashed, comment=""]
+    def_2_8 -> def_2_33 [style=dashed, comment=""]
+    def_2_33 -> rem_2_34 [style=dashed, comment=""]
+    rem_2_34 -> cor_2_35 [style=dashed, comment=""]
+    thm_2_25 -> cor_2_35 [style=dashed, comment=""]
+    thm_2_26 -> cor_2_35 [style=dashed, comment=""]
+    cor_2_35 -> ex_2_36 [style=dashed, comment=""]
+    def_2_33 -> thm_2_37 [style=dashed, comment=""]
+    rem_2_34 -> thm_2_37 [style=dashed, comment=""]
+    def_2_21 -> rem_2_38 [style=dashed, comment=""]
+    def_2_33 -> rem_2_38 [style=dashed, comment=""]
+    rem_2_38 -> ex_2_39 [style=dashed, comment=""]
+    rem_2_38 -> thm_2_40 [style=dashed, comment=""]
+    thm_2_11 -> thm_2_40 [style=dashed, comment=""]
+    thm_2_40 -> cor_2_41 [style=dashed, comment=""]
+    rem_2_38 -> def_2_42 [style=dashed, comment=""]
+    def_2_42 -> ex_2_43 [style=dashed, comment=""]
+    def_2_42 -> lem_2_44 [style=dashed, comment=""]
+    rem_2_38 -> lem_2_44 [style=dashed, comment=""]
+    def_2_42 -> thm_2_45 [style=dashed, comment=""]
+    lem_2_44 -> thm_2_45 [style=dashed, comment=""]
+    def_2_42 -> thm_2_47 [style=dashed, comment=""]
+    def_2_42 -> thm_2_48 [style=dashed, comment=""]
+    thm_2_45 -> thm_2_48 [style=dashed, comment=""]
+    def_1_1 -> def_2_50 [style=dashed, comment=""]
+    def_2_1 -> def_2_50 [style=dashed, comment=""]
+    def_2_50 -> ex_2_51 [style=dashed, comment=""]
+    def_2_50 -> thm_2_52 [style=dashed, comment=""]
+    def_1_9 -> thm_2_52 [style=dashed, comment=""]
+    def_2_54 -> ex_2_55 [style=dashed, comment=""]
+    def_2_10 -> def_3_1 [style=dashed, comment=""]
+    def_3_1 -> ex_3_2 [style=dashed, comment=""]
+    def_3_1 -> lem_3_3 [style=dashed, comment=""]
+    thm_2_9 -> lem_3_3 [style=dashed, comment=""]
+    def_2_8 -> def_3_4 [style=dashed, comment=""]
+    def_3_4 -> rem_3_5 [style=dashed, comment=""]
+    def_3_1 -> lem_3_6 [style=dashed, comment=""]
+    def_3_4 -> lem_3_6 [style=dashed, comment=""]
+    def_2_33 -> lem_3_6 [style=dashed, comment=""]
+    thm_2_11 -> lem_3_6 [style=dashed, comment=""]
+    def_3_1 -> def_3_7 [style=dashed, comment=""]
+    def_3_7 -> rem_3_8 [style=dashed, comment=""]
+    thm_2_9 -> rem_3_8 [style=dashed, comment=""]
+    rem_3_8 -> lem_3_9 [style=dashed, comment=""]
+    lem_3_6 -> lem_3_10 [style=dashed, comment=""]
+    thm_1_48 -> lem_3_10 [style=dashed, comment=""]
+    cor_2_35 -> lem_3_10 [style=dashed, comment=""]
+    def_2_8 -> def_3_11 [style=dashed, comment=""]
+    def_3_11 -> rem_3_12 [style=dashed, comment=""]
+    def_3_11 -> thm_3_13 [style=dashed, comment=""]
+    rem_3_12 -> cor_3_14 [style=dashed, comment=""]
+    def_3_11 -> ex_3_14a [style=dashed, comment=""]
+    def_2_54 -> def_3_15 [style=dashed, comment=""]
+    def_3_15 -> ex_3_15a [style=dashed, comment=""]
+    def_3_15 -> def_lem_3_16 [style=dashed, comment=""]
+    thm_2_25 -> def_lem_3_16 [style=dashed, comment=""]
+    thm_2_11 -> def_lem_3_16 [style=dashed, comment=""]
+    def_2_33 -> def_3_17 [style=dashed, comment=""]
+    def_lem_3_16 -> thm_3_18 [style=dashed, comment=""]
+    def_3_17 -> thm_3_18 [style=dashed, comment=""]
+    thm_2_11 -> thm_3_18 [style=dashed, comment=""]
+    def_3_11 -> thm_3_19 [style=dashed, comment=""]
+    def_3_15 -> thm_3_19 [style=dashed, comment=""]
+    thm_3_19 -> rem_3_20 [style=dashed, comment=""]
+    def_3_11 -> def_3_22 [style=dashed, comment=""]
+    def_3_17 -> def_3_22 [style=dashed, comment=""]
+    def_3_22 -> ex_3_22a [style=dashed, comment=""]
+    def_3_22 -> thm_3_23 [style=dashed, comment=""]
+    thm_3_23 -> cor_3_24 [style=dashed, comment=""]
+    thm_3_19 -> cor_3_24 [style=dashed, comment=""]
+    cor_3_24 -> cor_3_25 [style=dashed, comment=""]
+    thm_3_23 -> cor_3_26 [style=dashed, comment=""]
+    cor_3_26 -> def_3_27 [style=dashed, comment=""]
+    thm_3_23 -> thm_3_28 [style=dashed, comment=""]
+    thm_3_19 -> thm_3_28 [style=dashed, comment=""]
+    cor_3_26 -> ex_3_29 [style=dashed, comment=""]
+    thm_3_18 -> ex_3_29 [style=dashed, comment=""]
+    thm_2_30 -> thm_3_30 [style=dashed, comment=""]
+    thm_2_11 -> thm_3_30 [style=dashed, comment=""]
+    def_3_31 -> rem_3_32 [style=dashed, comment=""]
+    def_3_31 -> lem_3_33 [style=dashed, comment=""]
+    thm_3_19 -> lem_3_33 [style=dashed, comment=""]
+    thm_3_30 -> lem_3_33 [style=dashed, comment=""]
+    ex_2_51 -> thm_3_34 [style=dashed, comment=""]
+    cor_2_15 -> thm_3_34 [style=dashed, comment=""]
+    thm_2_11 -> thm_3_34 [style=dashed, comment=""]
+    def_3_31 -> thm_3_34 [style=dashed, comment=""]
+}

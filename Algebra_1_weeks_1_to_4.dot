@@ -1,0 +1,931 @@
+digraph G {
+    layout=dot;
+    labelloc=t;
+    label="Algebra 1\nweeks 1-4\n ";
+    node [shape=box, fontsize=12, margin="0.15,0.1", height=0];
+
+    comment="
+\documentclass[varwidth=8cm, border=5pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amsfonts, amsthm, amssymb, wasysym, enumitem}
+
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+\newcommand\F{\ensuremath{\mathbb{F}}}
+
+\begin{document}
+
+\end{document}
+";
+
+    // Week 1: 1.1 Definitions
+    def_1_1 [comment="
+\textbf{Def 1.1 }A set $M$ together with an operation $M \times M \rightarrow M$, $(a,b) \mapsto ab$ is called a monoid if the following properties are satisfied:
+\begin{enumerate}[label=(\roman*), nosep]
+\item Associativity: $(ab)c = a(bc)$, $\forall a,b,c \in M$
+\item Neutral element: there exists an $e \in M$ with $em = m = me$ for all $m \in M$
+\end{enumerate}
+"]
+
+    rem_1_2 [comment="
+\textbf{Rem 1.2 }\\
+1) $e$ is uniquely determined. If $e'$ is another neutral element, then $e = e \cdot e' = e'$.\\
+2) By (i), parentheses can be omitted and for $m_1,\dots,m_n \in M$ we can speak of the product $m_1 \cdots m_n \in M$. For $a \in M$ and $n \in \N$, we set $a^n = a \cdots a$ ($n$ times). By convention, $a^0 = e$.
+"]
+
+    def_1_3 [comment="
+\textbf{Def 1.3 }Let $(M,\cdot)$ be a monoid and $a \in M$. An element $b \in M$ is called inverse to $a$ if $ab = e = ba$ holds.
+"]
+
+    rem_1_4 [comment="
+\textbf{Rem 1.4 }$b$, if it exists, is uniquely determined by $a$: If $b'$ is also an inverse, then $b = eb = b'ab = b'e = b'$.
+"]
+
+    def_1_5 [comment="
+\textbf{Def 1.5 }A monoid $(G,\cdot)$ is called a group if every element has an inverse.
+"]
+
+    rem_1_6 [comment="
+\textbf{Rem 1.6 }This can be weakened to: associativity, existence of a left-neutral element, existence of left inverses, and then showing that the left-neutral element is also right-neutral and a left inverse is also a right inverse.
+"]
+
+    def_1_7 [comment="
+\textbf{Def 1.7 }A monoid (a group) is called commutative if $ab = ba$ holds for arbitrary $a,b$.
+"]
+
+    ex_1_7a [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 1.7a }$\Z, \Q, \R, \C$ with $+$ are commutative groups. $(\Z,\cdot)$ and $(\N_0,+)$ are commutative monoids. $\mathfrak{S}_n = \text{Aut}(\{1,\dots,n\})$ is a group, non-commutative for $n \ge 3$. If $k$ is a field, the matrix groups $\text{Gl}_n(k)$ and $\text{Sl}_n(k)$ are groups, non-commutative for $n > 1$.
+"]
+
+    def_1_8 [comment="
+\textbf{Def 1.8 }Let $G$ be a monoid. A subset $H \subset G$ is called a submonoid if
+\begin{enumerate}[label=(\roman*), nosep]
+\item $e \in H$,
+\item $a,b \in H \Rightarrow ab \in H$.
+\end{enumerate}
+If $G$ is a group, $H$ is called a subgroup if additionally
+\begin{enumerate}[label=(\roman*), start=3, nosep]
+\item $a \in H \Rightarrow a^{-1} \in H$.
+\end{enumerate}
+"]
+
+    def_1_9 [comment="
+\textbf{Def 1.9 }Let $G, G'$ be monoids with neutral elements $e, e'$. A map $\varphi: G \rightarrow G'$ is called a monoid homomorphism if
+\begin{enumerate}[label=(\roman*), nosep]
+\item $\varphi(e) = e'$.
+\item $\varphi(ab) = \varphi(a)\varphi(b) \quad \forall a,b \in G$.
+\end{enumerate}
+"]
+
+    rem_1_10 [comment="
+\textbf{Rem 1.10 }If $G$ and $G'$ are groups, (i) follows from (ii). Moreover, $\varphi$ is injective if and only if its kernel $\ker(\varphi) = \varphi^{-1}(e')$ is trivial, i.e., equal to $\{e\}$ (since $\varphi(g) = \varphi(h) \Leftrightarrow gh^{-1} \in \ker(\varphi)$).
+"]
+
+    rem_1_11 [comment="
+\textbf{Rem 1.11 }If $M$ is a monoid and $x \in M$, then $\varphi: \N_0 \rightarrow M, n \mapsto x^n$ defines a monoid homomorphism. If $G$ is a group and $x \in G$, one obtains a group homomorphism $\varphi: \Z \rightarrow G, n \mapsto x^n$, where for $n < 0$ we set $x^n = (x^{-n})^{-1}$.
+"]
+
+    thm_1_12 [comment="
+\textbf{Thm 1.12 }(Cayley's Theorem). Let $G$ be a finite group with $n$ elements. Then there exists an injective group homomorphism $\varphi: G \hookrightarrow \mathfrak{S}_n$.
+"]
+
+    rem_1_13 [comment="
+\textbf{Rem 1.13 }Let $G$ be a commutative group and $n \in \N$. Then $G \rightarrow G, g \mapsto g^n$ is a group homomorphism.
+"]
+
+    rem_1_14 [comment="
+\textbf{Rem 1.14 }Let $G$ be a group and $a \in G$. Then $\varphi_a: G \rightarrow G, g \mapsto aga^{-1}$, is a group homomorphism (inner automorphism). The map $G \rightarrow \text{Aut}(G), a \mapsto \varphi_a$ is a group homomorphism, which is trivial if and only if $G$ is commutative.
+"]
+
+    // Week 1: 1.2 Cosets, Normal Subgroups, Quotient Groups
+    def_1_15 [comment="
+\textbf{Def 1.15 }Let $G$ be a group and $H \subset G$ a subgroup. A left coset of $H$ in $G$ is a subset of the form $aH := \{ah \mid h \in H\}$.
+"]
+
+    thm_1_16 [comment="
+\textbf{Thm 1.16 }Any two left cosets of $H$ in $G$ have the same cardinality, and distinct left cosets of $H$ in $G$ are disjoint. In particular, $G$ is the disjoint union of the left cosets of $H$.
+"]
+
+    lem_1_17 [comment="
+\textbf{Lem 1.17 }Let $aH, bH$ be two left cosets in $G$. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $aH = bH$.
+\item $aH \cap bH \neq \emptyset$.
+\item $a \in bH$.
+\item $b^{-1}a \in H$.
+\end{enumerate}
+"]
+
+    rem_1_18 [comment="
+\textbf{Rem 1.18 }The left cosets of $H$ in $G$ are the equivalence classes with respect to $a \sim_H b \Leftrightarrow b^{-1}a \in H$. The elements of $aH$ are called its representatives. The set of left cosets is denoted by $G/H$. Analogously, one defines the set $H \backslash G$ of right cosets $Ha := \{ha \mid h \in H\}$.
+"]
+
+    lem_1_19 [comment="
+\textbf{Lem 1.19 }The bijective map $G \rightarrow G, a \mapsto a^{-1}$ defines a bijection $G/H \xrightarrow{\sim} H \backslash G$.
+"]
+
+    def_1_20 [comment="
+\textbf{Def 1.20 }The index of $H$ in $G$ is the number of left (right) cosets of $H$ in $G$, denoted $(G:H)$. The order of $G$ is the number of elements of $G$, denoted $\text{ord}(G)$.
+"]
+
+    thm_1_21 [comment="
+\textbf{Thm 1.21 }(Lagrange's Theorem). If $H \subset G$ is a subgroup, then $\text{ord}(G) = \text{ord}(H)(G:H)$.
+"]
+
+    def_1_22 [comment="
+\textbf{Def 1.22 }A subgroup $H \subset G$ is called a normal subgroup if $aH = Ha$ for all $a \in G$ ($H \triangleleft G$). In this case, $aH = Ha$ is called the residue class of $a$ modulo $H$.
+"]
+
+    lem_1_23 [comment="
+\textbf{Lem 1.23 }The following statements are equivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $H \subset G$ is a normal subgroup.
+\item $aHa^{-1} = H \quad \forall a \in G$.
+\item $aHa^{-1} \subset H \quad \forall a \in G$.
+\end{enumerate}
+"]
+
+    rem_1_24 [comment="
+\textbf{Rem 1.24 }The subgroups $\{1\}$ and $G$ are always normal subgroups in $G$ for trivial reasons.
+"]
+
+    lem_1_25 [comment="
+\textbf{Lem 1.25 }Every subgroup $H \subset G$ of index $2$ is a normal subgroup.
+"]
+
+    lem_1_26 [comment="
+\textbf{Lem 1.26 }If $f: G \rightarrow G'$ is a group homomorphism, then $\ker(f) \subset G$ is a normal subgroup.
+"]
+
+    rem_1_27 [comment="
+\textbf{Rem 1.27 }$\text{im}(f) \subset G'$ is a subgroup, but in general not a normal subgroup.
+"]
+
+    def_1_28 [comment="
+\textbf{Def 1.28 }Let $H \triangleleft G$. Then $G/H$ with the operation $(aH)(a'H) = aa'H$ is called the quotient group of $G$ by $H$.
+"]
+
+    rem_1_29 [comment="
+\textbf{Rem 1.29 }The canonical projection $G \rightarrow G/H, g \mapsto gH$ is a group homomorphism with kernel $H$. Thus normal subgroups are precisely the subgroups that occur as kernels of group homomorphisms.
+"]
+
+    thm_1_30 [comment="
+\textbf{Thm 1.30 }Let $H \triangleleft G$ and $\phi: G \rightarrow G/H$ be the canonical projection. Then $U \mapsto \phi^{-1}(U)$ induces an inclusion-preserving bijection between subgroups in $G/H$ and subgroups in $G$ containing $H$. $U$ is normal in $G/H$ if and only if $\phi^{-1}(U)$ is normal in $G$.
+"]
+
+    thm_1_31 [comment="
+\textbf{Thm 1.31 }(Fundamental Theorem on Homomorphisms). Let $f: G \rightarrow G'$ be a group homomorphism. Then $f$ factors uniquely in the form $G \xrightarrow{p} G/\ker(f) \xrightarrow{\sim} \text{im}(f) \hookrightarrow G'$.
+"]
+
+    def_1_32 [comment="
+\textbf{Def 1.32 }If $H_1, H_2 \subset G$ are subgroups, $H_1 H_2$ denotes the set $H_1 H_2 = \{h_1 h_2 \mid h_1 \in H_1, h_2 \in H_2\}$.
+"]
+
+    lem_1_33 [comment="
+\textbf{Lem 1.33 }If one of the subgroups $H_1, H_2$ is normal, then $H_1 H_2$ is a subgroup. If both are normal, so is $H_1 H_2$.
+"]
+
+    lem_1_34 [comment="
+\textbf{Lem 1.34 }If $N \triangleleft G$ is a normal subgroup and $H \subset G$ is a subgroup, then $N$ is normal in $HN$ and $H \cap N$ is normal in $H$.
+"]
+
+    thm_1_35 [comment="
+\textbf{Thm 1.35 }(First Isomorphism Theorem). Let $G$ be a group, $H \subset G$ a subgroup, and $N \triangleleft G$ a normal subgroup. Then the natural inclusion $H \hookrightarrow HN$ induces an isomorphism $H / (H \cap N) \simeq HN / N$.
+"]
+
+    thm_1_36 [comment="
+\textbf{Thm 1.36 }(Second Isomorphism Theorem). Let $G$ be a group and $N, H \triangleleft G$ with $N \subset H$. Then there is a natural isomorphism $(G/N)/(H/N) \simeq G/H$.
+"]
+
+    // Week 1 & 2: 1.3 Cyclic Groups
+    thm_1_37 [comment="
+\textbf{Thm 1.37 }The subgroups of $\Z$ are precisely $\{0\}$ and $n\Z$ ($n \in \N$). For $n \in \N$, $n\Z$ is isomorphic to $\Z$.
+"]
+
+    def_1_38 [comment="
+\textbf{Def 1.38 }The intersection of all subgroups $H \subset G$ with $X \subset H$ is called the subgroup generated by $X$, denoted $\langle X \rangle$. We say $G$ is generated by $X$ if $\langle X \rangle = G$.
+"]
+
+    lem_1_39 [comment="
+\textbf{Lem 1.39 }$\langle X \rangle$ is the subset of all elements of $G$ of the form $x_1^{\epsilon_1} \cdots x_n^{\epsilon_n}$ with $n \in \N_0, \epsilon_i \in \{\pm 1\}$ and $x_1,\dots,x_n \in X$.
+"]
+
+    rem_1_40 [comment="
+\textbf{Rem 1.40 }If $X = \{x_1,\dots,x_r\}$ is finite, one also writes $\langle x_1,\dots,x_r \rangle$ instead of $\langle \{x_1,\dots,x_r\} \rangle$.
+"]
+
+    lem_1_41 [comment="
+\textbf{Lem 1.41 }Let $x \in G$. Then $\langle x \rangle$ is the image of the group homomorphism $\Z \rightarrow G, n \mapsto x^n$.
+"]
+
+    def_1_42 [comment="
+\textbf{Def 1.42 }A group $G$ is called cyclic if it is generated by one element. Equivalently: there exists a surjective group homomorphism $\Z \rightarrow G$.
+"]
+
+    cor_1_43 [comment="
+\textbf{Cor 1.43 }Let $G$ be a cyclic group. Then $G \cong \Z$ if $\text{ord}(G) = \infty$, and $G \cong \Z/n\Z$ if $\text{ord}(G) = n \in \N$.
+"]
+
+    thm_1_44 [comment="
+\textbf{Thm 1.44 }If $G$ is a cyclic group, then every subgroup and every quotient group of $G$ is again cyclic.
+"]
+
+    def_1_45 [comment="
+\textbf{Def 1.45 }The order $\text{ord}(a)$ of $a \in G$ is the smallest positive integer such that $a^{\text{ord}(a)} = e$. If no such number exists, one sets $\text{ord}(a) = \infty$.
+"]
+
+    lem_1_46 [comment="
+\textbf{Lem 1.46 }$\text{ord}(a) = \text{ord}(\langle a \rangle)$.
+"]
+
+    cor_1_47 [comment="
+\textbf{Cor 1.47 }For $a \in G$, $\text{ord}(a) \mid \text{ord}(G)$.
+"]
+
+    thm_1_48 [comment="
+\textbf{Thm 1.48 }(Fermat's Little Theorem). If $G$ is a finite group, then $a^{\text{ord}(G)} = e$ holds for all $a \in G$.
+"]
+
+    thm_1_49 [comment="
+\textbf{Thm 1.49 }Let $G$ be a finite group of prime order, i.e., $\text{ord}(G) = p$, $p$ prime. Then $G$ is cyclic and $G \cong \Z/p\Z$.
+"]
+
+    // Week 2: 2.1 Rings, Polynomial Rings in One Variable
+    def_2_1 [comment="
+\textbf{Def 2.1 }A ring (with $1$) is a set $R$ with two binary operations $+$ and $\cdot$ and elements $0, 1 \in R$ such that
+\begin{enumerate}[label=(\roman*), nosep]
+\item $(R,+,0)$ is a commutative group,
+\item $(R,\cdot,1)$ is a monoid,
+\item $(a+b)c = ac+bc$ and $c(a+b) = ca+cb$ for all $a,b,c \in R$.
+\end{enumerate}
+$R$ is called commutative if multiplication is commutative. $S \subset R$ is a subring if $(S,+)$ is a subgroup and $(S,\cdot)$ is a submonoid. $f: R \rightarrow R'$ is a ring homomorphism if $f(a+b)=f(a)+f(b), f(ab)=f(a)f(b)$, and $f(1)=1$. (Hereafter all rings are assumed commutative.)
+"]
+
+    ex_2_2 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.2 }$R=K$ a field; $R=\Z$; polynomial ring $R[T]$; the zero ring $0$ (the unique ring up to isomorphism with $0=1$).
+"]
+
+    def_2_3 [comment="
+\textbf{Def 2.3 }An ideal $\mathfrak{a}$ in a ring $R$ is a subset $\mathfrak{a} \subset R$ such that
+\begin{enumerate}[label=(\roman*), nosep]
+\item $(\mathfrak{a},+) \subset (R,+)$ is a subgroup,
+\item $r \in R, a \in \mathfrak{a} \Rightarrow ra \in \mathfrak{a}$.
+\end{enumerate}
+The quotient group $R/\mathfrak{a}$ becomes a ring with $(a+\mathfrak{a})(b+\mathfrak{a}) = ab+\mathfrak{a}$.
+"]
+
+    ex_2_4 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.4 }$\mathfrak{a}=R$ and $\mathfrak{a}=\{0\}$ are ideals. If $\mathfrak{a}, \mathfrak{b}$ are ideals, so are $\mathfrak{a} \cap \mathfrak{b}$ and $\mathfrak{a}+\mathfrak{b}$. The subgroups of $\Z$ ($0$ and $n\Z$) are all ideals.
+"]
+
+    thm_2_5 [comment="
+\textbf{Thm 2.5 }The assignment $\mathfrak{b} \mapsto \phi^{-1}(\mathfrak{b})$ under $\phi: R \rightarrow R/\mathfrak{a}$ defines an inclusion-preserving bijection between ideals in $R/\mathfrak{a}$ and ideals in $R$ containing $\mathfrak{a}$.
+"]
+
+    def_2_6 [comment="
+\textbf{Def 2.6 }$x \in R$ is called a zero divisor if there exists $y \in R, y \neq 0$ with $xy=0$. $R$ is called an integral domain (zero-divisor-free) if $R \neq 0$ and $0$ is the only zero divisor. $x \in R$ is a unit if there exists $y \in R$ with $xy=1$ (unit group $R^\times$). $\mathfrak{a} = (x) = Rx$ is called a principal ideal. $R$ is a principal ideal domain (PID) if $R$ is an integral domain and every ideal in $R$ is principal.
+"]
+
+    ex_2_7 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.7 }$\Z$ is a principal ideal domain.
+"]
+
+    def_2_8 [comment="
+\textbf{Def 2.8 }$R$ is called a field if $R^\times = R \setminus \{0\}$ (in particular, $R=0$ is not a field).
+"]
+
+    thm_2_9 [comment="
+\textbf{Thm 2.9 }Let $R$ be a ring $\neq 0$. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $R$ is a field.
+\item $(0)$ and $(1)$ are the only ideals in $R$.
+\item Every homomorphism $f: R \rightarrow S$ into a ring $S \neq 0$ is injective.
+\end{enumerate}
+"]
+
+    def_2_10 [comment="
+\textbf{Def 2.10 }An ideal $\mathfrak{p} \subset R$ is called a prime ideal if $\mathfrak{p} \neq R$ and $xy \in \mathfrak{p} \Rightarrow x \in \mathfrak{p}$ or $y \in \mathfrak{p}$. An ideal $\mathfrak{m}$ is called a maximal ideal if $\mathfrak{m} \neq R$ and there is no ideal $\mathfrak{a}$ with $\mathfrak{m} \subsetneq \mathfrak{a} \subsetneq R$.
+"]
+
+    thm_2_11 [comment="
+\textbf{Thm 2.11 }\\
+(i) $\mathfrak{p}$ is a prime ideal $\Leftrightarrow R/\mathfrak{p}$ is an integral domain.\\
+(ii) $\mathfrak{m}$ is a maximal ideal $\Leftrightarrow R/\mathfrak{m}$ is a field.\\
+In particular, maximal ideals are prime.
+"]
+
+    ex_2_12 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.12 }For $f: \Z \rightarrow \Q$, $(0) \subset \Q$ is a maximal ideal. $f^{-1}((0)) = (0)$ is a prime ideal in $\Z$, but not maximal.
+"]
+
+    lem_zorn [comment="
+\textbf{Lem Zorn }(Zorn's Lemma). Let $(M,\le)$ be a non-empty partially ordered set. If every chain in $M$ has an upper bound, then $M$ contains at least one maximal element.
+"]
+
+    rem_2_13 [comment="
+\textbf{Rem 2.13 }The Axiom of Choice states: Every surjection of sets $f: M \rightarrow N$ splits, i.e., there exists $s: N \rightarrow M$ with $f \circ s = \text{id}_N$.
+"]
+
+    thm_2_14 [comment="
+\textbf{Thm 2.14 }Every ring $R \neq 0$ possesses a maximal ideal.
+"]
+
+    cor_2_15 [comment="
+\textbf{Cor 2.15 }\\
+(i) Every proper ideal $\mathfrak{a} \subsetneq R$ is contained in a maximal ideal.\\
+(ii) Every non-unit is contained in a maximal ideal.
+"]
+
+    // Week 2 & 3: 2.2 Unique Factorization Domains
+    def_2_16 [comment="
+\textbf{Def 2.16 }Let $R$ be an integral domain. An element $0 \neq \pi \in R \setminus R^\times$ is called a prime element if $(\pi)$ is a prime ideal ($\pi \mid ab \Rightarrow \pi \mid a$ or $\pi \mid b$); irreducible if $ab = \pi$ implies $a \in R^\times$ or $b \in R^\times$. Elements $a,b \in R$ are called associated ($a \mathrel{\hat{=}} b$) if $a \mid b$ and $b \mid a$.
+"]
+
+    lem_2_17 [comment="
+\textbf{Lem 2.17 }For $a,b \in R$, the following are equivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $a \mathrel{\hat{=}} b$.
+\item $a = be$ with $e \in R^\times$.
+\item $(a) = (b)$.
+\end{enumerate}
+"]
+
+    lem_2_18 [comment="
+\textbf{Lem 2.18 }Prime elements are irreducible. In a principal ideal domain, every irreducible element is prime.
+"]
+
+    lem_2_19 [comment="
+\textbf{Lem 2.19 }Suppose $a \in R$ has factorizations $a = p_1 \cdots p_r = q_1 \cdots q_s$ into prime elements $p_i$ and irreducible elements $q_j$. Then $r=s$ and after renumbering, $p_i \mathrel{\hat{=}} q_i$ ($i=1,\dots,r$).
+"]
+
+    thm_2_20 [comment="
+\textbf{Thm 2.20 }Let $R$ be an integral domain. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item Every $a \in R \setminus R^\times, a \neq 0$, can be written uniquely (up to order and association) as a product of irreducible elements.
+\item Every $a \in R \setminus R^\times, a \neq 0$, can be written as a product of prime elements.
+\end{enumerate}
+"]
+
+    def_2_21 [comment="
+\textbf{Def 2.21 }An integral domain satisfying the equivalent conditions of Theorem 2.20 is called a unique factorization domain (UFD). In a UFD, $\gcd$ and $\text{lcm}$ exist up to association.
+"]
+
+    cor_2_22 [comment="
+\textbf{Cor 2.22 }In a unique factorization domain, every irreducible element is a prime element.
+"]
+
+    def_2_23 [comment="
+\textbf{Def 2.23 }An integral domain $R$ is called a Euclidean domain if there is a map $v: R \setminus \{0\} \rightarrow \N_0$ such that for any $f, g \in R, g \neq 0$ there always exist $q, r \in R$ with $f = qg + r$ and ($v(r) < v(g)$ or $r=0$).
+"]
+
+    ex_2_24 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.24 }$R = k[T]$ ($k$ field) with $v(f) = \deg(f)$; $R = \Z$ with $v(a) = |a|$.
+"]
+
+    thm_2_25 [comment="
+\textbf{Thm 2.25 }Every Euclidean domain is a principal ideal domain.
+"]
+
+    thm_2_26 [comment="
+\textbf{Thm 2.26 }Every principal ideal domain is a unique factorization domain.
+"]
+
+    lem_2_27 [comment="
+\textbf{Lem 2.27 }Let $R$ be a principal ideal domain. Then every ascending chain $\mathfrak{a}_1 \subseteq \mathfrak{a}_2 \subseteq \mathfrak{a}_3 \subseteq \dots$ of ideals becomes stationary.
+"]
+
+    rem_2_28 [comment="
+\textbf{Rem 2.28 }A ring in which every ascending chain of ideals becomes stationary is called Noetherian.
+"]
+
+    lem_2_29 [comment="
+\textbf{Lem 2.29 }If $R$ is a principal ideal domain, the ideal identities $(a) + (b) = (\gcd(a,b))$ and $(a) \cap (b) = (\text{lcm}(a,b))$ hold.
+"]
+
+    thm_2_30 [comment="
+\textbf{Thm 2.30 }If $R$ is a principal ideal domain, every non-zero prime ideal is maximal.
+"]
+
+    // Week 3: 2.3 Gauss's Lemma and Theorem
+    lem_2_31 [comment="
+\textbf{Lem 2.31 }If $R$ is an integral domain, then for $f, g \in R[T]$: $\deg(f \cdot g) = \deg(f) + \deg(g)$.
+"]
+
+    cor_2_32 [comment="
+\textbf{Cor 2.32 }If $R$ is an integral domain, so is $R[T]$.
+"]
+
+    def_2_33 [comment="
+\textbf{Def 2.33 }Let $R$ be an integral domain and $M = \{(a,b) \mid a,b \in R, b \neq 0\}$ with $(a_1,b_1) \sim (a_2,b_2) \Leftrightarrow a_1 b_2 = a_2 b_1$. The set of equivalence classes $Q(R)$ with $\frac{a_1}{b_1} + \frac{a_2}{b_2} = \frac{a_1 b_2 + a_2 b_1}{b_1 b_2}$ and $\frac{a_1}{b_1} \cdot \frac{a_2}{b_2} = \frac{a_1 a_2}{b_1 b_2}$ is a field, called the field of fractions of $R$.
+"]
+
+    rem_2_34 [comment="
+\textbf{Rem 2.34 }The natural map $R \rightarrow Q(R), x \mapsto \frac{x}{1}$ is an injective ring homomorphism.
+"]
+
+    cor_2_35 [comment="
+\textbf{Cor 2.35 }Let $R$ be an integral domain and $f \in R[T], f \neq 0$. Then $f$ has at most $\deg(f)$ roots in $R$.
+"]
+
+    ex_2_36 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.36 }In the (non-domain) ring $R = \Z/8\Z$, the quadratic polynomial $T^2 - 1$ has four roots: $1, 3, 5, 7$.
+"]
+
+    thm_2_37 [comment="
+\textbf{Thm 2.37 }(Universal Property of $Q(R)$). Let $R$ be an integral domain and $f: R \hookrightarrow K$ an injective ring homomorphism into a field $K$. Then there exists a unique field homomorphism $\phi: Q(R) \hookrightarrow K$ extending $f$.
+"]
+
+    rem_2_38 [comment="
+\textbf{Rem 2.38 }If $R$ is a UFD and $(p_i)_{i \in I}$ is a system of representatives of the primes, every $\frac{a}{b} \in Q(R)^\times$ has a unique representation $\frac{a}{b} = \epsilon \prod_{i \in I} p_i^{v_i(a/b)}$ with $v_i(\frac{a}{b}) \in \Z$. For $f = \sum a_i T^i \in Q(R)[T]$ and prime $p \in R$, set $v_p(f) = \min_i v_p(a_i)$. Then $f \in R[T] \Leftrightarrow v_p(f) \ge 0 \ \forall p$.
+"]
+
+    ex_2_39 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.39 }In $\Z$: $v_3(\frac{2}{9}) = -2, v_2(\frac{2}{9}) = 1$, and $v_p(\frac{2}{9}) = 0$ for every prime $p \neq 2,3$.
+"]
+
+    thm_2_40 [comment="
+\textbf{Thm 2.40 }(Gauss's Lemma). Let $R$ be a UFD and $p \in R$ a prime element. Then for $f, g \in Q(R)[T]$: $v_p(fg) = v_p(f) + v_p(g)$.
+"]
+
+    cor_2_41 [comment="
+\textbf{Cor 2.41 }Let $R$ be a UFD and $h \in R[T]$ a monic polynomial. If $h = fg$ with monic polynomials $f, g \in Q(R)[T]$, then $f, g \in R[T]$.
+"]
+
+    def_2_42 [comment="
+\textbf{Def 2.42 }Let $R$ be a UFD. A polynomial $f \in R[T]$ is called primitive if the $\gcd$ of its coefficients is $1$, i.e., $v_p(f) = 0$ for all prime elements $p \in R$.
+"]
+
+    ex_2_43 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.43 }Every monic polynomial is primitive.
+"]
+
+    lem_2_44 [comment="
+\textbf{Lem 2.44 }Let $0 \neq f \in Q(R)[T]$. Then there exist $0 \neq a \in Q(R)$ and a primitive $\tilde{f} \in R[T]$ such that $f = a\tilde{f}$.
+"]
+
+    thm_2_45 [comment="
+\textbf{Thm 2.45 }(Gauss's Theorem). Let $R$ be a UFD. Then $R[T]$ is also a UFD. A polynomial $q \in R[T]$ is a prime element in $R[T]$ if and only if:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $q \in R$ and $q$ is a prime element in $R$, or
+\item $q$ is primitive in $R[T]$ and a prime element in $Q(R)[T]$.
+\end{enumerate}
+"]
+
+    cor_2_46 [comment="
+\textbf{Cor 2.46 }Let $R$ be a UFD. Then the polynomial ring in $n$ variables $R[T_1,\dots,T_n]$ is a UFD (in particular $k[T_1,\dots,T_n]$ for a field $k$ and $\Z[T_1,\dots,T_n]$).
+"]
+
+    // Week 3: 2.4 Irreducibility Criteria
+    thm_2_47 [comment="
+\textbf{Thm 2.47 }(Eisenstein's Irreducibility Criterion). Let $R$ be a UFD and $f = a_n T^n + \dots + a_0 \in R[T]$ be primitive of degree $>0$. Let $p \in R$ be a prime element with $p \nmid a_n$, $p \mid a_i$ for $i < n$, and $p^2 \nmid a_0$. Then $f$ is irreducible in $R[T]$ and in $Q(R)[T]$.
+"]
+
+    ex_2_47a [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.47a }$T^n - t \in k(t)[T]$ is irreducible ($p=t$). $T^3 + 5T^2 + 5 \in \Q[T]$ is irreducible ($p=5$). For $p$ prime, the cyclotomic polynomial $f(T) = T^{p-1} + \dots + 1 = \frac{T^p-1}{T-1}$ is irreducible in $\Q[T]$ (via Eisenstein applied to $f(T+1)$).
+"]
+
+    thm_2_48 [comment="
+\textbf{Thm 2.48 }(Reduction Criterion). Let $R$ be a UFD, $p \in R$ prime, and $f \in R[T]$ a polynomial whose leading coefficient is not divisible by $p$. If $\phi(f)$ under $\phi: R[T] \rightarrow (R/(p))[T]$ is irreducible, then $f$ is irreducible in $Q(R)[T]$ (and in $R[T]$ if $f$ is primitive).
+"]
+
+    rem_2_49 [comment="
+\textbf{Rem 2.49 }Theorem 2.48 is mainly applied when $R$ is a PID ($R/(p)$ is a field by Theorem 2.30) or for $R = k[T_1,\dots,T_n]$ with $p = T_n$.
+"]
+
+    ex_2_49a [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.49a }1) $X^3 + 3X^2 - 4X - 1 \in \Q[X]$ is irreducible ($p=3$).\\
+2) $X^4 + 3X^3 + 5XY^2 + Y + 3 \in \Q[X,Y]$ is irreducible ($R=\Q[Y], p=Y$ and Eisenstein with $p=3$).
+"]
+
+    // Week 3 & 4: 2.5 Generalized Polynomial Rings
+    def_2_50 [comment="
+\textbf{Def 2.50 }Let $R$ be a ring and $(M,+)$ a commutative monoid. Then $R[M] = R^{(M)} = \{(r_m)_{m \in M} \mid r_m = 0 \text{ for almost all } m \in M\}$ with componentwise addition and convolution multiplication $t_m = \sum_{m_1+m_2=m} r_{m_1} s_{m_2}$ is called the polynomial ring over $M$ with coefficients in $R$ (with basis $X^m$ and $X^{m_1} X^{m_2} = X^{m_1+m_2}$).
+"]
+
+    ex_2_51 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.51 }$R[\N_0] \cong R[T]$; $R[(\N_0)^n] \cong R[X_1,\dots,X_n]$; $R[(\N_0)^{(I)}] \cong R[(X_i)_{i \in I}]$; for an abelian group $G$, $R[G]$ is called the group ring.
+"]
+
+    thm_2_52 [comment="
+\textbf{Thm 2.52 }(Universal Property of the Polynomial Ring). Let $\phi: R \rightarrow R'$ be a ring homomorphism and $\sigma: M \rightarrow (R',\cdot)$ a monoid homomorphism. Then there exists a unique ring homomorphism $\Phi: R[M] \rightarrow R'$ with $\Phi|_R = \phi$ and $\Phi(X^m) = \sigma(m)$ for all $m \in M$.
+"]
+
+    cor_2_53 [comment="
+\textbf{Cor 2.53 }Given a ring homomorphism $\phi: R \rightarrow R'$ and $x_1,\dots,x_n \in R'$, there exists a unique ring homomorphism $\Phi: R[X_1,\dots,X_n] \rightarrow R'$ with $\Phi|_R = \phi$ and $\Phi(X_i) = x_i$ ($i=1,\dots,n$).
+"]
+
+    def_2_54 [comment="
+\textbf{Def 2.54 }Let $R \subset R'$ be a ring extension. A system $(x_1,\dots,x_n)$ of elements in $R'$ is called algebraically independent (or transcendental) over $R$ if the evaluation homomorphism $R[X_1,\dots,X_n] \rightarrow R', X_i \mapsto x_i$ is injective; otherwise algebraically dependent.
+"]
+
+    ex_2_55 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 2.55 }Over $\Q$ in $\C$: $(\sqrt{2})$ is algebraically dependent ($X^2-2=0$); $e$ is transcendental (Hermite); $(e, e^2)$ is algebraically dependent ($X^2-Y=0$); $\pi$ is transcendental (Lindemann); whether $(e,\pi)$ is transcendental is an open problem.
+"]
+
+    // Week 4: 3.1 Characteristic
+    def_3_1 [comment="
+\textbf{Def 3.1 }Let $R$ be an integral domain and $\varphi: \Z \rightarrow R, n \mapsto n \cdot 1_R$. The uniquely determined $n \in \N_0$ with $(n) = \ker(\varphi)$ is called the characteristic $\text{char}(R)$ of $R$ ($\text{char}(R) = 0$ or $p$ prime).
+"]
+
+    ex_3_2 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 3.2 }$\Z, \Q, \R, \C$ have characteristic $0$; $\F_p = \Z/p\Z$ and $\F_p[T]$ have characteristic $p$; $\text{char}(R) = \text{char}(Q(R))$; for subrings $R \subset S$, $\text{char}(R) = \text{char}(S)$.
+"]
+
+    lem_3_3 [comment="
+\textbf{Lem 3.3 }If $K, L$ are fields with $\text{char}(K) \neq \text{char}(L)$, there is no field homomorphism from $K$ to $L$.
+"]
+
+    def_3_4 [comment="
+\textbf{Def 3.4 }Let $K$ be a field. The intersection of all subfields of $K$ is called the prime field of $K$.
+"]
+
+    rem_3_5 [comment="
+\textbf{Rem 3.5 }The prime field is the smallest subfield of $K$.
+"]
+
+    lem_3_6 [comment="
+\textbf{Lem 3.6 }Let $K$ be a field and $P \subset K$ its prime field. Then $\text{char}(K) = 0 \Leftrightarrow P \cong \Q$ and $\text{char}(K) = p > 0 \Leftrightarrow P \cong \F_p$.
+"]
+
+    def_3_7 [comment="
+\textbf{Def 3.7 }Let $K$ be a field with $\text{char}(K) = p > 0$. Then the field homomorphism $\sigma: K \rightarrow K, a \mapsto a^p$, is called the Frobenius homomorphism of $K$.
+"]
+
+    rem_3_8 [comment="
+\textbf{Rem 3.8 }$\sigma$ is an injective field homomorphism because $(a+b)^p = a^p + b^p$ in characteristic $p$.
+"]
+
+    lem_3_9 [comment="
+\textbf{Lem 3.9 }If $K$ is a finite field, the Frobenius homomorphism is an automorphism.
+"]
+
+    lem_3_10 [comment="
+\textbf{Lem 3.10 }Let $\text{char}(K) = p > 0$ and $P \subset K$ be the prime field. Then $P = \{a \in K \mid \sigma(a) = a\}$.
+"]
+
+    // Week 4: 3.2 Finite and Algebraic Field Extensions
+    def_3_11 [comment="
+\textbf{Def 3.11 }Let $K \subset L$ be fields ($L$ extension field of $K$). $\dim_K L$ is called the degree of the field extension $L$ over $K$, denoted $[L:K] \in \N \cup \{\infty\}$.
+"]
+
+    rem_3_12 [comment="
+\textbf{Rem 3.12 }$[L:K] = 1 \Leftrightarrow L = K$.
+"]
+
+    thm_3_13 [comment="
+\textbf{Thm 3.13 }(Tower Law / Degree Theorem). Let $K \subset L \subset M$ be field extensions. Then $[M:K] = [M:L] \cdot [L:K]$.
+"]
+
+    cor_3_14 [comment="
+\textbf{Cor 3.14 }If $K \subset L \subset M$ are field extensions and $[M:K]$ is a prime number, then $L = K$ or $L = M$.
+"]
+
+    ex_3_14a [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 3.14a }$[\C:\R] = 2$; $[\Q(\sqrt{2}):\Q] = 2$; $[\R:\Q] = \infty$; $[k(t):k] = \infty$.
+"]
+
+    def_3_15 [comment="
+\textbf{Def 3.15 }$\alpha \in L$ is called algebraic over $K$ if $\alpha^n + c_{n-1}\alpha^{n-1} + \dots + c_0 = 0$ holds with $c_i \in K$. $L$ is called algebraic over $K$ if every element of $L$ is algebraic over $K$.
+"]
+
+    ex_3_15a [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 3.15a }$\C/\R$ is algebraic; $k(t)/k$ is not algebraic.
+"]
+
+    def_lem_3_16 [comment="
+\textbf{Def/Lem 3.16 }Let $K \subset L$ be a field extension and $\alpha \in L$ algebraic over $K$. Then there exists a unique monic polynomial of minimal degree $f \in K[X]$ with $f(\alpha) = 0$. We have $\ker(\varphi) = (f)$ for $\varphi: K[X] \rightarrow L, g \mapsto g(\alpha)$, and $f$ is irreducible. $f$ is called the minimal polynomial of $\alpha$.
+"]
+
+    def_3_17 [comment="
+\textbf{Def 3.17 }Let $K \subset L$ be a field extension and $\alpha \in L$. $K[\alpha] = \{\sum_{i=0}^n c_i \alpha^i \mid c_i \in K\}$ is the smallest subring of $L$ containing $K$ and $\alpha$. $K(\alpha) = Q(K[\alpha]) \subset L$ is the smallest subfield of $L$ containing $K$ and $\alpha$ ($K$ adjoined $\alpha$). More generally, $K[S]$ and $K(S)$ are defined for $S \subset L$.
+"]
+
+    thm_3_18 [comment="
+\textbf{Thm 3.18 }Let $K \subset L$ be a field extension and $\alpha \in L$ algebraic with minimal polynomial $f$ over $K$. Then $K[\alpha] = K(\alpha)$ is a field, $\varphi$ induces $K[X]/(f) \xrightarrow{\sim} K(\alpha)$, and $[K(\alpha):K] = \deg(f) < \infty$.
+"]
+
+    thm_3_19 [comment="
+\textbf{Thm 3.19 }Every finite field extension is algebraic.
+"]
+
+    rem_3_20 [comment="
+\textbf{Rem 3.20 }There exist infinite algebraic extensions.
+"]
+
+    cor_3_21 [comment="
+\textbf{Cor 3.21 }Let $K \subset L$ and $\alpha \in L$ be algebraic over $K$. Then the field extension $K(\alpha)/K$ is algebraic.
+"]
+
+    def_3_22 [comment="
+\textbf{Def 3.22 }Let $K \subset L$ and $\alpha \in L$. $[K(\alpha):K]$ is called the degree of $\alpha$ over $K$. $L/K$ is called simple if $L = K(\alpha)$ for some $\alpha \in L$. $L/K$ is called finitely generated if $L = K(\alpha_1,\dots,\alpha_n)$ for finitely many $\alpha_i \in L$.
+"]
+
+    ex_3_22a [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 3.22a }$\C/\R = \R(i)/\R$ and $k(t)/k$ are simple. $k(X,Y)/k$ is finitely generated, but not simple.
+"]
+
+    thm_3_23 [comment="
+\textbf{Thm 3.23 }Let $L = K(\alpha_1,\dots,\alpha_n)$ be finitely generated. If $\alpha_1,\dots,\alpha_n$ are algebraic over $K$, then:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $L = K(\alpha_1,\dots,\alpha_n) = K[\alpha_1,\dots,\alpha_n]$.
+\item $L/K$ is finite, in particular algebraic.
+\end{enumerate}
+"]
+
+    cor_3_24 [comment="
+\textbf{Cor 3.24 }Let $K \subset L$ be a field extension. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $L/K$ is finite.
+\item $L$ is generated over $K$ by finitely many algebraic elements.
+\item $L$ is a finitely generated algebraic field extension of $K$.
+\end{enumerate}
+"]
+
+    cor_3_25 [comment="
+\textbf{Cor 3.25 }Let $K \subset L$ be a field extension. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*), nosep]
+\item $L/K$ is algebraic.
+\item $L/K$ is generated by algebraic elements.
+\end{enumerate}
+"]
+
+    cor_3_26 [comment="
+\textbf{Cor 3.26 }Let $K \subset L$ be a field extension. Then the set $\{\alpha \in L \mid \alpha \text{ algebraic over } K\}$ is a subfield of $L$.
+"]
+
+    def_3_27 [comment="
+\textbf{Def 3.27 }The subfield $\{\alpha \in L \mid \alpha \text{ algebraic over } K\}$ is called the (relative) algebraic closure of $K$ in $L$.
+"]
+
+    thm_3_28 [comment="
+\textbf{Thm 3.28 }Let $K \subset L \subset M$ be field extensions. If $\alpha \in M$ is algebraic over $L$ and $L/K$ is algebraic, then $\alpha$ is algebraic over $K$. In particular, $M/K$ is algebraic if and only if $L/K$ and $M/L$ are algebraic.
+"]
+
+    ex_3_29 [shape=plaintext style=filled color=cyan comment="
+\textbf{Ex 3.29 }For $\Q^{\text{alg}} \subset \C$, $\Q^{\text{alg}}/\Q$ is algebraic with $[\Q^{\text{alg}}:\Q] = \infty$ (by Eisenstein). Since $\Q^{\text{alg}}$ is countable and $\C$ is uncountable, there are uncountably many transcendental elements in $\C$.
+"]
+
+    // Week 4: 3.3 Algebraic Closure
+    thm_3_30 [comment="
+\textbf{Thm 3.30 }Let $K$ be a field and $f \in K[X]$ with $\deg(f) \ge 1$. Then there exists a finite (algebraic) field extension $L/K$ such that $f$ has a root in $L$.
+"]
+
+    def_3_31 [comment="
+\textbf{Def 3.31 }A field $K$ is called algebraically closed if every $f \in K[X]$ with $\deg(f) \ge 1$ has a root in $K$.
+"]
+
+    rem_3_32 [comment="
+\textbf{Rem 3.32 }Over an algebraically closed field $K$, every $0 \neq f \in K[X]$ splits into linear factors $f = c(X-\alpha_1)\cdots(X-\alpha_n)$, and every irreducible polynomial has degree $1$.
+"]
+
+    lem_3_33 [comment="
+\textbf{Lem 3.33 }$K$ is algebraically closed if and only if there is no proper ($L \neq K$) finite extension $L/K$.
+"]
+
+    thm_3_34 [comment="
+\textbf{Thm 3.34 }For every field $K$, there exists an algebraically closed extension field $L$.
+"]
+
+    // ==========================================
+    // Explicit References (solid edges)
+    // ==========================================
+    def_1_1 -> rem_1_2 [comment=""]
+    def_1_1 -> def_1_3 [comment=""]
+    def_1_3 -> def_1_5 [comment=""]
+    def_1_9 -> rem_1_10 [comment=""]
+    lem_1_17 -> thm_1_16 [comment=""]
+    lem_1_17 -> rem_1_18 [comment=""]
+    thm_1_16 -> thm_1_21 [comment=""]
+    thm_1_31 -> thm_1_35 [comment=""]
+    thm_1_31 -> thm_1_36 [comment=""]
+    thm_1_31 -> thm_1_37 [comment=""]
+    lem_1_39 -> lem_1_41 [comment=""]
+    thm_1_37 -> cor_1_43 [comment=""]
+    thm_1_31 -> cor_1_43 [comment=""]
+    thm_1_37 -> thm_1_44 [comment=""]
+    thm_1_21 -> cor_1_47 [comment=""]
+    thm_1_30 -> thm_2_5 [comment=""]
+    thm_1_37 -> ex_2_7 [comment=""]
+    thm_2_5 -> thm_2_11 [comment=""]
+    thm_2_9 -> thm_2_11 [comment=""]
+    lem_zorn -> thm_2_14 [comment=""]
+    thm_2_14 -> cor_2_15 [comment=""]
+    thm_2_5 -> cor_2_15 [comment=""]
+    lem_2_19 -> thm_2_20 [comment=""]
+    thm_2_20 -> def_2_21 [comment=""]
+    thm_2_20 -> cor_2_22 [comment=""]
+    thm_2_20 -> thm_2_26 [comment=""]
+    lem_2_18 -> thm_2_26 [comment=""]
+    lem_2_27 -> thm_2_26 [comment=""]
+    lem_2_31 -> cor_2_32 [comment=""]
+    cor_2_32 -> thm_2_40 [comment=""]
+    thm_2_40 -> thm_2_45 [comment=""]
+    thm_2_20 -> thm_2_45 [comment=""]
+    thm_2_45 -> cor_2_46 [comment=""]
+    lem_2_44 -> thm_2_47 [comment=""]
+    thm_2_45 -> thm_2_47 [comment=""]
+    thm_2_47 -> ex_2_47a [comment=""]
+    thm_2_48 -> rem_2_49 [comment=""]
+    thm_2_30 -> rem_2_49 [comment=""]
+    thm_2_48 -> ex_2_49a [comment=""]
+    thm_2_47 -> ex_2_49a [comment=""]
+    thm_2_52 -> cor_2_53 [comment=""]
+    cor_2_53 -> def_2_54 [comment=""]
+    thm_1_37 -> def_3_1 [comment=""]
+    thm_3_13 -> cor_3_14 [comment=""]
+    thm_2_30 -> thm_3_18 [comment=""]
+    thm_3_18 -> cor_3_21 [comment=""]
+    thm_3_19 -> cor_3_21 [comment=""]
+    thm_3_18 -> thm_3_23 [comment=""]
+    cor_3_21 -> thm_3_23 [comment=""]
+    thm_3_13 -> thm_3_23 [comment=""]
+    thm_3_18 -> thm_3_28 [comment=""]
+    thm_2_47 -> ex_3_29 [comment=""]
+    thm_3_30 -> thm_3_34 [comment=""]
+    thm_2_52 -> thm_3_34 [comment=""]
+
+    // ==========================================
+    // Implicit Proof & Conceptual Edges (dashed)
+    // ==========================================
+    def_1_3 -> rem_1_4 [style=dashed, comment=""]
+    def_1_5 -> rem_1_6 [style=dashed, comment=""]
+    def_1_5 -> def_1_7 [style=dashed, comment=""]
+    def_1_7 -> ex_1_7a [style=dashed, comment=""]
+    def_1_5 -> def_1_8 [style=dashed, comment=""]
+    def_1_1 -> def_1_9 [style=dashed, comment=""]
+    def_1_5 -> rem_1_10 [style=dashed, comment=""]
+    def_1_9 -> rem_1_11 [style=dashed, comment=""]
+    rem_1_10 -> thm_1_12 [style=dashed, comment=""]
+    def_1_7 -> rem_1_13 [style=dashed, comment=""]
+    def_1_9 -> rem_1_13 [style=dashed, comment=""]
+    def_1_9 -> rem_1_14 [style=dashed, comment=""]
+    def_1_7 -> rem_1_14 [style=dashed, comment=""]
+    def_1_8 -> def_1_15 [style=dashed, comment=""]
+    def_1_15 -> thm_1_16 [style=dashed, comment=""]
+    def_1_15 -> lem_1_17 [style=dashed, comment=""]
+    rem_1_18 -> lem_1_19 [style=dashed, comment=""]
+    def_1_15 -> def_1_20 [style=dashed, comment=""]
+    def_1_20 -> thm_1_21 [style=dashed, comment=""]
+    def_1_15 -> def_1_22 [style=dashed, comment=""]
+    def_1_22 -> lem_1_23 [style=dashed, comment=""]
+    def_1_22 -> rem_1_24 [style=dashed, comment=""]
+    def_1_20 -> lem_1_25 [style=dashed, comment=""]
+    def_1_22 -> lem_1_25 [style=dashed, comment=""]
+    rem_1_10 -> lem_1_26 [style=dashed, comment=""]
+    lem_1_23 -> lem_1_26 [style=dashed, comment=""]
+    def_1_9 -> rem_1_27 [style=dashed, comment=""]
+    def_1_22 -> def_1_28 [style=dashed, comment=""]
+    def_1_28 -> rem_1_29 [style=dashed, comment=""]
+    lem_1_26 -> rem_1_29 [style=dashed, comment=""]
+    def_1_28 -> thm_1_30 [style=dashed, comment=""]
+    def_1_28 -> thm_1_31 [style=dashed, comment=""]
+    rem_1_10 -> thm_1_31 [style=dashed, comment=""]
+    def_1_8 -> def_1_32 [style=dashed, comment=""]
+    def_1_32 -> lem_1_33 [style=dashed, comment=""]
+    def_1_22 -> lem_1_33 [style=dashed, comment=""]
+    lem_1_33 -> lem_1_34 [style=dashed, comment=""]
+    lem_1_34 -> thm_1_35 [style=dashed, comment=""]
+    thm_1_30 -> thm_1_36 [style=dashed, comment=""]
+    def_1_8 -> thm_1_37 [style=dashed, comment=""]
+    def_1_8 -> def_1_38 [style=dashed, comment=""]
+    def_1_38 -> lem_1_39 [style=dashed, comment=""]
+    def_1_38 -> rem_1_40 [style=dashed, comment=""]
+    rem_1_11 -> lem_1_41 [style=dashed, comment=""]
+    def_1_38 -> def_1_42 [style=dashed, comment=""]
+    lem_1_41 -> def_1_42 [style=dashed, comment=""]
+    def_1_42 -> cor_1_43 [style=dashed, comment=""]
+    def_1_42 -> thm_1_44 [style=dashed, comment=""]
+    def_1_20 -> def_1_45 [style=dashed, comment=""]
+    def_1_45 -> lem_1_46 [style=dashed, comment=""]
+    lem_1_41 -> lem_1_46 [style=dashed, comment=""]
+    lem_1_46 -> cor_1_47 [style=dashed, comment=""]
+    cor_1_47 -> thm_1_48 [style=dashed, comment=""]
+    cor_1_47 -> thm_1_49 [style=dashed, comment=""]
+    cor_1_43 -> thm_1_49 [style=dashed, comment=""]
+    def_1_7 -> def_2_1 [style=dashed, comment=""]
+    def_2_1 -> ex_2_2 [style=dashed, comment=""]
+    def_2_1 -> def_2_3 [style=dashed, comment=""]
+    def_2_3 -> ex_2_4 [style=dashed, comment=""]
+    def_2_3 -> thm_2_5 [style=dashed, comment=""]
+    def_2_3 -> def_2_6 [style=dashed, comment=""]
+    def_2_6 -> ex_2_7 [style=dashed, comment=""]
+    def_2_6 -> def_2_8 [style=dashed, comment=""]
+    def_2_8 -> thm_2_9 [style=dashed, comment=""]
+    def_2_3 -> def_2_10 [style=dashed, comment=""]
+    def_2_10 -> thm_2_11 [style=dashed, comment=""]
+    def_2_6 -> thm_2_11 [style=dashed, comment=""]
+    thm_2_11 -> ex_2_12 [style=dashed, comment=""]
+    rem_2_13 -> lem_zorn [style=dashed, comment=""]
+    def_2_10 -> thm_2_14 [style=dashed, comment=""]
+    def_2_6 -> def_2_16 [style=dashed, comment=""]
+    def_2_10 -> def_2_16 [style=dashed, comment=""]
+    def_2_16 -> lem_2_17 [style=dashed, comment=""]
+    def_2_16 -> lem_2_18 [style=dashed, comment=""]
+    thm_2_11 -> lem_2_18 [style=dashed, comment=""]
+    def_2_6 -> lem_2_18 [style=dashed, comment=""]
+    def_2_16 -> lem_2_19 [style=dashed, comment=""]
+    lem_2_17 -> lem_2_19 [style=dashed, comment=""]
+    def_2_21 -> cor_2_22 [style=dashed, comment=""]
+    def_2_6 -> def_2_23 [style=dashed, comment=""]
+    def_2_23 -> ex_2_24 [style=dashed, comment=""]
+    def_2_23 -> thm_2_25 [style=dashed, comment=""]
+    def_2_6 -> thm_2_25 [style=dashed, comment=""]
+    def_2_6 -> lem_2_27 [style=dashed, comment=""]
+    lem_2_27 -> rem_2_28 [style=dashed, comment=""]
+    def_2_21 -> lem_2_29 [style=dashed, comment=""]
+    def_2_6 -> lem_2_29 [style=dashed, comment=""]
+    lem_2_29 -> thm_2_30 [style=dashed, comment=""]
+    thm_2_11 -> thm_2_30 [style=dashed, comment=""]
+    def_2_6 -> lem_2_31 [style=dashed, comment=""]
+    def_2_6 -> def_2_33 [style=dashed, comment=""]
+    def_2_8 -> def_2_33 [style=dashed, comment=""]
+    def_2_33 -> rem_2_34 [style=dashed, comment=""]
+    rem_2_34 -> cor_2_35 [style=dashed, comment=""]
+    thm_2_25 -> cor_2_35 [style=dashed, comment=""]
+    thm_2_26 -> cor_2_35 [style=dashed, comment=""]
+    cor_2_35 -> ex_2_36 [style=dashed, comment=""]
+    def_2_33 -> thm_2_37 [style=dashed, comment=""]
+    rem_2_34 -> thm_2_37 [style=dashed, comment=""]
+    def_2_21 -> rem_2_38 [style=dashed, comment=""]
+    def_2_33 -> rem_2_38 [style=dashed, comment=""]
+    rem_2_38 -> ex_2_39 [style=dashed, comment=""]
+    rem_2_38 -> thm_2_40 [style=dashed, comment=""]
+    thm_2_11 -> thm_2_40 [style=dashed, comment=""]
+    thm_2_40 -> cor_2_41 [style=dashed, comment=""]
+    rem_2_38 -> def_2_42 [style=dashed, comment=""]
+    def_2_42 -> ex_2_43 [style=dashed, comment=""]
+    def_2_42 -> lem_2_44 [style=dashed, comment=""]
+    rem_2_38 -> lem_2_44 [style=dashed, comment=""]
+    def_2_42 -> thm_2_45 [style=dashed, comment=""]
+    lem_2_44 -> thm_2_45 [style=dashed, comment=""]
+    def_2_42 -> thm_2_47 [style=dashed, comment=""]
+    def_2_42 -> thm_2_48 [style=dashed, comment=""]
+    thm_2_45 -> thm_2_48 [style=dashed, comment=""]
+    def_1_1 -> def_2_50 [style=dashed, comment=""]
+    def_2_1 -> def_2_50 [style=dashed, comment=""]
+    def_2_50 -> ex_2_51 [style=dashed, comment=""]
+    def_2_50 -> thm_2_52 [style=dashed, comment=""]
+    def_1_9 -> thm_2_52 [style=dashed, comment=""]
+    def_2_54 -> ex_2_55 [style=dashed, comment=""]
+    def_2_10 -> def_3_1 [style=dashed, comment=""]
+    def_3_1 -> ex_3_2 [style=dashed, comment=""]
+    def_3_1 -> lem_3_3 [style=dashed, comment=""]
+    thm_2_9 -> lem_3_3 [style=dashed, comment=""]
+    def_2_8 -> def_3_4 [style=dashed, comment=""]
+    def_3_4 -> rem_3_5 [style=dashed, comment=""]
+    def_3_1 -> lem_3_6 [style=dashed, comment=""]
+    def_3_4 -> lem_3_6 [style=dashed, comment=""]
+    def_2_33 -> lem_3_6 [style=dashed, comment=""]
+    thm_2_11 -> lem_3_6 [style=dashed, comment=""]
+    def_3_1 -> def_3_7 [style=dashed, comment=""]
+    def_3_7 -> rem_3_8 [style=dashed, comment=""]
+    thm_2_9 -> rem_3_8 [style=dashed, comment=""]
+    rem_3_8 -> lem_3_9 [style=dashed, comment=""]
+    lem_3_6 -> lem_3_10 [style=dashed, comment=""]
+    thm_1_48 -> lem_3_10 [style=dashed, comment=""]
+    cor_2_35 -> lem_3_10 [style=dashed, comment=""]
+    def_2_8 -> def_3_11 [style=dashed, comment=""]
+    def_3_11 -> rem_3_12 [style=dashed, comment=""]
+    def_3_11 -> thm_3_13 [style=dashed, comment=""]
+    rem_3_12 -> cor_3_14 [style=dashed, comment=""]
+    def_3_11 -> ex_3_14a [style=dashed, comment=""]
+    def_2_54 -> def_3_15 [style=dashed, comment=""]
+    def_3_15 -> ex_3_15a [style=dashed, comment=""]
+    def_3_15 -> def_lem_3_16 [style=dashed, comment=""]
+    thm_2_25 -> def_lem_3_16 [style=dashed, comment=""]
+    thm_2_11 -> def_lem_3_16 [style=dashed, comment=""]
+    def_2_33 -> def_3_17 [style=dashed, comment=""]
+    def_lem_3_16 -> thm_3_18 [style=dashed, comment=""]
+    def_3_17 -> thm_3_18 [style=dashed, comment=""]
+    thm_2_11 -> thm_3_18 [style=dashed, comment=""]
+    def_3_11 -> thm_3_19 [style=dashed, comment=""]
+    def_3_15 -> thm_3_19 [style=dashed, comment=""]
+    thm_3_19 -> rem_3_20 [style=dashed, comment=""]
+    def_3_11 -> def_3_22 [style=dashed, comment=""]
+    def_3_17 -> def_3_22 [style=dashed, comment=""]
+    def_3_22 -> ex_3_22a [style=dashed, comment=""]
+    def_3_22 -> thm_3_23 [style=dashed, comment=""]
+    thm_3_23 -> cor_3_24 [style=dashed, comment=""]
+    thm_3_19 -> cor_3_24 [style=dashed, comment=""]
+    cor_3_24 -> cor_3_25 [style=dashed, comment=""]
+    thm_3_23 -> cor_3_26 [style=dashed, comment=""]
+    cor_3_26 -> def_3_27 [style=dashed, comment=""]
+    thm_3_23 -> thm_3_28 [style=dashed, comment=""]
+    thm_3_19 -> thm_3_28 [style=dashed, comment=""]
+    cor_3_26 -> ex_3_29 [style=dashed, comment=""]
+    thm_3_18 -> ex_3_29 [style=dashed, comment=""]
+    thm_2_30 -> thm_3_30 [style=dashed, comment=""]
+    thm_2_11 -> thm_3_30 [style=dashed, comment=""]
+    def_3_31 -> rem_3_32 [style=dashed, comment=""]
+    def_3_31 -> lem_3_33 [style=dashed, comment=""]
+    thm_3_19 -> lem_3_33 [style=dashed, comment=""]
+    thm_3_30 -> lem_3_33 [style=dashed, comment=""]
+    ex_2_51 -> thm_3_34 [style=dashed, comment=""]
+    cor_2_15 -> thm_3_34 [style=dashed, comment=""]
+    thm_2_11 -> thm_3_34 [style=dashed, comment=""]
+    def_3_31 -> thm_3_34 [style=dashed, comment=""]
+}

@@ -123,3 +123,21 @@ Complete generated [number_theory.pdf](https://raw.githubusercontent.com/Hermann
 
 [Banach-Tarski_Paradox.dot](Banach-Tarski_Paradox.dot) [res/Banach-Tarski_Paradox.pdf](res/Banach-Tarski_Paradox.pdf)  
 ![res/Banach-Tarski_Paradox.pdf.20pc.png](res/Banach-Tarski_Paradox.pdf.20pc.png)
+
+## Algebra 1 weeks 1-4
+
+[Algebra_1_weeks_1_to_4.pdf](res/Algebra_1_weeks_1_to_4.pdf) (English)  
+[Algebra_1_wochen_1_bis_4.pdf](res/Algebra_1_wochen_1_bis_4.pdf) (German)  
+
+
+![zathura.png](res/zathura.png)  
+
+New version of ```texdot.py``` does place (LaTeX) content into PDF, in addition to the image that is displayed. Those texts allow for string search wherever the generated PDF is viewed. Bowsers could display and search fast, and ```evince``` could display fast; but not search fast or consistently indicate which Grahviz node was found. ```evince``` was replaced by ```zathura``` in latest ```texdot.py``` commit.  
+
+```+``` zoom in  
+```-``` zoom out  
+```/search_string``` search  
+```n``` next matched node/edge  
+```N``` previous matched node/edge  
+
+
