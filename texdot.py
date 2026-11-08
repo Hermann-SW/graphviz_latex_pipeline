@@ -8,6 +8,17 @@ import re
 import html
 import textwrap
 import pydot
+import psutil
+
+def is_zathura_running() -> bool:
+    """Check if zathura is running using psutil."""
+    for proc in psutil.process_iter(['name']):
+        try:
+            if proc.info['name'] == 'zathura':
+                return True
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            pass
+    return False
 
 def sanitize_for_lualatex(tex_code: str) -> str:
     """
@@ -220,8 +231,19 @@ clean:
         subprocess.run(["make"], check=True)
         print(f"Successfully generated {target_pdf}.")
 
-        print(f"Opening {target_pdf} in evince...")
-        subprocess.Popen(["evince", target_pdf], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # Check if zathura is already running
+        zathura_running = False
+        try:
+            res = subprocess.run(["pgrep", "-x", "zathura"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            zathura_running = (res.returncode == 0)
+        except FileNotFoundError:
+            pass
+
+        if not zathura_running:
+            print(f"Opening {target_pdf} in zathura...")
+            subprocess.Popen(["zathura", target_pdf], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        else:
+            print(f"{target_pdf} updated (zathura will auto-reload).")
 
     except subprocess.CalledProcessError as e:
         print(f"Compilation failed during make execution: {e}")
