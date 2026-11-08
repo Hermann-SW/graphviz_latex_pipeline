@@ -126,8 +126,8 @@ Complete generated [number_theory.pdf](https://raw.githubusercontent.com/Hermann
 
 ## Algebra 1 weeks 1-4
 
-[Algebra_1_weeks_1_to_4.pdf](res/Algebra_1_weeks_1_to_4.pdf) (English)  
-[Algebra_1_wochen_1_bis_4.pdf](res/Algebra_1_wochen_1_bis_4.pdf) (German)  
+[Algebra_1_weeks_1_to_4.pdf](https://raw.githubusercontent.com/Hermann-SW/graphviz_latex_pipeline/main/res/Algebra_1_weeks_1_to_4.pdf) (English)  
+[Algebra_1_wochen_1_bis_4.pdf](https://raw.githubusercontent.com/Hermann-SW/graphviz_latex_pipeline/main/res/Algebra_1_wochen_1_bis_4.pdf) (German)  
 
 
 ![zathura.png](res/zathura.png)  
