@@ -132,7 +132,7 @@ Complete generated [number_theory.pdf](https://raw.githubusercontent.com/Hermann
 145 searchable LaTeX nodes (definitions, theorems, … / Definitionen, Theoreme, … ):
 ![zathura.png](res/zathura.png)  
 
-New version of ```texdot.py``` does place (LaTeX) content into PDF, in addition to the image that is displayed. Those texts allow for string search wherever the generated PDF is viewed. Bowsers could display and search fast, and ```evince``` could display fast; but not search fast or consistently indicate which Grahviz node was found. ```evince``` was replaced by ```zathura``` in latest ```texdot.py``` commit.  
+New version of ```texdot.py``` does place (LaTeX) content into PDF, in addition to the image that is displayed. Those texts allow for string search wherever the generated PDF is viewed. Browsers could display and search fast, and ```evince``` could display fast; but not search fast or consistently indicate which Grahviz node was found. ```evince``` was replaced by ```zathura``` in latest ```texdot.py``` commit.  
 
 ```+``` zoom in  
 ```-``` zoom out  
@@ -140,6 +140,13 @@ New version of ```texdot.py``` does place (LaTeX) content into PDF, in addition 
 ```n``` next matched node/edge  
 ```N``` previous matched node/edge  
 
+Since the text stored additionally inside PDF is LaTeX, you can search for LaTeX commands as well:  
+```
+$ pdftotext Algebra_1_weeks_1_to_4.pdf - | grep '\\subseteq'
+Then every ascending chain $\mathfrak{a}_1 \subseteq
+\mathfrak{a}_2 \subseteq \mathfrak{a}_3 \subseteq
+$
+```
 
 Searching for "primitiv" (with ```/primitiv```) gives matches in English (```primitive```) and German (```primitiv```) language PDFs. Match will be displayed somewhere in a Graphviz node, because the displayed node content is an image:  
 ![zathura_zoom.png](res/zathura_zoom.png)  
