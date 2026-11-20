@@ -132,6 +132,10 @@ Complete generated [number_theory.pdf](https://raw.githubusercontent.com/Hermann
 145 searchable LaTeX nodes (definitions, theorems, … / Definitionen, Theoreme, … ):
 ![zathura.png](res/zathura.png)  
 
+The diagram was created by gemini from attached 4 PDFs of script of Algebra 1 lecture of first 4 weeks and attached demo.dot as sample for what needs to be created. Besides the 145 LaTeX nodes 54 explicit (referenced, solid) and 177 implicit (deduced, dashed) edges were created. Details in this posting:  
+https://forum.graphviz.org/t/latex-labels-for-graphviz-work-in-progress/3402/12
+
+
 New version of ```texdot.py``` does place (LaTeX) content into PDF, in addition to the image that is displayed. Those texts allow for string search wherever the generated PDF is viewed. Browsers could display and search fast, and ```evince``` could display fast; but not search fast or consistently indicate which Grahviz node was found. ```evince``` was replaced by ```zathura``` in latest ```texdot.py``` commit.  
 
 ```+``` zoom in  
