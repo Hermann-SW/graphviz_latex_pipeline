@@ -173,7 +173,7 @@ Amer. Math. Monthly 86 (1979), 151–161
 ```
 and demo.dot and instructed to copy the Latex from all lemmata, definitions, theorems, … and fill Graphviz node comments with them. And add solid edge A->B if A is referenced in (proof of) B, and dashed edge A->B if gemini determined that the A is referenced by understandig the proof. Processed with latest ```texdot.py``` version 20 subgraph PDFs get generated and clicking on a node of the Stromberg paper displays that node's ingoing and outgoing edges only. Here is the complete diagram:  
 [Stromberg.dot](Stromberg.dot) and [Stromberg.pdf](res/Stromberg.pdf)  
-![Stromberg.pdf.20pc.png](res/Stromberg.pdf.p20c.png) 
+![Stromberg.pdf.20pc.png](res/Stromberg.pdf.20pc.png) 
 
-And this is displayed when clicking on lemma 1:  
+And this is displayed when clicking on theorem D:  
 ![Stromberg.lem_1.pdf.20pc.png](res/Stromberg.lem_1.pdf.20pc.png) 
