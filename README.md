@@ -163,7 +163,7 @@ So the big diagram allows to search for something, and then click found node and
 
 ## Banach-Tarski Paradox
 
-This was the all version I created manually. I did not get all the nodes, and far too few edges:  
+This was the old version I created manually. I did not get all the nodes, and far too few edges:  
 [Banach-Tarski_Paradox.dot](Banach-Tarski_Paradox.dot) [res/Banach-Tarski_Paradox.pdf](res/Banach-Tarski_Paradox.pdf)  
 
 So I asked gemini.google.com again, attached the PDF of paper  
@@ -173,7 +173,7 @@ Amer. Math. Monthly 86 (1979), 151–161
 ```
 and demo.dot and instructed to copy the Latex from all lemmata, definitions, theorems, … and fill Graphviz node comments with them. And add solid edge A->B if A is referenced in (proof of) B, and dashed edge A->B if gemini determined that the A is referenced by understandig the proof. Processed with latest ```texdot.py``` version 20 subgraph PDFs get generated and clicking on a node of the Stromberg paper displays that node's ingoing and outgoing edges only. Here is the complete diagram:  
 [Stromberg.dot](Stromberg.dot) and [Stromberg.pdf](res/Stromberg.pdf)  
-![Stromberg.pdf.png](res/Stromberg.pdf.png) 
+![Stromberg.pdf.20pc.png](res/Stromberg.pdf.p20c.png) 
 
 And this is displayed when clicking on lemma 1:  
-![Stromberg.pdf.lem_1.20pc.png](res/Stromberg.pdf.lem_1.20pc.png) 
+![Stromberg.lem_1.pdf.20pc.png](res/Stromberg.lem_1.pdf.20pc.png) 
