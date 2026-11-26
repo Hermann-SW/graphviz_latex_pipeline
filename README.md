@@ -171,7 +171,7 @@ So I asked gemini.google.com again, attached the PDF of paper
 Stromberg, K., The Banach-Tarski paradox,
 Amer. Math. Monthly 86 (1979), 151–161
 ```
-and demo.dot and instructed to copy the Latex from all lemmata, definitions, theorems, … and fill Graphviz node comments with them. And add solid edge A->B if A is referenced in (proof of) B, and dashed edge A->B if gemini determined that the A is referenced by understandig the proof. Processed with latest ```texdot.py``` version 20 subgraph PDFs get generated and clicking on a node of the Stromberg paper displays that node's ingoing and outgoing edges only. Here is the complete diagram:  
+and demo.dot and instructed to copy the Latex from all lemmata, definitions, theorems, … and fill Graphviz node comments with them. And add solid edge A->B if A is referenced in (proof of) B, and dashed edge A->B if gemini determined that A is referenced by understandig the proof. Processed with latest ```texdot.py``` version 20 subgraph PDFs get generated and clicking on a node of the Stromberg paper displays that node's ingoing and outgoing edges only. Here is the complete diagram:  
 [Stromberg.dot](Stromberg.dot) and [Stromberg.pdf](res/Stromberg.pdf)  
 ![Stromberg.pdf.20pc.png](res/Stromberg.pdf.20pc.png) 
 
