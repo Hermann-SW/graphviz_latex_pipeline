@@ -154,3 +154,14 @@ $
 
 Searching for "primitiv" (with ```/primitiv```) gives matches in English (```primitive```) and German (```primitiv```) language PDFs. Match will be displayed somewhere in a Graphviz node, because the displayed node content is an image:  
 ![zathura_zoom.png](res/zathura_zoom.png)  
+
+With latest feature addition (see [this posting](https://forum.graphviz.org/t/latex-labels-for-graphviz-work-in-progress/3402/13) on motivation) you can click on any node and get the subgraph for that node showing only its ingoing and outgoing edges. When clicking on "Lem 2.44" from previos screenshot this gets displayed:  
+![sub_lem_2_44.pdf.png](sub_lem_2_44.pdf.png])
+
+I did not ask gemini for nodes in subgraphs having URLs as well, but now they have. I started with "Thm 3.23" and then followed always the highest numbered definition. This leads to sequence of 11 definitions, from Def 2.23:  
+![sub_def_3_17.pdf.png](sub_def_3_17.pdf.png)
+
+downto finally Def 1.1:  
+![sub_def_1_3.pdf.png](sub_def_1_3.pdf.png)
+
+So the big diagram allows to search for something, and then click found node and navigate its neighborhood (where is the node used / what is used in the node) and get insights.
