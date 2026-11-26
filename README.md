@@ -119,11 +119,6 @@ Below is the adaptable LaTeX template in graph ```comment``` attribute. I had to
 Complete generated [number_theory.pdf](https://raw.githubusercontent.com/Hermann-SW/graphviz_latex_pipeline/main/res/number_theory.pdf), and partial view:  
 ![res/number_theory.20pc.png](res/number_theory.20pc.png)
 
-## Banach-Tarski Paradox
-
-[Banach-Tarski_Paradox.dot](Banach-Tarski_Paradox.dot) [res/Banach-Tarski_Paradox.pdf](res/Banach-Tarski_Paradox.pdf)  
-![res/Banach-Tarski_Paradox.pdf.20pc.png](res/Banach-Tarski_Paradox.pdf.20pc.png)
-
 ## Algebra 1 weeks 1-4
 
 [Algebra_1_weeks_1_to_4.pdf](https://raw.githubusercontent.com/Hermann-SW/graphviz_latex_pipeline/main/res/Algebra_1_weeks_1_to_4.pdf) (English)  
@@ -165,3 +160,20 @@ downto finally Def 1.1:
 ![sub_def_1_3.pdf.png](res/sub_def_1_3.pdf.png)
 
 So the big diagram allows to search for something, and then click found node and navigate its neighborhood (where is the node used / what is used in the node) and get insights.
+
+## Banach-Tarski Paradox
+
+This was the all version I created manually. I did not get all the nodes, and far too few edges:  
+[Banach-Tarski_Paradox.dot](Banach-Tarski_Paradox.dot) [res/Banach-Tarski_Paradox.pdf](res/Banach-Tarski_Paradox.pdf)  
+
+So I asked gemini.google.com again, attached the PDF of paper  
+```
+Stromberg, K., The Banach-Tarski paradox,
+Amer. Math. Monthly 86 (1979), 151–161
+```
+and demo.dot and instructed to copy the Latex from all lemmata, definitions, theorems, … and fill Graphviz node comments with them. And add solid edge A->B if A is referenced in (proof of) B, and dashed edge A->B if gemini determined that the A is referenced by understandig the proof. Processed with latest ```texdot.py``` version 20 subgraph PDFs get generated and clicking on a node of the Stromberg paper displays that node's ingoing and outgoing edges only. Here is the complete diagram:  
+[Stromberg.dot](Stromberg.dot) and [Stromberg.pdf](res/Stromberg.pdf)  
+![Stromberg.pdf.png](res/Stromberg.pdf.png) 
+
+And this is displayed when clicking on lemma 1:  
+![Stromberg.pdf.lem_1.20pc.png](res/Stromberg.pdf.lem_1.20pc.png) 

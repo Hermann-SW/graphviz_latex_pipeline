@@ -1,0 +1,246 @@
+digraph G {
+    layout=dot;
+    labelloc=t
+    label="The Banach-Tarski Paradox\nKarl Stromberg (1979)\n "
+    node [shape=box, fontsize=12, margin="0.15,0.1", height=0];
+
+    comment="
+\documentclass[varwidth=true, border=5pt]{standalone}
+\usepackage{amsmath, amssymb}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+
+\begin{document}
+% Remove automatic math spacing
+%\thinmuskip=0mu
+%\medmuskip=0mu
+%\thickmuskip=0mu
+
+\end{document}
+"
+
+    // =========================================================================
+    // Main Theorem (p. 151)
+    // =========================================================================
+
+    thm_BT [comment="
+\textbf{Thm BT }(Banach--Tarski Theorem) If $X$ and $Y$ are bounded subsets of $\R^3$ having nonempty interiors, then there exist a natural number $n$ and partitions $\{X_j : 1 \le j \le n\}$ and $\{Y_j : 1 \le j \le n\}$ of $X$ and $Y$, respectively (into $n$ pieces each), such that $X_j$ is congruent to $Y_j$ for all $j$.
+"]
+
+    // =========================================================================
+    // Basic Definitions and Properties of Rotations (pp. 151-153)
+    // =========================================================================
+
+    def_1 [comment="
+\textbf{Def 1 }For $x=(x_1,x_2,x_3)\in\R^3$, the \emph{norm} is $|x|=(x_1^2+x_2^2+x_3^2)^{1/2}$.\\
+The \emph{closed ball} of radius $r>0$ centered at $a\in\R^3$ is $\{x\in\R^3 : |x-a|\le r\}$. $X\subset\R^3$ is \emph{bounded} if it is contained in some closed ball, and has \emph{nonvoid interior} if it contains some closed ball.\\
+An \emph{orthogonal matrix} is a real square matrix with transpose equal to its inverse. A \emph{rotation} is a $3\times 3$ orthogonal matrix $\rho$ with $\det\rho=1$, viewed as $\rho(x)=y$ with $y_i=\sum_{j=1}^3 \rho_{ij}x_j$.\\
+A \emph{rigid motion} is a map $r:\R^3\to\R^3$ of the form $r(x)=\rho(x)+a$ ($\rho$ a rotation, $a\in\R^3$). Denote the $3\times 3$ identity matrix by $\iota$.\\
+$X,Y\subset\R^3$ are \emph{congruent} ($X\cong Y$) if $r(X)=Y$ for some rigid motion $r$.\\
+A \emph{partition} of $X$ into $n$ subsets $\{X_j:1\le j\le n\}$ satisfies $X=X_1\cup\cdots\cup X_n$ and $X_i\cap X_j=\phi$ if $i\ne j$ (some or all $X_j$ may be void).
+"]
+
+    prop_1 [comment="
+\textbf{Prop 1 }Let $\rho$ be a rotation. Then:\\
+(i) The image of any line is a line: $\rho(b+tc)=\rho(b)+t\rho(c)$ for all $b,c\in\R^3$ and $t\in\R$.\\
+(ii) Inner products are preserved: if $\rho(x)=y$ and $\rho(x')=y'$, then $\sum_{i=1}^3 y_i y_i' = \sum_{j=1}^3 x_j x_j'$.\\
+(iii) Distances are preserved: $|\rho(x)|=|x|$ for all $x\in\R^3$.\\
+(iv) If $\rho\ne\iota$, then $A=\{x\in\R^3:\rho(x)=x\}=\{tp:t\in\R\}$ for some $p\in\R^3$ with $|p|=1$ ($A$ is the \emph{axis} of $\rho$).\\
+(v) Any $q\in\R^3$ with the properties of $p$ in (iv) satisfies $q=p$ or $q=-p$ ($p,-p$ are the \emph{poles} of $\rho$).
+"]
+
+    // =========================================================================
+    // Hausdorff's Free Product Group and Paradoxical Sphere Partition (pp. 153-156)
+    // =========================================================================
+
+    def_2 [comment="
+\textbf{Def 2 }For a fixed real number $\theta$, consider the two rotations
+$$\psi=\begin{pmatrix}-1/2 & -\sqrt{3}/2 & 0\\ \sqrt{3}/2 & -1/2 & 0\\ 0 & 0 & 1\end{pmatrix},\quad \phi=\begin{pmatrix}-\cos\theta & 0 & \sin\theta\\ 0 & -1 & 0\\ \sin\theta & 0 & \cos\theta\end{pmatrix},$$
+satisfying $\psi^3=\phi^2=\iota$ (1). Let $G$ be the group of all finite matrix products of $\psi$ and $\phi$.\\
+A \emph{reduced word} in $\phi,\psi,\psi^2$ is a product $\rho=\sigma_1\sigma_2\cdots\sigma_n$ (2) with $n\ge 1$, $\sigma_j\in\{\phi,\psi,\psi^2\}$, and for $1\le j<n$ exactly one of $\sigma_j,\sigma_{j+1}$ is $\phi$.\\
+Every reduced word with $n>1$ has one of the four forms (3) with $m\ge 1$ and $p_j\in\{1,2\}$ ($m>1$ for $\delta$):\\
+$\alpha=\psi^{p_1}\phi\psi^{p_2}\phi\cdots\psi^{p_m}\phi$, $\beta=\phi\psi^{p_1}\phi\psi^{p_2}\cdots\phi\psi^{p_m}$,\\
+$\gamma=\phi\psi^{p_1}\phi\psi^{p_2}\cdots\phi\psi^{p_m}\phi$, $\delta=\psi^{p_1}\phi\psi^{p_2}\phi\cdots\phi\psi^{p_m}$.
+"]
+
+    thm_A [comment="
+\textbf{Thm A }(Hausdorff) If $\cos\theta$ is a transcendental number, then each element of $G$ other than $\iota$ has exactly one expression as a reduced word in the letters $\phi$, $\psi$, and $\psi^2$. That is, if\\
+(i) $\sigma_1\sigma_2\cdots\sigma_n = \rho_1\rho_2\cdots\rho_m$\\
+where each side is a reduced word, then $m=n$ and $\sigma_j=\rho_j$ for $1\le j\le n$.
+"]
+
+    def_3 [comment="
+\textbf{Def 3 }Fix $\theta\in\R$ such that $\cos\theta$ is transcendental (e.g., $\theta=1$ by the Generalized Lindemann Theorem).\\
+For $\rho\in G$ expressed in its unique way as a reduced word $\rho=\sigma_1\sigma_2\cdots\sigma_n$ as in (2), $n$ is the \emph{length} of $\rho$, written $l(\rho)=n$ (with $l(\iota)=0$), and $\sigma_1$ is the \emph{first letter} of $\rho$ ($\rho$ \emph{begins with} $\sigma_1$).
+"]
+
+    thm_B [comment="
+\textbf{Thm B }There exists a partition $\{G_1,G_2,G_3\}$ of $G$ into three nonvoid subsets such that for each $\rho\in G$ we have:\\
+(i) $\rho\in G_1 \Leftrightarrow \phi\rho\in G_2\cup G_3$,\\
+(ii) $\rho\in G_1 \Leftrightarrow \psi\rho\in G_2$,\\
+(iii) $\rho\in G_1 \Leftrightarrow \psi^2\rho\in G_3$.
+"]
+
+    thm_C [comment="
+\textbf{Thm C }There exists a partition $\{P,S_1,S_2,S_3\}$ of the unit sphere $S=\{x\in\R^3:|x|^2=x_1^2+x_2^2+x_3^2=1\}$ into four subsets such that:\\
+(i) $P$ is countable,\\
+(ii) $\phi(S_1)=S_2\cup S_3$,\\
+(iii) $\psi(S_1)=S_2$,\\
+(iv) $\psi^2(S_1)=S_3$.
+"]
+
+    // =========================================================================
+    // Sierpinski's Lemma and Duplication of Sphere and Ball (pp. 156-158)
+    // =========================================================================
+
+    lem_1 [comment="
+\textbf{Lem 1 }(Sierpi\'nski) If $P$ is any countable subset of $S$, then there exists a countable set $Q$ and a rotation $\omega$ such that $P\subset Q\subset S$ and $\omega(Q)=Q\setminus P$.
+"]
+
+    thm_D [comment="
+\textbf{Thm D }There exists a partition $\{T_j:1\le j\le 10\}$ of the unit sphere $S$ into ten (disjoint) subsets and a corresponding set $\{\rho_j:1\le j\le 10\}$ of rotations such that $\{\rho_j(T_j):1\le j\le 6\}$ is a partition of $S$ into six subsets and $\{\rho_j(T_j):7\le j\le 10\}$ is a partition of $S$ into four subsets. Moreover, we can take $T_7,T_8,T_9$ to all be rotates of $S_1$ and take $T_1,T_2,T_3,T_{10}$ to all be countable.
+"]
+
+    rem_D [comment="
+\textbf{Rem D }For $T\subset S$, write $T'=\{tx:x\in T,\, 0<t\le 1\}$. Then $S'=\{y\in\R^3:0<|y|\le 1\}$ is the punctured ball obtained from the solid unit ball $B=\{y\in\R^3:|y|\le 1\}$ by removing the origin $O=(0,0,0)$, and the first sentence of Theorem D remains true if we replace $S$ by $S'$ and $T_j$ by $T_j'$ throughout.
+"]
+
+    thm_E [comment="
+\textbf{Thm E }There exists a partition $\{B_k:1\le k\le 40\}$ of the closed unit ball $B$ into forty subsets and a corresponding set $\{r_k:1\le k\le 40\}$ of rigid motions such that $\{r_k(B_k):1\le k\le 24\}$ partitions $B$ into twenty-four subsets and $\{r_k(B_k):25\le k\le 40\}$ partitions $B$ into sixteen subsets.
+"]
+
+    // =========================================================================
+    // Piecewise Congruence and Proof of the Banach-Tarski Theorem (pp. 158-160)
+    // =========================================================================
+
+    def_4 [comment="
+\textbf{Def 4 }Two subsets $X$ and $Y$ of $\R^3$ are \emph{piecewise congruent} ($X\sim Y$) if, for some $n\in\N$, there exist a partition $\{X_j:1\le j\le n\}$ of $X$ and rigid motions $\{f_j:1\le j\le n\}$ such that $\{f_j(X_j):1\le j\le n\}$ is a partition of $Y$. If $X$ is piecewise congruent to a subset of $Y$, we write $X\le Y$.
+"]
+
+    thm_F [comment="
+\textbf{Thm F }For subsets $X,Y,$ and $Z$ of $\R^3$ we have:\\
+(i) $X\sim X$,\\
+(ii) $X\sim Y \Rightarrow Y\sim X$,\\
+(iii) $X\sim Y$ and $Y\sim Z \Rightarrow X\sim Z$,\\
+(iv) $X\sim Y \Rightarrow X\le Y$,\\
+(v) $X\le Y$ and $Y\le Z \Rightarrow X\le Z$,\\
+(vi) $X\subset Y \Rightarrow X\le Y$,\\
+(vii) $X\le Y$ and $Y\le X \Rightarrow X\sim Y$.
+"]
+
+    def_5 [comment="
+\textbf{Def 5 }A \emph{closed ball} in $\R^3$ is $A=\{x\in\R^3:|x-a|\le\epsilon\}$ ($a\in\R^3$, $\epsilon>0$). A \emph{translate} of $A\subset\R^3$ is $A+b=\{x+b:x\in A\}$ ($b\in\R^3$).
+"]
+
+    thm_G [comment="
+\textbf{Thm G }If $A\subset\R^3$ is a closed ball and if $A_1,A_2,\dots,A_n$ are a finite number of translates of $A$, then
+$$A\sim \bigcup_{j=1}^n A_j.$$
+"]
+
+    thm_H [comment="
+\textbf{Thm H }If $X$ and $Y$ are bounded subsets of $\R^3$ having nonvoid interiors, then $X\sim Y$.
+"]
+
+    // =========================================================================
+    // Concluding Remarks (p. 160)
+    // =========================================================================
+
+    rem_1 [comment="
+\textbf{Rem 1 }The number 40 in Theorem E is not the smallest possible. R.~M.~Robinson (1947) showed there is a partition of $B$ into five sets (one a singleton) which can be reassembled by rigid motions to form two disjoint closed unit balls. T.~J.~Dekker and J.~de~Groot (1956) proved these five sets can be chosen both connected and locally connected.
+"]
+
+    rem_2 [comment="
+\textbf{Rem 2 }It follows from Theorem C that, since Lebesgue measure $\lambda^3$ on $\R^3$ is rotation invariant, none of the three sets $S_k'=\{tx:x\in S_k,\, 0<t\le 1\}$, $1\le k\le 3$, can be Lebesgue measurable.
+"]
+
+    rem_3 [comment="
+\textbf{Rem 3 }A poor analogue of Theorem C can be explicitly constructed (no Axiom of Choice) in the plane: fix transcendental $c\in\C$ with $|c|=1$ (e.g., $c=e^i$), and let $X$ be all $z=\sum_{j=0}^n a_j c^j$ with $n\ge 0$ and $a_j\in\Z_{\ge 0}$ (unique expression). With $X_0=\{z\in X:a_0=0\}$, $X_1=X\setminus X_0$, $\rho(z)=cz$, and $\tau(z)=z+1$, we have $\rho(X)=X_0$ and $\tau(X)=X_1$. It is poor because $X$ is countable and unbounded.
+"]
+
+    // =========================================================================
+    // Edges: Solid = explicit reference; Dashed = implicit / proof-understood
+    // =========================================================================
+
+    // From Def 1
+    def_1 -> prop_1 [comment=""]
+    def_1 -> def_2 [style=dashed, comment=""]
+    def_1 -> thm_B [style=dashed, comment=""]
+    def_1 -> thm_C [style=dashed, comment=""]
+    def_1 -> lem_1 [style=dashed, comment=""]
+    def_1 -> rem_D [style=dashed, comment=""]
+    def_1 -> thm_E [style=dashed, comment=""]
+    def_1 -> def_4 [style=dashed, comment=""]
+    def_1 -> thm_F [style=dashed, comment=""]
+    def_1 -> def_5 [style=dashed, comment=""]
+    def_1 -> thm_G [style=dashed, comment=""]
+    def_1 -> thm_H [style=dashed, comment=""]
+    def_1 -> thm_BT [style=dashed, comment=""]
+
+    // From Prop 1
+    prop_1 -> def_2 [style=dashed, comment=""]
+    prop_1 -> thm_C [style=dashed, comment=""]
+    prop_1 -> lem_1 [style=dashed, comment=""]
+    prop_1 -> rem_D [style=dashed, comment=""]
+
+    // From Def 2
+    def_2 -> thm_A [comment=""]
+    def_2 -> def_3 [comment=""]
+    def_2 -> thm_B [style=dashed, comment=""]
+    def_2 -> thm_C [style=dashed, comment=""]
+    def_2 -> thm_D [style=dashed, comment=""]
+
+    // From Thm A
+    thm_A -> def_3 [style=dashed, comment=""]
+    thm_A -> thm_B [style=dashed, comment=""]
+
+    // From Def 3
+    def_3 -> thm_B [comment=""]
+
+    // From Thm B
+    thm_B -> thm_C [comment=""]
+
+    // From Thm C
+    thm_C -> thm_D [comment=""]
+    thm_C -> rem_2 [comment=""]
+    thm_C -> rem_3 [comment=""]
+
+    // From Lem 1
+    lem_1 -> thm_D [comment=""]
+    lem_1 -> thm_E [comment=""]
+
+    // From Thm D
+    thm_D -> rem_D [comment=""]
+    thm_D -> thm_E [comment=""]
+
+    // From Rem D
+    rem_D -> thm_E [comment=""]
+    rem_D -> rem_2 [style=dashed, comment=""]
+
+    // From Thm E
+    thm_E -> thm_G [comment=""]
+    thm_E -> rem_1 [comment=""]
+
+    // From Def 4
+    def_4 -> thm_F [comment=""]
+    def_4 -> thm_G [style=dashed, comment=""]
+    def_4 -> thm_H [style=dashed, comment=""]
+    def_4 -> thm_BT [style=dashed, comment=""]
+
+    // From Thm F
+    thm_F -> thm_G [comment=""]
+    thm_F -> thm_H [comment=""]
+
+    // From Def 5
+    def_5 -> thm_G [style=dashed, comment=""]
+    def_5 -> thm_H [style=dashed, comment=""]
+
+    // From Thm G
+    thm_G -> thm_H [comment=""]
+
+    // From Thm H
+    thm_H -> thm_BT [comment=""]
+
+}
